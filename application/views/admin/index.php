@@ -56,7 +56,7 @@
         </div>
         <div id="main-wrapper">
             <?php $this->load->view('components/navbar') ?>
-            <?php $this->load->view('components/sidebar') ?>
+            <?php $this->load->view('admin/sidebar') ?>
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
                 <div class="page-breadcrumb">
                     <div class="row">

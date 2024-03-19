@@ -56,12 +56,12 @@
         </div>
         <div id="main-wrapper">
             <?php $this->load->view('components/navbar') ?>
-            <?php $this->load->view('components/sidebar') ?>
+            <?php $this->load->view('admin/sidebar') ?>
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-5 align-self-center">
-                            <h2 class="page-title">Kegiatan Belajar Mengajar</h2>
+                            <h2 class="page-title">Data Siswa</h2>
                             <!-- <div class="d-flex align-items-center">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -71,7 +71,7 @@
                                 </nav>
                             </div> -->
                         </div>
-                        <form method="post" action="<?php echo base_url('home/spreadsheet_import');?>"
+                        <form method="post" action="<?php echo base_url('admin/spreadsheet_import_siswa');?>"
                             enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="file" name="upload_file" class="form-control" placeholder="Enter Name"
