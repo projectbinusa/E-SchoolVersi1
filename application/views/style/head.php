@@ -9,3 +9,12 @@
 </script>
 <link rel="stylesheet"
     href="<?php echo base_url('package/select2-bootstrap-5-theme-1.3.0/dist/select2-bootstrap5.min.css'); ?>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+
+<style>    
+.font-web {
+    font-family: 'ABeeZee', sans-serif;
+}
+</style>
