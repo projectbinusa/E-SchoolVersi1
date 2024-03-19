@@ -1,20 +1,14 @@
 <header class="topbar">
-    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+    <nav class="navbar top-navbar navbar-expand-md navbar-dark" style="background-color: #10222E">
         <div class="navbar-header">
             <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
                 <i class="ri-close-line fs-6 ri-menu-2-line"></i>
             </a>
-            <a class="navbar-brand" href="<?php echo base_url('dashboard/')?>" style="background-color: #10222E">
-                <b class="logo-icon">
-                    <img src="<?php echo base_url('package/assets/images/logo-pos.png')?>" width="50px" />
+            <a class="navbar-brand" href="<?php echo base_url()?>" style="background-color: #10222E">
+                <b class="logo-icon logo-text">
+                    <img src="<?php echo base_url('uploads/logo/crop-logo.png');?>" width="150px" />
                     <!-- <img src="../package/assets/images/logo-pos.png" alt="homepage" class="light-logo" /> -->
                 </b>
-                <div class="logo-text">
-                    <div class="fw-bold mb-n2" style="color: #EBE8D9">
-                        SEKOLAH
-                    </div>
-                    <!-- <img src="../../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /> -->
-                </div>
             </a>
             <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
                 data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

@@ -3,6 +3,7 @@
 
 <head>
     <link href="<?php echo base_url('package/dist/css/style.min.css');?>" rel="stylesheet" />
+    <?php $this->load->view('style/head') ?>
     <link rel="stylesheet" href="<?php echo base_url('package/select2/css/select2.min.css'); ?>">
     <script src="<?php echo base_url('package/select2/css/select2.min.css'); ?>"></script>
     <script src="<?php echo base_url('package/select2-bootstrap-5-theme-1.3.0/dist/select2-bootstrap5.min.css'); ?>">
@@ -34,7 +35,7 @@
     </style>
 </head>
 
-<body>
+<body class="font-web">
     <div class="all">
         <div class="preloader">
             <svg class="tea lds-ripple" width="37" height="48" viewbox="0 0 37 48" fill="none"
@@ -58,20 +59,70 @@
             <?php $this->load->view('components/navbar') ?>
             <?php $this->load->view('components/sidebar') ?>
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
-                <div class="page-breadcrumb">
-                    <div class="row">
-                        <div class="col-5 align-self-center">
-                            <h2 class="page-title">Kegiatan Belajar Mengajar</h2>
-                            <!-- <div class="d-flex align-items-center">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                                    </ol>
-                                </nav>
-                            </div> -->
+                <div class="page-breadcrumb d-flex items-center justify-content-between">
+                    <div class="">
+                        <h2 class="page-title">Kegiatan Belajar Mengajar</h2>
+                    </div>
+                    <div>
+                        <div class="d-flex">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item" style="font-size: 15px;"><a href="<?php echo base_url()?>">Home</a></li>
+                                    <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
+                                        Dashboard</li> -->
+                                </ol>
+                            </nav>
                         </div>
-                        <form method="post" action="<?php echo base_url('home/spreadsheet_import');?>"
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="container-fluid mt-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card bg-primary text-white" style="border-radius: 10px;">
+                                    <div class="card-body d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <div class="card-title h4 fw-normal">Total Guru</div>
+                                            <div class="card-text display-6 fw-bold mt-3">
+                                                37
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-chalkboard-user fa-5x"
+                                                style="color: rgba(0,0,0,.15);"></i>
+                                        </div>
+                                    </div>
+                                    <a href="<?php echo base_url('admin/user') ;?>"
+                                        class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
+                                        style="background-color: #3B82F6; border-radius: 0px 0px 10px 10px;">
+                                        <span>See More</span>
+                                        <i class="fa-solid fa-circle-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-primary text-white" style="border-radius: 10px;">
+                                    <div class="card-body d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <div class="card-title h4 fw-normal">Total Siswa</div>
+                                            <div class="card-text display-6 fw-bold mt-3">
+                                                1783
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-user fa-5x" style="color: rgba(0,0,0,.15);"></i>
+                                        </div>
+                                    </div>
+                                    <a href="<?php echo base_url('admin/user') ;?>"
+                                        class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
+                                        style="background-color: #3B82F6; border-radius: 0px 0px 10px 10px;">
+                                        <span>See More</span>
+                                        <i class="fa-solid fa-circle-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <form method="post" action="<?php echo base_url('home/spreadsheet_import');?>"
                             enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="file" name="upload_file" class="form-control" placeholder="Enter Name"
@@ -80,31 +131,53 @@
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-primary">
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="container-fluid mt-5">
-                        <table class="table table-hover table-secondary ">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th class="text-center">Jam Masuk</th>
-                                    <th class="text-center">Jam Selesai</th>
-                                    <th class="text-center">Materi</th>
-                                    <th class="text-center">Keterangan</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-light">
-                                <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">12:55</td>
-                                    <td class="text-center">14:00</td>
-                                    <td class="text-center">B Indo</td>
-                                    <td class="text-center">-</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        </form> -->
+                        <div class="rounded shadow p-3 mt-3">
+                            <h3>Table Jadwal KBM</h3>
+                            <table class="table table-hover table-secondary mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th class="text-center">Jam Masuk</th>
+                                        <th class="text-center">Jam Selesai</th>
+                                        <th class="text-center">Materi</th>
+                                        <th class="text-center">Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-light">
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">12:55</td>
+                                        <td class="text-center">14:00</td>
+                                        <td class="text-center">B Indo</td>
+                                        <td class="text-center">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="rounded shadow p-3 mt-4">
+                            <h3>Table Siswa</h3>
+                            <table class="table table-hover table-secondary mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th class="text-center">Nama Siswa</th>
+                                        <th class="text-center">NISN</th>
+                                        <th class="text-center">Kelas</th>
+                                        <th class="text-center">TTL</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-light">
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">Irvanda</td>
+                                        <td class="text-center">169762354924</td>
+                                        <td class="text-center">XII TKJ 2</td>
+                                        <td class="text-center">Semarang, 18 Maret 2005</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
