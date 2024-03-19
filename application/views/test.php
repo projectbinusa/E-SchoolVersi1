@@ -70,6 +70,14 @@
                                 </nav>
                             </div> -->
                         </div>
+                        <form method="post" action="<?php echo base_url('home/spreadsheet_import');?>" enctype="multipart/form-data">
+  <div class="form-group">
+    <input type="file" name="upload_file" class="form-control" placeholder="Enter Name" id="upload_file" required>
+  </div>
+  <div class="form-group">
+    <input type="submit" name="submit" class="btn btn-primary">
+  </div>
+</form>
                     </div>
                 </div>
                 <div class="container-fluid">
