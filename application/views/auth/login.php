@@ -20,17 +20,25 @@
     <div class="bg-white text-black max-h-75 h-75 max-w-75 w-75 row shadow-lg rounded">
         <div class="col my-auto">
             <form action="">
-                <div class="px-5">
+                <div class="px-5 fs-4">
                     <h2>Login</h2>
                     <div class="mt-4">
                         <label for="exampleInputEmail1" class="form-label" style="color: #374151;">Email</label>
-                        <input type="email" class="form-control shadow-input" id="exampleInputEmail1"
+                        <input type="email" class="form-control shadow-input text-secondary" id="exampleInputEmail1"
                             placeholder="Email">
                     </div>
                     <div class="mt-3">
                         <label for="exampleInputEmail1" class="form-label" style="color: #374151;">Password</label>
-                        <input type="password" class="form-control shadow-input" id="exampleInputEmail1"
-                            placeholder="Password">
+                        <div class="position-relative">
+                            <input type="password" class="form-control shadow-input text-secondary" id="password"
+                                placeholder="Password">
+                            <span
+                                class="position-absolute top-0 mt-2 me-3 pointer text-secondary"
+                                id="togglePassword" style="right: 0;cursor
+                                : pointer;">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
                     </div>
                     <div class="mt-3">
                         <button type="submit" class="btn btn-outline-secondary w-100 fs-4"
@@ -43,6 +51,17 @@
             <img src="<?php echo base_url('uploads/logo/logo.jpeg');?>" alt="" width="400px">
         </div>
     </div>
+    <script>
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+
+    togglePassword.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' :
+            '<i class="fas fa-eye-slash"></i>';
+    });
+    </script>
 </body>
 <?php $this->load->view('style/js') ?>
 
