@@ -19,7 +19,7 @@
     <meta name="description"
         content="Xtreme is powerful and clean admin dashboard template, inpired from Google's Material Design" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Dashboard Guru</title>
+    <title>Dashboard Admin</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('package/assets/images/logo-pos.png')?>" />
 </head>
 
@@ -49,13 +49,13 @@
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
                     <div class="">
-                        <h2 class="page-title">Dashboard Guru</h2>
+                        <h2 class="page-title">Dashboard Admin</h2>
                     </div>
                     <div>
                         <div class="d-flex">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item" style="font-size: 15px;"><a href="<?php echo base_url('guru')?>">Dashboard Guru</a></li>
+                                    <li class="breadcrumb-item" style="font-size: 15px;"><a href="<?php echo base_url('admin')?>">Dashboard Admin</a></li>
                                     <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
                                         Dashboard</li> -->
                                 </ol>
@@ -65,6 +65,61 @@
                 </div>
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card bg-primary text-white" style="border-radius: 10px;">
+                                    <div class="card-body d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <div class="card-title h4 fw-normal">Total Guru</div>
+                                            <div class="card-text display-6 fw-bold mt-3">
+                                                37
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-chalkboard-user fa-5x"
+                                                style="color: rgba(0,0,0,.15);"></i>
+                                        </div>
+                                    </div>
+                                    <a href="<?php echo base_url('admin/guru') ;?>"
+                                        class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
+                                        style="background-color: #3B82F6; border-radius: 0px 0px 10px 10px;">
+                                        <span>See More</span>
+                                        <i class="fa-solid fa-circle-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-primary text-white" style="border-radius: 10px;">
+                                    <div class="card-body d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <div class="card-title h4 fw-normal">Total Siswa</div>
+                                            <div class="card-text display-6 fw-bold mt-3">
+                                                1783
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-user fa-5x" style="color: rgba(0,0,0,.15);"></i>
+                                        </div>
+                                    </div>
+                                    <a href="<?php echo base_url('admin/siswa') ;?>"
+                                        class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
+                                        style="background-color: #3B82F6; border-radius: 0px 0px 10px 10px;">
+                                        <span>See More</span>
+                                        <i class="fa-solid fa-circle-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <form method="post" action="<?php echo base_url('home/spreadsheet_import');?>"
+                            enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input type="file" name="upload_file" class="form-control" placeholder="Enter Name"
+                                    id="upload_file" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-primary">
+                            </div>
+                        </form> -->
                         <div class="rounded shadow p-3 mt-3">
                             <h3>Table Jadwal KBM</h3>
                             <table class="table table-hover table-secondary mt-3">

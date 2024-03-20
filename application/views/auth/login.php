@@ -34,7 +34,7 @@
                                 class="position-absolute top-0 mt-2 me-3 pointer text-secondary"
                                 id="togglePassword" style="right: 0;cursor
                                 : pointer;">
-                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye-slash"></i>
                             </span>
                         </div>
                     </div>
@@ -56,8 +56,8 @@
     togglePassword.addEventListener('click', () => {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
-        togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' :
-            '<i class="fas fa-eye-slash"></i>';
+        togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye-slash"></i>' :
+            '<i class="fas fa-eye"></i>';
     });
     </script>
 </body>

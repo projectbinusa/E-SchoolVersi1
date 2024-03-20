@@ -12,36 +12,35 @@ class Admin extends CI_Controller {
 			$this->load->model('Main_model');
 			date_default_timezone_set('Asia/Jakarta');
     }
+
 	public function index()
 	{
-		$this->load->view('admin/siswa', [
-      'data' => $this->Main_model->getSiswa()
-    ]);
+		$this->load->view('admin/dashboard');
 	}
 
 	public function hapus_siswa_api($id) {
-    $this->Main_model->remove('siswa', $id);
-    redirect(base_url('admin/siswa'));
-  }
+		$this->Main_model->remove('siswa', $id);
+		redirect(base_url('admin/siswa'));
+  	}
 
 	public function hapus_guru_api($id) {
 		$this->Main_model->remove('guru', $id);
 		redirect(base_url('admin/guru'));
 	}
   
-  public function edit_siswa_api($id) {
-    $this->Main_model->edit('siswa', [
-			'nama_siswa' => $this->input->post("nama"),
-			'nisn' => $this->input->post("nisn"),
-			'kelas_id' => $this->input->post("kelas"),
-			'ttl' => $this->input->post("ttl")
-		], $id);
-    redirect(base_url('admin/siswa'));
-  }
+	public function edit_siswa_api($id) {
+		$this->Main_model->edit('siswa', [
+				'nama_siswa' => $this->input->post("nama"),
+				'nisn' => $this->input->post("nisn"),
+				'kelas_id' => $this->input->post("kelas"),
+				'ttl' => $this->input->post("ttl")
+			], $id);
+		redirect(base_url('admin/siswa'));
+	}
 
-  public function edit_guru_api($id) {
+	public function edit_guru_api($id) {
 		$username = $this->Main_model->findById('guru', $id)->nama;
-    $this->Main_model->edit('guru', [
+		$this->Main_model->edit('guru', [
 			'nama' => $this->input->post('nama'),
 			'nip' => $this->input->post('nip'),
 			'mapel' => $this->input->post('mapel'),
@@ -54,9 +53,9 @@ class Admin extends CI_Controller {
 		if ($this->input->post('password')) {
 			$userdata['password'] = md5($this->input->post('password'));
 		}
-    $this->Main_model->editWhere('user', $userdata, [ 'username' => $username ]);
-    redirect(base_url('admin/guru'));
-  }
+		$this->Main_model->editWhere('user', $userdata, [ 'username' => $username ]);
+		redirect(base_url('admin/guru'));
+	}
 
 	public function guru()
 	{
