@@ -9,34 +9,36 @@ class Admin extends CI_Controller {
 	public function __construct()
     {
 			parent::__construct();
-			$this->load->model('m_admin');
+			$this->load->model('Main_model');
 			date_default_timezone_set('Asia/Jakarta');
     }
 	public function index()
 	{
-		$this->load->view('admin/siswa');
+		$this->load->view('admin/siswa', [
+      'data' => $this->Main_model->getSiswa()
+    ]);
 	}
 
 	public function hapus_siswa_api($id) {
-    $this->m_admin->remove('siswa', $id);
+    $this->Main_model->remove('siswa', $id);
     redirect(base_url('admin/siswa'));
   }
   
   public function edit_siswa_api($id) {
-    $this->m_admin->edit('siswa', $this->input->post("data"), $id);
+    $this->Main_model->edit('siswa', $this->input->post("data"), $id);
     redirect(base_url('admin/siswa'));
   }
 
 	public function guru()
 	{
 		$this->load->view('admin/guru', [
-			'data' => $this->m_admin->getGuru()
+			'data' => $this->Main_model->getGuru()
 		]);
 	}
 	public function siswa()
 	{
 		$this->load->view('admin/siswa', [
-      'data' => $this->m_admin->getSiswa()
+      'data' => $this->Main_model->getSiswa()
     ]);
 	}
 
