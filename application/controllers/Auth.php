@@ -18,7 +18,7 @@ class Auth extends CI_Controller {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         $data = ['username' => $username];
-        $query = $this->Main_model->getwhere('user', $data);
+        $query = $this->Main_model->login('user', $data);
         $result = $query->row_array();
         if (!empty($result) && md5($password) === $result['password']) {
             $data = [

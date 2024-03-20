@@ -10,6 +10,17 @@ class Main_model extends CI_Model {
     $this->db->update($table, $data, $where);
   }
 
+  public function login($table, $where)
+  {
+      $data = $this->db->where($where)->get($table);
+      return $data;
+  }
+
+  function get($table)
+        {
+            return $this->db->get($table);
+        }
+
   public function remove($table, $id) {
     $this->db->delete($table, ['id' => $id]);
   }

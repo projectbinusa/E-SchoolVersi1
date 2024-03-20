@@ -109,10 +109,12 @@ class Admin extends CI_Controller {
 			for ($i=1; $i < $sheetcount; $i++) { 
 				$nama_siswa=$sheetdata[$i][1];
 				$nisn=$sheetdata[$i][2];
-				$ttl=$sheetdata[$i][3];
+				$kelas=$sheetdata[$i][3];
+				$ttl=$sheetdata[$i][4];
 				$data[]=array(
 					'nama_siswa'=>$nama_siswa,
 					'nisn'=>$nisn,
+					'kelas_id'=>$kelas,
 					'ttl'=>$ttl,
 				);
 			}
@@ -120,13 +122,50 @@ class Admin extends CI_Controller {
 			if($inserdata)
 			{
 				$this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added.</div>');
-				redirect('admin/index_siswa');
+				redirect('admin/siswa');
 			} else {
 				$this->session->set_flashdata('message','<div class="alert alert-danger">Data Not uploaded. Please Try Again.</div>');
 				redirect('index');
 			}
 		}
 	}
+
+	public function format_siswa()
+	{
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="format_siswa_esch.xlsx"');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'No');
+		$sheet->setCellValue('B1', 'Nama Siswa');
+		$sheet->setCellValue('C1', 'NISN');
+		$sheet->setCellValue('D1', 'Kelas');
+		$sheet->setCellValue('E1', 'ttl');
+		$sheet->setCellValue('F1', '');
+		$sheet->mergeCells('G1:H1');
+        $sheet->setCellValue('G1', 'daftar kelas');
+		
+		$data['data'] = $this->Main_model->get('kelas')->result(); 
+    	$dataKelas = $data['data'];
+
+    	$rowNum = 2;
+
+    	foreach ($dataKelas as $data) {
+        $sheet->setCellValue('A' . $rowNum, '');
+        $sheet->setCellValue('B' . $rowNum, '');
+        $sheet->setCellValue('C' . $rowNum, ''); // Replace with actual hadir status
+        $sheet->setCellValue('D' . $rowNum, ''); // Replace with actual ijin status
+        $sheet->setCellValue('E' . $rowNum, ''); // Replace with actual alpha status
+        $sheet->setCellValue('F' . $rowNum, ''); // Replace with actual alpha status
+        $sheet->setCellValue('G' . $rowNum, $data->id); // Replace with actual alpha status
+        $sheet->setCellValue('H' . $rowNum, $data->nama); // Replace with additional keterangan
+
+        $rowNum++;
+    }
+		$writer = new Xlsx($spreadsheet);
+		$writer->save("php://output");
+	}
+
 
 	public function spreadsheet_import_guru()
 	{
@@ -152,23 +191,65 @@ class Admin extends CI_Controller {
 				$nama=$sheetdata[$i][1];
 				$nip=$sheetdata[$i][2];
 				$mapel=$sheetdata[$i][3];
-				// $kelas=$sheetdata[$i][4];
+				$kelas_id=$sheetdata[$i][4];
+				$ttl=$sheetdata[$i][5];
 				$data[]=array(
 					'nama'=>$nama,
 					'nip'=>$nip,
 					'mapel'=>$mapel,
-					// 'kelas'=>$kelas
+					'kelas_id'=>$kelas_id,
+					'ttl'=>$ttl
 				);
 			}
 			$inserdata=$this->Main_model->import_data_guru($data);
 			if($inserdata)
 			{
 				$this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added.</div>');
-				redirect('admin/index_guru');
+				redirect('admin/guru');
 			} else {
 				$this->session->set_flashdata('message','<div class="alert alert-danger">Data Not uploaded. Please Try Again.</div>');
 				redirect('index');
 			}
 		}
+	}
+	public function format_guru()
+	{
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="format_guru_esch.xlsx"');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'No');
+		$sheet->setCellValue('B1', 'Nama Guru');
+		$sheet->setCellValue('C1', 'NIP');
+		$sheet->setCellValue('D1', 'Mapel');
+		$sheet->setCellValue('E1', 'kelas');
+		$sheet->setCellValue('F1', 'ttl');
+		$sheet->setCellValue('G1', 'password');
+		$sheet->setCellValue('H1', '');
+		$sheet->mergeCells('H1:I1');
+        $sheet->setCellValue('J1', 'daftar kelas');
+		
+		$data['data'] = $this->Main_model->get('kelas')->result(); 
+    	$dataKelas = $data['data'];
+
+    	$rowNum = 2;
+
+    	foreach ($dataKelas as $data) {
+        $sheet->setCellValue('A' . $rowNum, '');
+        $sheet->setCellValue('B' . $rowNum, '');
+        $sheet->setCellValue('C' . $rowNum, ''); 
+        $sheet->setCellValue('D' . $rowNum, ''); 
+        $sheet->setCellValue('E' . $rowNum, ''); 
+        $sheet->setCellValue('F' . $rowNum, ''); 
+        $sheet->setCellValue('G' . $rowNum, ''); 
+        $sheet->setCellValue('G' . $rowNum, ''); 
+        $sheet->setCellValue('H' . $rowNum, ''); 
+        $sheet->setCellValue('I' . $rowNum, $data->id); 
+        $sheet->setCellValue('J' . $rowNum, $data->nama); 
+
+        $rowNum++;
+    }
+		$writer = new Xlsx($spreadsheet);
+		$writer->save("php://output");
 	}
 }
