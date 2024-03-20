@@ -2,21 +2,25 @@
   <div class="scroll-sidebar">
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
-        <li class="sidebar-item mt-3">
-          <a href="<?php echo base_url('dashboard')?>"
-            class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i
-              data-feather="home" class="feather-icon"></i><span class="hide-menu">KBM</span></a>
-        </li>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('dashboard')?>"
-            class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i
-              data-feather="user" class="feather-icon"></i><span class="hide-menu">Sikap</span></a>
-        </li>
-        <li class="sidebar-item">
-          <a href="<?php echo base_url('dashboard')?>"
-            class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i
-              data-feather="users" class="feather-icon"></i><span class="hide-menu">Presensi</span></a>
-        </li>
+        <?php $items = explode("/", uri_string())[0] == "admin" ? 
+           [
+            ["label" => "Siswa", 'icon' => 'book-open', "to" => "admin/siswa"],
+            ["label" => "Guru", 'icon' => 'clipboard', "to" => "admin/guru"]
+           ]
+          :
+           [
+            ["label" => "KBM", 'icon' => 'home', "to" => "#"],
+            ["label" => "Sikap", 'icon' => 'user', "to" => "#"],
+            ["label" => "Presensi", 'icon' => 'users', "to" => "#"]
+           ]
+        ?>
+        <?php $i = 0; foreach ($items as $item): ?>
+          <li class="sidebar-item<?= $i == 0 ? ' mt-3' : '' ?>">
+            <a href="<?= base_url($item['to'])?>"
+              class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i
+                data-feather="<?= $item['icon'] ?>" class="feather-icon"></i><span class="hide-menu"><?= $item['label'] ?></span></a>
+          </li>
+        <?php $i++; endforeach; ?>
         <li class="sidebar-item">
           <a class="sidebar-link waves-effect waves-dark sidebar-link"
             href="<?php echo base_url('auth/logout')?>" aria-expanded="false"><i data-feather="log-out"

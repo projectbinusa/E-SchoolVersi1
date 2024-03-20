@@ -8,25 +8,36 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class Admin extends CI_Controller {
 	public function __construct()
     {
-        parent::__construct();
-		$this->load->model('Main_model');
-		date_default_timezone_set('Asia/Jakarta');
-		$this->load->helper(['url', 'form', 'html']);
-		$this->load->library(['session']);
-		
+			parent::__construct();
+			$this->load->model('m_admin');
+			date_default_timezone_set('Asia/Jakarta');
     }
 	public function index()
 	{
-		$this->load->view('admin/index');
+		$this->load->view('admin/siswa');
 	}
 
-	public function index_guru()
+	public function hapus_siswa_api($id) {
+    $this->m_admin->remove('siswa', $id);
+    redirect(base_url('admin/siswa'));
+  }
+  
+  public function edit_siswa_api($id) {
+    $this->m_admin->edit('siswa', $this->input->post("data"), $id);
+    redirect(base_url('admin/siswa'));
+  }
+
+	public function guru()
 	{
-		$this->load->view('admin/data_guru');
+		$this->load->view('admin/guru', [
+			'data' => $this->m_admin->getGuru()
+		]);
 	}
-	public function index_siswa()
+	public function siswa()
 	{
-		$this->load->view('admin/data_siswa');
+		$this->load->view('admin/siswa', [
+      'data' => $this->m_admin->getSiswa()
+    ]);
 	}
 
 	public function spreadsheet_import_siswa()

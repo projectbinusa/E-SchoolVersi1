@@ -2,10 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?></title>
-    <?php $this->load->view('style/head') ?>
+    <title>Auth Page</title>
+        <?php $this->load->view('style/head') ?>
     <style>
     .shadow-input {
         --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -63,6 +61,6 @@
     });
     </script>
 </body>
-<?php $this->load->view('style/js') ?>
+<?php $this->load->view('components/scripts') ?>
 
 </html>
