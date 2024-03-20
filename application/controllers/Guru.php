@@ -5,7 +5,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-class Home extends CI_Controller {
+class Guru extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -17,7 +17,10 @@ class Home extends CI_Controller {
     }
 	public function index()
 	{
-		$data['title'] = 'Home Page';
-		$this->load->view('test', $data);
+		$this->load->view('guru/dashboard');
+	}
+	public function sikap()
+	{
+		$this->load->view('guru/sikap');
 	}
 }

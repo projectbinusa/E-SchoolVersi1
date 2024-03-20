@@ -3,7 +3,7 @@
 
 <head>
     <link href="<?php echo base_url('package/dist/css/style.min.css');?>" rel="stylesheet" />
-    <?php $this->load->view('style/head') ?>
+    <?php $this->load->view('components/head') ?>
     <link rel="stylesheet" href="<?php echo base_url('package/select2/css/select2.min.css'); ?>">
     <script src="<?php echo base_url('package/select2/css/select2.min.css'); ?>"></script>
     <script src="<?php echo base_url('package/select2-bootstrap-5-theme-1.3.0/dist/select2-bootstrap5.min.css'); ?>">
@@ -19,7 +19,7 @@
     <meta name="description"
         content="Xtreme is powerful and clean admin dashboard template, inpired from Google's Material Design" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>POS</title>
+    <title>Dashboard Guru</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('package/assets/images/logo-pos.png')?>" />
     <style>
     .card-dashboard {
@@ -31,6 +31,17 @@
         overflow-y: scroll;
         overflow-x: hidden;
         max-height: 450px;
+    }
+    .content-page {
+        -ms-overflow-style: none;
+        /* Internet Explorer 10+ */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .content-page::-webkit-scrollbar {
+        display: none;
+        /* Safari and Chrome */
     }
     </style>
 </head>
@@ -58,7 +69,7 @@
         <div id="main-wrapper">
             <?php $this->load->view('components/navbar') ?>
             <?php $this->load->view('components/sidebar') ?>
-            <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
+            <div class="page-wrapper content-page" style="min-height: 100vh; background-color: white;">
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
                     <div class="">
                         <h2 class="page-title">Kegiatan Belajar Mengajar</h2>

@@ -17,18 +17,18 @@
     style="background-color: #f1f5f9;">
     <div class="bg-white text-black max-h-75 h-75 max-w-75 w-75 row shadow-lg rounded">
         <div class="col my-auto">
-            <form action="">
+            <form method="post" action="<?php echo base_url('auth/aksi_login');?>">
                 <div class="px-5 fs-4">
                     <h2>Login</h2>
                     <div class="mt-4">
-                        <label for="exampleInputEmail1" class="form-label" style="color: #374151;">Email</label>
-                        <input type="email" class="form-control shadow-input text-secondary" id="exampleInputEmail1"
-                            placeholder="Email">
+                        <label for="username" class="form-label" style="color: #374151;">Username</label>
+                        <input type="text" name="username" class="form-control shadow-input text-secondary" id="username"
+                            placeholder="Username">
                     </div>
                     <div class="mt-3">
-                        <label for="exampleInputEmail1" class="form-label" style="color: #374151;">Password</label>
+                        <label for="password" class="form-label" style="color: #374151;">Password</label>
                         <div class="position-relative">
-                            <input type="password" class="form-control shadow-input text-secondary" id="password"
+                            <input type="password" name="password" class="form-control shadow-input text-secondary" id="password"
                                 placeholder="Password">
                             <span
                                 class="position-absolute top-0 mt-2 me-3 pointer text-secondary"

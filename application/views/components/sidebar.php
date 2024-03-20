@@ -9,9 +9,10 @@
            ]
           :
            [
-            ["label" => "KBM", 'icon' => 'home', "to" => "#"],
-            ["label" => "Sikap", 'icon' => 'user', "to" => "#"],
-            ["label" => "Presensi", 'icon' => 'users', "to" => "#"]
+            ["label" => "Dashboard", 'icon' => 'home', "to" => "/guru"],
+            ["label" => "KBM", 'icon' => 'home', "to" => "/guru/kbm"],
+            ["label" => "Sikap", 'icon' => 'user', "to" => "/guru/sikap"],
+            ["label" => "Presensi", 'icon' => 'users', "to" => "/guru/presensi"]
            ]
         ?>
         <?php $i = 0; foreach ($items as $item): ?>
