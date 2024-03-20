@@ -23,10 +23,39 @@ class Admin extends CI_Controller {
     $this->Main_model->remove('siswa', $id);
     redirect(base_url('admin/siswa'));
   }
+
+	public function hapus_guru_api($id) {
+		$this->Main_model->remove('guru', $id);
+		redirect(base_url('admin/guru'));
+	}
   
   public function edit_siswa_api($id) {
-    $this->Main_model->edit('siswa', $this->input->post("data"), $id);
+    $this->Main_model->edit('siswa', [
+			'nama_siswa' => $this->input->post("nama"),
+			'nisn' => $this->input->post("nisn"),
+			'kelas_id' => $this->input->post("kelas"),
+			'ttl' => $this->input->post("ttl")
+		], $id);
     redirect(base_url('admin/siswa'));
+  }
+
+  public function edit_guru_api($id) {
+		$username = $this->Main_model->findById('guru', $id)->nama;
+    $this->Main_model->edit('guru', [
+			'nama' => $this->input->post('nama'),
+			'nip' => $this->input->post('nip'),
+			'mapel' => $this->input->post('mapel'),
+			'kelas_id' => $this->input->post('kelas') == "NULL" ? null : $this->input->post('kelas'),
+			'ttl' => $this->input->post('ttl'),
+		], $id);
+		$userdata = [
+			'username' => $this->input->post('nama')
+		];
+		if ($this->input->post('password')) {
+			$userdata['password'] = md5($this->input->post('password'));
+		}
+    $this->Main_model->editWhere('user', $userdata, [ 'username' => $username ]);
+    redirect(base_url('admin/guru'));
   }
 
 	public function guru()
@@ -40,6 +69,21 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/siswa', [
       'data' => $this->Main_model->getSiswa()
     ]);
+	}
+
+	public function edit_guru($id) {
+		$data = [
+			'data' => $this->Main_model->findById('guru', $id),
+			'kelas' => $this->Main_model->getOptions('kelas')
+		];
+		$this->load->view('admin/guru_form', $data);
+	}
+
+	public function edit_siswa($id) {
+		$this->load->view('admin/siswa_form', [
+			'data' => $this->Main_model->findById('siswa', $id),
+			'kelas' => $this->Main_model->getOptions('kelas')
+		]);
 	}
 
 	public function spreadsheet_import_siswa()

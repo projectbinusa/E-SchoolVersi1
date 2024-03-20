@@ -58,9 +58,9 @@
                               <td class="text-center"><?= $row->nip ?></td>
                               <td class="text-center"><?= $row->mapel ?></td>
                               <td class="text-center"><?= $row->ttl ?></td>
-                              <td class="text-center"><?= $row->kelas ?></td>
+                              <td class="text-center"><?= $row->kelas == "" ? "-": $row->kelas ?></td>
                               <td class="">
-                                <a href="#" class="btn btn-warning"><i width="16" height="16" data-feather="edit" class="feather-icon"></i></a>
+                                <a href="<?= base_url() ?>admin/edit_guru/<?= $row->id ?>" class="btn btn-warning"><i width="16" height="16" data-feather="edit" class="feather-icon"></i></a>
                                 <button onclick="confirmDelete('<?=$row->nama?>', '<?=$row->id?>')" class="btn btn-danger">
                                   <i width="16" height="16" data-feather="trash-2" class="feather-icon"></i>
                                 </button>
@@ -76,5 +76,11 @@
     </div>
     <?php $this->load->view('components/scripts.php') ?>
 </body>
+<script>
+function confirmDelete(username, id) {
+  if (!confirm("Anda yakin ingin menghapus data guru " + username + "?")) return;
+  location.href = "<?= base_url() ?>admin/hapus_guru_api/" + id;
+}
+</script>
 
 </html>
