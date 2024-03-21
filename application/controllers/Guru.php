@@ -11,17 +11,13 @@ class Guru extends CI_Controller {
         parent::__construct();
 		$this->load->model('Main_model');
 		date_default_timezone_set('Asia/Jakarta');
-		$this->load->helper(['url', 'form', 'html']);
+        $this->load->helper('Main_helper');;
 		$this->load->library(['session']);
 		
     }
 	public function index()
 	{
 		$this->load->view('guru/dashboard');
-	}
-	public function sikap()
-	{
-		$this->load->view('guru/sikap');
 	}
 
 	public function kbm()
@@ -70,6 +66,57 @@ class Guru extends CI_Controller {
 	public function edit_kbm($id) {
 		$this->load->view('guru/kbm_form', [
 			'data' => $this->Main_model->findById('kbm', $id)
+		]);
+	}
+
+	public function edit_sikap_api($id) {
+		$this->Main_model->edit('sikap', [
+			'siswa_id' => $this->input->post('siswa_id'),
+			'guru_id' => $this->session->userdata('guru_id'),
+			'penilaian' => $this->input->post('penilaian'),
+			'keterangan' => $this->input->post('keterangan')
+		], $id);
+		redirect(base_url().'guru/sikap');
+	}
+
+	public function tambah_sikap_api() {
+		$this->Main_model->insert('sikap', [
+			'siswa_id' => $this->input->post('siswa_id'),
+			'guru_id' => $this->session->userdata('guru_id'),
+			'penilaian' => $this->input->post('penilaian'),
+			'keterangan' => $this->input->post('keterangan')
+		]);
+		redirect(base_url().'guru/sikap');
+	}
+
+	public function hapus_sikap_api($id) {
+		$this->Main_model->remove('sikap', $id);
+		redirect(base_url().'guru/sikap');
+	}
+
+	public function sikap()
+	{
+		$this->load->view('guru/sikap', [
+			'data' => $this->Main_model->get('sikap')->result()
+		]);
+	}
+
+	public function tambah_sikap() {
+		$this->load->view('guru/sikap_form', [
+			
+			'data' => (object) [
+				"siswa_id" => '',
+				"penilaian" => '',
+				"keterangan" => ''
+			],
+			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa', ['kelas_id' => $this->session->userdata('kelas_id')])
+		]);
+	}
+
+	public function edit_sikap($id) {
+		$this->load->view('guru/sikap_form', [
+			'data' => $this->Main_model->findById('sikap', $id),
+			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa', ['kelas_id' => $this->session->userdata('kelas_id')])
 		]);
 	}
 }

@@ -28,7 +28,11 @@ class Main_model extends CI_Model {
     $this->db->delete($table, ['id' => $id]);
   }
 
-  public function getOptions($table, $label = "nama") {
+  public function getOptions($table, $label = "nama", $where = null) {
+    if ($where) {
+      $this->db->where($where);
+    }
+    
     $queryRes = $this->db->get($table)->result();
     $res = [];
     foreach ($queryRes as $row) {
@@ -36,7 +40,7 @@ class Main_model extends CI_Model {
     }
     return $res;
   }
-
+  
   public function findById($table, $id) {
     return $this->db->where('id', $id)->get($table, 1)->result()[0];
   }
