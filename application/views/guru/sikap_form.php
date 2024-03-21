@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <div class="all font-web">
+    <div class="all">
         <?php $this->load->view('components/loader') ?>
         <div id="main-wrapper">
             <?php $this->load->view('components/navbar') ?>
@@ -47,16 +47,16 @@
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
                     <div class="">
-                        <h2 class="page-title">Ubah Data <?= $data->nama_siswa ?></h2>
+                        <h2 class="page-title">Tambah Data Sikap</h2>
                     </div>
                     <div>
                         <div class="d-flex">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
-                                            href="<?php echo base_url('siswa')?>">Siswa</a></li>
+                                            href="<?php echo base_url('guru')?>">Guru</a></li>
                                     <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
-                                        Ubah Data Siswa</li>
+                                        Tambah Data Sikap</li>
                                 </ol>
                             </nav>
                         </div>
@@ -64,36 +64,33 @@
                 </div>
                 <div style="min-height:fit-content" class="row container-fluid">
                     <div class="rounded shadow p-3">
-                        <form method="post" action="<?=base_url()?>admin/edit_siswa_api/<?=$data->id?>" class="row">
-                            <div class="col-6">
-                                <label for="nama_siswa">Nama
-                                    Siswa</label>
-                                <input required type="text" name="nama" class="form-control"
-                                    id="nama_siswa" value="<?= $data->nama_siswa ?>" />
-                            </div>
-                            <div class="col-6">
-                                <label for="nisn">NISN</label>
-                                <input required type="text" name="nisn" class="form-control" id="nisn"
-                                    value="<?= $data->nisn ?>" />
-                            </div>
+                        <form method="post"
+                            action="<?=base_url()?>guru/<?= isset($data->id) ? 'edit_sikap_api/'.$data->id : 'tambah_sikap_api' ?>"
+                            class="row">
                             <div class="col-6 mt-3">
-                                <label for="kelas">Kelas</label>
-                                <select required id="kelas" name="kelas" class="form-control select2 select2-info">
-                                    <?php foreach ($kelas as $option): ?>
+                                <label for="siswa">Nama Siswa</label>
+                                <select required id="siswa" name="siswa_id" class="form-control select2 select2-info">
+                                    <?php foreach ($siswa as $option): ?>
                                     <option value="<?= $option->id ?>"
-                                        <?= $option->id==$data->kelas_id ?' selected':'' ?>>
+                                        <?= $option->id==$data->siswa_id ?' selected':'' ?>>
                                         <?= $option->label ?>
                                     </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-6 mt-3">
-                                <label for="ttl">Tempat Tanggal Lahir</label>
-                                <input required type="text" name="ttl" class="form-control" id="ttl"
-                                    value="<?= $data->ttl ?>" />
+                                <label>Penilaian</label>
+                                <input required type="text" value="<?= $data->penilaian ?>" name="penilaian"
+                                    class="form-control" />
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label>Keterangan</label>
+                                <input required type="text" value="<?= $data->keterangan ?>" name="keterangan"
+                                    class="form-control" />
                             </div>
                             <div class="d-flex justify-content-end col-12 mt-3">
-                                <button type="submit" class="btn btn-success">Ubah</button>
+                                <button type="submit"
+                                    class="btn btn-success"><?= isset($data->id) ? "Edit" : "Tambah" ?></button>
                             </div>
                         </form>
                     </div>

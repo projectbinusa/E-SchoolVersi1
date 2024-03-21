@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <?php $i = 0; foreach($data as $row): ?>
+
+    <?php $i++; endforeach ?>
     <div class="all font-web">
         <?php $this->load->view('components/loader') ?>
         <div id="main-wrapper">
@@ -40,8 +43,9 @@
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
                             <div class="button-tambah d-flex justify-content-end">
-                                <button type="submit" name="submit" class="btn btn-primary"><i width="15" height="15"
-                                        data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</button>
+                                <a href="<?php echo base_url('guru/tambah_sikap')?>" class="btn btn-primary"><i
+                                        width="15" height="15" data-feather="plus" class="feather-icon mb-1"></i> Tambah
+                                    Data</a>
                             </div>
                             <table class="table table-hover table-secondary mt-2">
                                 <thead>
@@ -55,21 +59,24 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-light text-center">
+                                    <?php $i = 0; foreach($data as $row): ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Irvanda</td>
-                                        <td>89</td>
-                                        <td>Baik</td>
-                                        <td>Asep Komarudin</td>
+                                        <td><?= $i+1 ?></td>
+                                        <td><?= get_nama_siswa($row->siswa_id) ?></td>
+                                        <td><?= $row->penilaian ?></td>
+                                        <td><?= $row->keterangan ?></td>
+                                        <td><?= get_nama_guru($row->guru_id) ?></td>
                                         <td class="">
-                                            <a href="#" class="btn btn-warning"><i width="16" height="16"
-                                                    data-feather="edit" class="feather-icon"></i></a>
-                                            <button class="btn btn-danger">
+                                            <a href="<?= base_url() ?>guru/edit_sikap/<?= $row->id ?>"
+                                                class="btn btn-warning"><i width="16" height="16" data-feather="edit"
+                                                    class="feather-icon"></i></a>
+                                            <button onclick="confirmDelete(<?= $row->id ?>)"
+                                                class="btn btn-danger">
                                                 <i width="16" height="16" data-feather="trash-2"
                                                     class="feather-icon"></i>
-                                            </button>
                                         </td>
                                     </tr>
+                                    <?php $i++; endforeach ?>
                                 </tbody>
                             </table>
                         </div>
@@ -81,5 +88,11 @@
     </div>
     <?php $this->load->view('components/scripts.php') ?>
 </body>
+<script>
+function confirmDelete(id) {
+  if (!confirm("Anda yakin ingin menghapus data?")) return;
+  location.href = "<?= base_url() ?>guru/hapus_sikap_api/" + id;
+}
+</script>
 
 </html>

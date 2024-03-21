@@ -32,23 +32,11 @@ class Main_model extends CI_Model {
     if ($where) {
       $this->db->where($where);
     }
-    
+  
     $queryRes = $this->db->get($table)->result();
     $res = [];
     foreach ($queryRes as $row) {
       array_push($res, ((object) ["label" => $row->{$label}, "id" => $row->id]));
-    }
-    return $res;
-  }
-
-  public function getPresensiKelas($kelas) {
-    if (count($kelas) > 0) {
-      $this->db->where_not_in("id", $kelas);
-    }
-    $queryRes = $this->db->get('kelas')->result();
-    $res = [];
-    foreach ($queryRes as $row) {
-      array_push($res, ((object) ["label" => $row->nama, "id" => $row->id]));
     }
     return $res;
   }
