@@ -6,7 +6,8 @@
           if (explode("/", uri_string())[0] == "admin") {
             $items = [
               ["label" => "Siswa", 'icon' => 'book-open', "to" => "admin/siswa"],
-              ["label" => "Guru", 'icon' => 'clipboard', "to" => "admin/guru"]
+              ["label" => "Guru", 'icon' => 'clipboard', "to" => "admin/guru"],
+              ["label" => "Kelas", 'icon' => 'pause', "to" => "admin/kelas"],
             ];
           } else {
             $items = [

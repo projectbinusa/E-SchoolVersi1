@@ -251,4 +251,35 @@ class Admin extends CI_Controller {
 		$writer = new Xlsx($spreadsheet);
 		$writer->save("php://output");
 	}
+
+	public function kelas()
+	{
+		$data['data'] = $this->Main_model->get('kelas')->result(); 
+		$this->load->view('admin/kelas', $data);
+	}
+
+	public function tambah_kelas() {
+		$this->Main_model->insert('kelas', [
+			'nama' => $this->input->post('nama'),
+			
+		]);
+		redirect(base_url().'admin/kelas');
+	}
+
+	public function edit_kelas_api($id) {
+		$this->Main_model->edit('kelas', [
+			'nama' => $this->input->post('nama'),
+		], $id);
+		redirect(base_url().'admin/kelas');
+	}
+
+	public function edit_kelas($id) {
+		$this->load->view('admin/kelas', [
+			'data' => $this->Main_model->findById('kelas', $id)
+		]);
+	}
+	public function hapus_kelas($id) {
+		$this->Main_model->remove('kelas', $id);
+		redirect(base_url().'admin/kelas');
+	}
 }
