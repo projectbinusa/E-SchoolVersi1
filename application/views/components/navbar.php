@@ -22,5 +22,6 @@
                         data-sidebartype="mini-sidebar"><i data-feather="menu" class="feather-sm"></i></a>
                 </li>
         </div>
+        <div class="text-light me-5"><?= $this->session->userdata('username') ?></div>
     </nav>
 </header>

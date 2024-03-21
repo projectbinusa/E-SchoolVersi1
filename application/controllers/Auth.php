@@ -24,14 +24,15 @@ class Auth extends CI_Controller {
             $data = [
                 'logged_in' => true,
                 'username' => $result['username'],
-                'username' => $result['username'],
                 'role_id' => $result['role_id'],
                 'id' => $result['id_user'],
             ];
-            $this->session->set_userdata($data);
             if ($result['role_id'] == '1') {
+                $this->session->set_userdata($data);
                 redirect(base_url('admin'));
             } else {
+                $data['walikelas'] = $this->Main_model->getWhere('guru', ['nama' => $data['username']])[0]->kelas_id;
+                $this->session->set_userdata($data);
                 redirect(base_url('guru'));
             }
         } else {

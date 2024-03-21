@@ -9,6 +9,9 @@ class Main_model extends CI_Model {
   public function editWhere($table, $data, $where) {
     $this->db->update($table, $data, $where);
   }
+  public function insert($table, $data) {
+    $this->db->insert($table, $data);
+  }
 
   public function login($table, $where)
   {
@@ -17,9 +20,9 @@ class Main_model extends CI_Model {
   }
 
   function get($table)
-        {
-            return $this->db->get($table);
-        }
+  {
+      return $this->db->get($table);
+  }
 
   public function remove($table, $id) {
     $this->db->delete($table, ['id' => $id]);
