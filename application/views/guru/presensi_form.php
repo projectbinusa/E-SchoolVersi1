@@ -78,42 +78,44 @@
                     </div>
                 </div>
                 <div style="min-height:fit-content" class="row container-fluid">
-                    <form method="post" action="<?=base_url()?>guru/<?= isset($data->id) ? 'edit_presensi_api/'.$data->id : 'tambah_presensi_api' ?>" class="container-fluid mt-5 col-8 row">
-	  					<div class="col-6 my-2">
-							<label class="w-100">Kelas</label>
-							<select onchange="getSiswas(event.target.value)" id="kelas" name="kelas" class="form-control select2 select2-info" id="kelas">
-								<?php foreach ($kelas as $option): ?>
-									<option value="<?= $option->id ?>"<?= $option->id == $data->kelas_id ? ' selected' : '' ?>>
-										<?= $option->label ?>
-									</option>
-								<?php endforeach; ?>
-							</select>
-						</div>
-	  					<div class="col-6 my-2">
-							<label class="w-100">Tanggal</label>
-							<input required type="date" value="<?= $data->tanggal ? $data->tanggal:date('Y-m-d') ?>" name="tanggal" class="form-control" />
-						</div>
-						<input hidden name="jumlah_siswa" id="jumlah_siswa" />
-	  					<div class="col-12 my-2">
-							<label class="w-100">Kehadiran</label>
-							<table class="fixed_header table table-hover table-secondary mt-2 ">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 14%;" class="text-center">No</th>
-                                        <th style="width: 47%;" class="text-center">Nama</th>
-                                        <th style="width: 13%;" class="text-center">Izin</th>
-                                        <th style="width: 13%;" class="text-center">Sakit</th>
-                                        <th style="width: 13%;" class="text-center">Alpha</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody" class="table-light">
-                                </tbody>
-                            </table>
-						</div>
-						<div class="d-flex justify-content-end col-12 my-2">
-							<button type="submit" class="btn btn-success"><?= isset($data->id) ? "Edit" : "Tambah" ?></button>
-						</div>
-                    </form>
+					<div class="rounded shadow p-3">
+						<form method="post" action="<?=base_url()?>guru/<?= isset($data->id) ? 'edit_presensi_api/'.$data->id : 'tambah_presensi_api' ?>" class="row">
+							  <div class="col-6 mt-3">
+								<label class="w-100">Kelas</label>
+								<select onchange="getSiswas(event.target.value)" id="kelas" name="kelas" class="form-control select2 select2-info" id="kelas">
+									<?php foreach ($kelas as $option): ?>
+										<option value="<?= $option->id ?>"<?= $option->id == $data->kelas_id ? ' selected' : '' ?>>
+											<?= $option->label ?>
+										</option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+							  <div class="col-6 mt-3">
+								<label class="w-100">Tanggal</label>
+								<input required type="date" value="<?= $data->tanggal ? $data->tanggal:date('Y-m-d') ?>" name="tanggal" class="form-control" />
+							</div>
+							<input hidden name="jumlah_siswa" id="jumlah_siswa" />
+							  <div class="col-12 mt-3">
+								<label class="w-100">Kehadiran</label>
+								<table class="fixed_header table table-hover table-secondary mt-2 ">
+									<thead>
+										<tr>
+											<th style="width: 14%;" class="text-center">No</th>
+											<th style="width: 47%;" class="text-center">Nama</th>
+											<th style="width: 13%;" class="text-center">Izin</th>
+											<th style="width: 13%;" class="text-center">Sakit</th>
+											<th style="width: 13%;" class="text-center">Alpha</th>
+										</tr>
+									</thead>
+									<tbody id="tbody" class="table-light">
+									</tbody>
+								</table>
+							</div>
+							<div class="d-flex justify-content-end col-12 mt-3">
+								<button type="submit" class="btn btn-success"><?= isset($data->id) ? "Edit" : "Tambah" ?></button>
+							</div>
+						</form>
+					</div>
                 </div>
 				<?php $this->load->view('components/footer') ?>
 			</div>
@@ -173,6 +175,6 @@
 			}
 		})
 	}
-	getSiswas(<?=$kelas[0]->id?>);
+	getSiswas(<?= isset($data->id) ? $data->kelas_id : $kelas[0]->id?>);
 </script>
 </html>

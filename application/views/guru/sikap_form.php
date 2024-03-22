@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="min-height:fit-content" class="row container-fluid">
+                <div class="container-fluid">
                     <div class="rounded shadow p-3">
                         <form method="post"
                             action="<?=base_url()?>guru/<?= isset($data->id) ? 'edit_sikap_api/'.$data->id : 'tambah_sikap_api' ?>"
@@ -95,7 +95,10 @@
                         </form>
                     </div>
                 </div>
+                <div style="">
+
                 <?php $this->load->view('components/footer') ?>
+                </div>
             </div>
         </div>
     </div>

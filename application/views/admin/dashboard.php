@@ -55,7 +55,8 @@
                         <div class="d-flex">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item" style="font-size: 15px;"><a href="<?php echo base_url('admin')?>">Dashboard Admin</a></li>
+                                    <li class="breadcrumb-item" style="font-size: 15px;"><a
+                                            href="<?php echo base_url('admin')?>">Dashboard Admin</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -131,12 +132,12 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                     </div>
                 </div>
+                <?php $this->load->view('components/footer')?>
             </div>
-        <?php $this->load->view('components/footer')?>
-    </div>
+        </div>
     </div>
     <?php $this->load->view('components/scripts.php') ?>
 </body>

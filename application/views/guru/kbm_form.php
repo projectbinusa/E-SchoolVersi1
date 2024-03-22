@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="min-height:fit-content" class="row container-fluid">
+                <div class="container-fluid">
                     <div class="rounded shadow p-3">
                         <form method="post"
                             action="<?=base_url()?>guru/<?= isset($data->id) ? 'edit_kbm_api/'.$data->id : 'tambah_kbm_api' ?>"

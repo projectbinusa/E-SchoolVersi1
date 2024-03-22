@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="min-height:fit-content" class="row container-fluid">
+                <div class="container-fluid">
                     <div class="rounded shadow p-3">
                         <form method="post" action="<?=base_url()?>admin/edit_guru_api/<?=$data->id?>" class="row">
                             <div class="col-6">

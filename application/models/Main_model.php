@@ -15,7 +15,7 @@ class Main_model extends CI_Model {
   }
 
   public function insertBatch($table, $data) {
-    if (count($data) >= 0) return;
+    if (count($data) <= 0) return;
     $this->db->insert_batch($table, $data);
   }
 
@@ -119,7 +119,7 @@ class Main_model extends CI_Model {
 	}
 
   public function getPresensiKelas($kelas) {
-    if ($kelas < 0) {
+    if (count($kelas) >  0) {
       $this->db->where_not_in('id', $kelas);
     }
     $queryRes = $this->db->get('kelas')->result();
