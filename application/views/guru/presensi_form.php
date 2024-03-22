@@ -43,6 +43,23 @@
 			display:flex;
 			flex-wrap: wrap;
 		}
+		.cancel-btn {
+			position: absolute;
+			top: 0;
+			right: 0;
+			line-height: 0.6;
+			padding: 7px;
+			font-size: 18px;
+			user-select: none;
+			transition: 0.1s;
+			padding-bottom: 9px;
+			padding-top: 6px;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+		.cancel-btn:hover {
+			background-color: whitesmoke;
+		}
     </style>
 </head>
 
@@ -61,21 +78,22 @@
                     </div>
                 </div>
                 <div style="min-height:fit-content" class="row container-fluid">
-                    <form method="post" action="<?=base_url()?>guru/<?= isset($data->id) ? 'edit_kbm_api/'.$data->id : 'tambah_kbm_api' ?>" class="container-fluid mt-5 col-8 row">
+                    <form method="post" action="<?=base_url()?>guru/<?= isset($data->id) ? 'edit_presensi_api/'.$data->id : 'tambah_presensi_api' ?>" class="container-fluid mt-5 col-8 row">
 	  					<div class="col-6 my-2">
 							<label class="w-100">Kelas</label>
-							<select id="kelas" name="kelas" class="form-control select2 select2-info" id="kelas">
+							<select onchange="getSiswas(event.target.value)" id="kelas" name="kelas" class="form-control select2 select2-info" id="kelas">
 								<?php foreach ($kelas as $option): ?>
-								<option value="<?= $option->id ?>">
-									<?= $option->label ?>
-								</option>
+									<option value="<?= $option->id ?>"<?= $option->id == $data->kelas_id ? ' selected' : '' ?>>
+										<?= $option->label ?>
+									</option>
 								<?php endforeach; ?>
 							</select>
 						</div>
 	  					<div class="col-6 my-2">
 							<label class="w-100">Tanggal</label>
-							<input required type="date" name="selesai" class="form-control" />
+							<input required type="date" value="<?= $data->tanggal ? $data->tanggal:date('Y-m-d') ?>" name="tanggal" class="form-control" />
 						</div>
+						<input hidden name="jumlah_siswa" id="jumlah_siswa" />
 	  					<div class="col-12 my-2">
 							<label class="w-100">Kehadiran</label>
 							<table class="fixed_header table table-hover table-secondary mt-2 ">
@@ -88,56 +106,7 @@
                                         <th style="width: 13%;" class="text-center">Alpha</th>
                                     </tr>
                                 </thead>
-                                <tbody class="table-light">
-									<?php for($i = 0; $i < 20; $i++): ?>
-									<tr>
-										<td style="width: 14%;" class="text-center">1</td>
-										<td style="width: 47%;">Ahmat ireng</td>
-										<td style="width: 13%;" class="text-center p-0">
-											<label class="p-3 w-100" onclick="console.log('wadaw')">
-												<input value="Izin" onchange="selectRadio(event, <?=$i?>)" type="radio" name="siswa<?=$i?>" />
-											</label>
-										</td>
-										<td style="width: 13%;" class="text-center p-0">
-											<label class="p-3 w-100">
-												<input value="Sakit" onchange="selectRadio(event, <?=$i?>)" type="radio" name="siswa<?=$i?>" />
-											</label>
-										</td>
-										<td style="width: 13%;" class="text-center p-0">
-											<label class="p-3 w-100">
-												<input value="Bolos" onchange="selectRadio(event, <?=$i?>)" type="radio" name="siswa<?=$i?>" />
-											</label>
-										</td>
-									</tr>
-									<?php endfor ?>
-                                </tbody>
-                            </table>
-							<table class="table table-hover table-secondary mt-2 ">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Izin</th>
-                                        <th class="text-center">Sakit</th>
-                                        <th class="text-center">Alpha</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-light">
-									<?php for($i = 0; $i < 20; $i++): ?>
-									<tr>
-										<td class="text-center">1</td>
-										<td>Ahmat ireng</td>
-										<td class="text-center">
-											<input type="radio" name="siswa1" />
-										</td>
-										<td class="text-center">
-											<input type="radio" name="siswa1" />
-										</td>
-										<td class="text-center">
-											<input type="radio" name="siswa1" />
-										</td>
-									</tr>
-									<?php endfor ?>
+                                <tbody id="tbody" class="table-light">
                                 </tbody>
                             </table>
 						</div>
@@ -152,13 +121,57 @@
     <?php $this->load->view('components/scripts.php') ?>
 </body>
 <script>
-	const kehadiran = new Array(20).fill(false);
-	function selectRadio(e, i) {
-		if (kehadiran[i] != e.target.value) {
-			return kehadiran[i] = e.target.value;
-		}
-		console.log('test')
-		e.target.value = false;
+    const kehadiran = {
+        <?php foreach ($kehadiran as $row): ?>
+        ['<?=$row->siswa_id?>']: '<?=$row->keterangan?>',
+        <?php endforeach; ?>
+    }
+	function cancelSelect(btn) {
+		const row = btn.parentElement.parentElement.children;
+		row[2].children[0].children[0].checked = false;
+		row[3].children[0].children[0].checked = false;
+		row[4].children[0].children[0].checked = false;
 	}
+	function getSiswas(id) {
+		$.ajax({
+			url: `<?=base_url()?>guru/get_siswas_bykelas/${id}`,
+			success: async (res) => {
+				const data = JSON.parse(await res);
+				const table = $('#tbody')
+				let rows = ""
+				data.forEach((row, i) => {
+					rows += 
+					`<tr>
+						<td style="width: 14%;" class="text-center">${i+1}</td>
+						<td style="width: 47%;" class="position-relative">
+							${row.nama_siswa}
+                            <input hidden value="${row.id}" name="siswa${i}" readonly />
+							<div class="cancel-btn" onclick="cancelSelect(this)">
+								x
+							</div>
+						</td>
+						<td style="width: 13%;" class="text-center p-0">
+							<label class="p-3 w-100">
+								<input value="Izin"${kehadiran[row.id] === "Izin" ? " checked":""} type="radio" name="kehadiran${i}" />
+							</label>
+						</td>
+						<td style="width: 13%;" class="text-center p-0">
+							<label class="p-3 w-100">
+								<input value="Sakit"${kehadiran[row.id] === "Sakit" ? " checked":""} type="radio" name="kehadiran${i}" />
+							</label>
+						</td>
+						<td style="width: 13%;" class="text-center p-0">
+							<label class="p-3 w-100">
+								<input value="Bolos"${kehadiran[row.id] === "Bolos" ? " checked":""} type="radio" name="kehadiran${i}" />
+							</label>
+						</td>
+					</tr>`
+				})
+				$('#jumlah_siswa')[0].value = data.length;
+				table.html(rows)
+			}
+		})
+	}
+	getSiswas(<?=$kelas[0]->id?>);
 </script>
 </html>

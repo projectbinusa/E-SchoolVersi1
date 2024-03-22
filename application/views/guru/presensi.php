@@ -40,7 +40,7 @@
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
                             <div class="button-tambah d-flex justify-content-end">
-                                <a href="<?= base_url() ?>guru/tambah_kbm" class="btn btn-primary"><i width="15" height="15"
+                                <a href="<?= base_url() ?>guru/tambah_presensi" class="btn btn-primary"><i width="15" height="15"
 									data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
                             </div>
                             <table class="table table-hover table-secondary mt-2">
@@ -56,7 +56,24 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-light text-center">
-									
+									<?php $i = 0; foreach ($data as $row): ?>
+                                    <tr>
+                                        <td><?= $i+1 ?></td>
+                                        <td><?= $row->tanggal ?></td>
+                                        <td><?= $row->kelas ?></td>
+                                        <td><?= $row->bolos ?></td>
+                                        <td><?= $row->izin ?></td>
+                                        <td><?= $row->sakit ?></td>
+                                        <td class="">
+                                            <a href="<?=base_url()?>guru/edit_presensi/<?=$row->id?>" class="btn btn-warning"><i width="16" height="16"
+                                                    data-feather="edit" class="feather-icon"></i></a>
+                                            <button onclick="confirmDelete('<?=$row->kelas?>', '<?= $row->id ?>')" class="btn btn-danger">
+                                                <i width="16" height="16" data-feather="trash-2"
+                                                    class="feather-icon"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -69,9 +86,9 @@
     <?php $this->load->view('components/scripts.php') ?>
 </body>
 <script>
-function confirmDelete(materi, id) {
-  if (!confirm("Anda yakin ingin menghapus data kbm " + materi + "?")) return;
-  location.href = "<?= base_url() ?>guru/hapus_kbm_api/" + id;
+function confirmDelete(kelas, id) {
+  if (!confirm("Anda yakin ingin menghapus data presensi kelas " + kelas + "?")) return;
+  location.href = "<?= base_url() ?>guru/hapus_presensi_api/" + id;
 }
 </script>
 </html>

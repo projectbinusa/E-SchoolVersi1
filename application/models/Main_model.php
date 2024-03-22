@@ -11,6 +11,12 @@ class Main_model extends CI_Model {
   }
   public function insert($table, $data) {
     $this->db->insert($table, $data);
+    return $this->db->insert_id();
+  }
+
+  public function insertBatch($table, $data) {
+    if (count($data) >= 0) return;
+    $this->db->insert_batch($table, $data);
   }
 
   public function login($table, $where)
@@ -26,6 +32,9 @@ class Main_model extends CI_Model {
 
   public function remove($table, $id) {
     $this->db->delete($table, ['id' => $id]);
+  }
+  public function removeWhere($table, $where) {
+    $this->db->delete($table, $where);
   }
 
   public function getOptions($table, $label = "nama", $where = null) {
@@ -58,6 +67,41 @@ class Main_model extends CI_Model {
     return $this->db->select('siswa.*, kelas.nama as kelas')->join('kelas', "siswa.kelas_id = kelas.id")->get('siswa')->result();
   }
 
+  public function getPresensi() {
+    $queryRes = $this->db->select('p.*, k.nama as kelas, ks.keterangan')
+    ->join('kelas as k', 'p.kelas_id = k.id')
+    ->join('kehadiran_siswa as ks', 'ks.presensi_id = p.id', 'left')->get('presensi as p')->result();
+
+    function search($array, $id) {
+      $i = 0;
+      foreach ($array as $x) {
+        if ($x->id == $id) return $i;
+        $i++;
+      }
+      return false;
+    }
+
+    $res = [];
+    foreach ($queryRes as $row) {
+      $kelas = search($res, $row->id);
+      if ($kelas === false) {
+        array_push($res, (object) [
+          'id' => $row->id,
+          'tanggal' => $row->tanggal,
+          'kelas' => $row->kelas,
+          'izin' => 0,
+          'bolos' => 0,
+          'sakit' => 0
+        ]);
+        if (isset($row->keterangan))
+        $res[count($res)-1]->{strtolower($row->keterangan)}++;
+      } else {
+        $res[$kelas]->{strtolower($row->keterangan)}++;
+      }
+    }
+    return $res;
+  }
+
 
   public function import_data_siswa($data){
 		$this->db->insert_batch('siswa',$data);
@@ -73,4 +117,16 @@ class Main_model extends CI_Model {
 		}
     return 0;
 	}
+
+  public function getPresensiKelas($kelas) {
+    if ($kelas < 0) {
+      $this->db->where_not_in('id', $kelas);
+    }
+    $queryRes = $this->db->get('kelas')->result();
+    $res = [];
+    foreach ($queryRes as $row) {
+      array_push($res, ((object) ["label" => $row->nama, "id" => $row->id]));
+    }
+    return $res;
+  }
 }
