@@ -138,7 +138,7 @@
                         </div>
                         <div class="rounded shadow p-3 mt-3">
                             <h3>Table Siswa</h3>
-                            <table id="table" class="table table-hover table-secondary mt-2">
+                            <table id="table-2" class="table table-hover table-secondary mt-2">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
