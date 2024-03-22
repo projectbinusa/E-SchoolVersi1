@@ -39,11 +39,11 @@
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
-                            <div class="button-tambah d-flex justify-content-end">
+                            <div class="button-tambah d-flex justify-content-end mb-4">
                                 <a href="<?= base_url() ?>guru/tambah_kbm" class="btn btn-primary"><i width="15" height="15"
 									data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
                             </div>
-                            <table class="table table-hover table-secondary mt-2">
+                            <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
@@ -77,6 +77,7 @@
                         </div>
                     </div>
                 </div>
+                <?php $this->load->view('components/footer') ?>
             </div>
         </div>
     </div>

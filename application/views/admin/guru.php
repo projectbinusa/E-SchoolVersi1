@@ -37,7 +37,7 @@
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
-                            <div class="button-import d-flex justify-content-end">
+                            <div class="button-import d-flex justify-content-end mb-4">
                                 <a class="mx-2 btn btn-success" href="<?php echo base_url('admin/format_guru');?>"> <i
                                         width="15" height="15" data-feather="download"
                                         class="feather-icon mb-1"></i>Download Format</a>
@@ -46,7 +46,7 @@
                                         class="feather-icon mb-1"></i> Import Data</button>
 
                             </div>
-                            <table class="table table-hover table-secondary mt-2 ">
+                            <table id="table" class="table table-hover table-secondary mt-2 ">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
@@ -80,6 +80,7 @@
                         </div>
                     </div>
                 </div>
+                <?php $this->load->view('components/footer') ?>
             </div>
         </div>
     </div>

@@ -37,12 +37,12 @@
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
-                            <div class="button-import d-flex justify-content-end">
+                            <div class="button-import d-flex justify-content-end mb-4">
                             <button name="submit" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"><i width="15" height="15" data-feather="plus"
                                         class="feather-icon mb-1"></i> Tambah Data</button>
                             </div>
-                            <table class="table table-hover table-secondary mt-2">
+                            <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
@@ -56,7 +56,6 @@
                                     <tr>
                                         <td class="text-center"><?= $i + 1 ?></td>
                                         <td class="text-center"><?= $row->nama?></td>
-                                       
                                         <td class="">
                                 <button data-bs-toggle="modal" data-bs-target="#modal<?= $row->id?>" class="btn btn-warning"><i width="16" height="16" data-feather="edit" class="feather-icon"></i></button>
                                 <button onclick="confirmDelete('<?= $row->nama ?>', '<?= $row->id ?>')" class="btn btn-danger">
@@ -70,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+                <?php $this->load->view('components/footer') ?>
             </div>
         </div>
     </div>
@@ -85,7 +85,7 @@
                 <div class="m-2">
                     <form class="" method="post"  action="<?=base_url()?>admin/tambah_kelas"  enctype="multipart/form-data">
                     <div class="form-group m-3">
-                        <input type="text" name=nama class="form-control" placeholder="Enter Name" required>
+                        <input type="text" name=nama class="form-control" placeholder="Masukan Nama Kelas" required>
                     </div>
                     <div class="form-group border-top">
                         <div class="modal-footer d-flex justify-content-between ">
@@ -112,7 +112,7 @@
                     
                     <div class="form-group m-3">
                         <input type="hidden" name=id value="<?= $row->id ?>">
-                        <input type="text" name=nama value="<?= $row->nama ?>" class="form-control" placeholder="Enter Name" required>
+                        <input type="text" name=nama value="<?= $row->nama ?>" class="form-control" placeholder="Masukan Nama Kelas" required>
                     </div>
                     <div class="form-group border-top">
                         <div class="modal-footer d-flex justify-content-between ">
@@ -128,7 +128,7 @@
 <?php $no++; endforeach; ?>
     <!-- END MODAL -->
 
-    <?php $this->load->view('components/scripts.php') ?>
+    <?php $this->load->view('components/scripts') ?>
 </body>
 <script>
 function confirmDelete(nama, id) {

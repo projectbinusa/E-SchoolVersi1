@@ -94,6 +94,7 @@
                         </form>
                     </div>
                 </div>
+                <?php $this->load->view('components/footer') ?>
             </div>
         </div>
     </div>

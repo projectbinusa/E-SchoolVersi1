@@ -258,6 +258,17 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/kelas', $data);
 	}
 
+	function get_data_kelas()
+    {
+        header('Content-Type: application/json');
+        $tables = "kelas";
+        $search = array('nama');
+		$isWhere = null;
+		echo $this->Main_model->get_tables($tables,$search,$isWhere);
+    }
+
+
+
 	public function tambah_kelas() {
 		$this->Main_model->insert('kelas', [
 			'nama' => $this->input->post('nama'),

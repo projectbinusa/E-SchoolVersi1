@@ -23,6 +23,9 @@
 	<!-- Datatables CSS -->
 	<link href="<?php echo base_url('package/assets/Datatables/datatables.min.css')?>" rel="stylesheet">
 	</link>
+	<script src="<?php echo base_url('package/plugin/datatables/jquery.dataTables.min.js'); ?>"></script>
+	<script src="<?php echo base_url('package/plugin/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
+
 	<link href="<?php echo base_url('package/assets/Datatables/Responsive-2.3.1/css/responsive.bootstrap5.min.css')?>"
 		rel="stylesheet">
 	</link>
@@ -43,4 +46,13 @@
 				minimumFractionDigits: 0
 			}).format(money);
 		}
+	</script>
+	<script>
+		$(function(){
+		$("#table").DataTable({
+        "responsive": true,
+        "lengthChange": true,
+        "autoWidth": false,
+    	}).buttons().container().appendTo('#kelas_wrapper .col-md-6:eq(0)');
+		})
 	</script>
