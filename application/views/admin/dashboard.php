@@ -56,8 +56,6 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a href="<?php echo base_url('admin')?>">Dashboard Admin</a></li>
-                                    <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
-                                        Dashboard</li> -->
                                 </ol>
                             </nav>
                         </div>
@@ -112,7 +110,7 @@
                         </div>
                         <div class="rounded shadow p-3 mt-3">
                             <h3>Table Jadwal KBM</h3>
-                            <table class="table table-hover table-secondary mt-3">
+                            <table id="table" class="table table-hover table-secondary mt-3">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -133,33 +131,12 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="rounded shadow p-3 mt-4">
-                            <h3>Table Siswa</h3>
-                            <table class="table table-hover table-secondary mt-3">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th class="text-center">Nama Siswa</th>
-                                        <th class="text-center">NISN</th>
-                                        <th class="text-center">Kelas</th>
-                                        <th class="text-center">TTL</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-light">
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">Irvanda</td>
-                                        <td class="text-center">169762354924</td>
-                                        <td class="text-center">XII TKJ 2</td>
-                                        <td class="text-center">Semarang, 18 Maret 2005</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
-        </div>
+        <?php $this->load->view('components/footer')?>
+    </div>
     </div>
     <?php $this->load->view('components/scripts.php') ?>
 </body>
