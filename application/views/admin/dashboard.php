@@ -71,7 +71,7 @@
                                         <div>
                                             <div class="card-title h4 fw-normal">Total Guru</div>
                                             <div class="card-text display-6 fw-bold mt-3">
-                                                37
+                                                <?php echo count($guru); ?>
                                             </div>
                                         </div>
                                         <div>
@@ -93,7 +93,7 @@
                                         <div>
                                             <div class="card-title h4 fw-normal">Total Siswa</div>
                                             <div class="card-text display-6 fw-bold mt-3">
-                                                1783
+                                                <?php echo count($siswa); ?>
                                             </div>
                                         </div>
                                         <div>
@@ -110,29 +110,57 @@
                             </div>
                         </div>
                         <div class="rounded shadow p-3 mt-3">
-                            <h3>Table Jadwal KBM</h3>
-                            <table id="table" class="table table-hover table-secondary mt-3">
+                            <h3>Table Guru</h3>
+                            <table id="table" class="table table-hover table-secondary mt-2 ">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th class="text-center">Jam Masuk</th>
-                                        <th class="text-center">Jam Selesai</th>
-                                        <th class="text-center">Materi</th>
-                                        <th class="text-center">Keterangan</th>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Nama Guru</th>
+                                        <th class="text-center">NIP</th>
+                                        <th class="text-center">Mapel</th>
+                                        <th class="text-center">Tempat Tanggal Lahir</th>
+                                        <th class="text-center">Walikelas</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-light">
+                                    <?php $i = 0; foreach ($guru as $row): ?>
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">12:55</td>
-                                        <td class="text-center">14:00</td>
-                                        <td class="text-center">B Indo</td>
-                                        <td class="text-center">-</td>
+                                        <td class="text-center"><?= $i + 1 ?></td>
+                                        <td class="text-center"><?= $row->nama ?></td>
+                                        <td class="text-center"><?= $row->nip ?></td>
+                                        <td class="text-center"><?= $row->mapel ?></td>
+                                        <td class="text-center"><?= $row->ttl ?></td>
+                                        <td class="text-center"><?= $row->kelas ?></td>
                                     </tr>
+                                    <?php $i++; endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
-
+                        <div class="rounded shadow p-3 mt-3">
+                            <h3>Table Siswa</h3>
+                            <table id="table" class="table table-hover table-secondary mt-2">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Nama Siswa</th>
+                                        <th class="text-center">NISN</th>
+                                        <th class="text-center">Kelas</th>
+                                        <th class="text-center">Tempat Tanggal Lahir</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-light">
+                                    <?php $i = 0; foreach ($siswa as $row): ?>
+                                    <tr>
+                                        <td class="text-center"><?= $i + 1 ?></td>
+                                        <td class="text-center"><?= $row->nama_siswa ?></td>
+                                        <td class="text-center"><?= $row->nisn ?></td>
+                                        <td class="text-center"><?= $row->kelas ?></td>
+                                        <td class="text-center"><?= $row->ttl ?></td>
+                                    </tr>
+                                    <?php $i++; endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <?php $this->load->view('components/footer')?>

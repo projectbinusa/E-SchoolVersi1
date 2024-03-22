@@ -40,8 +40,8 @@
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
                             <div class="button-tambah d-flex justify-content-end mb-4">
-                                <a href="<?= base_url() ?>guru/tambah_kbm" class="btn btn-primary"><i width="15" height="15"
-									data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
+                                <a href="<?= base_url() ?>guru/tambah_kbm" class="btn btn-primary"><i width="15"
+                                        height="15" data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
                             </div>
                             <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>
@@ -55,23 +55,25 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-light text-center">
-									<?php $i = 0; foreach($data as $row): ?>
-										<tr>
-											<td><?= $i+1 ?></td>
-											<td><?= substr($row->jam_masuk, 11, -3) ?></td>
-											<td><?= substr($row->jam_selesai, 11, -3) ?></td>
-											<td><?= $row->materi ?></td>
-											<td><?= $row->keterangan ?></td>
-											<td class="">
-												<a href="<?= base_url() ?>guru/edit_kbm/<?= $row->id ?>" class="btn btn-warning"><i width="16" height="16"
-														data-feather="edit" class="feather-icon"></i></a>
-												<button onclick="confirmDelete('<?= $row->materi ?>', '<?= $row->id ?>')" class="btn btn-danger">
-													<i width="16" height="16" data-feather="trash-2"
-														class="feather-icon"></i>
-												</button>
-											</td>
-										</tr>
-									<?php $i++; endforeach ?>
+                                    <?php $i = 0; foreach($data as $row): ?>
+                                    <tr>
+                                        <td><?= $i+1 ?></td>
+                                        <td><?= substr($row->jam_masuk, 11, -3) ?></td>
+                                        <td><?= substr($row->jam_selesai, 11, -3) ?></td>
+                                        <td><?= $row->materi ?></td>
+                                        <td><?= $row->keterangan ?></td>
+                                        <td class="">
+                                            <a href="<?= base_url() ?>guru/edit_kbm/<?= $row->id ?>"
+                                                class="btn btn-warning"><i width="16" height="16" data-feather="edit"
+                                                    class="feather-icon"></i></a>
+                                            <button onclick="confirmDelete('<?= $row->materi ?>', '<?= $row->id ?>')"
+                                                class="btn btn-danger">
+                                                <i width="16" height="16" data-feather="trash-2"
+                                                    class="feather-icon"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; endforeach ?>
                                 </tbody>
                             </table>
                         </div>
@@ -86,8 +88,9 @@
 </body>
 <script>
 function confirmDelete(materi, id) {
-  if (!confirm("Anda yakin ingin menghapus data kbm " + materi + "?")) return;
-  location.href = "<?= base_url() ?>guru/hapus_kbm_api/" + id;
+    if (!confirm("Anda yakin ingin menghapus data kbm " + materi + "?")) return;
+    location.href = "<?= base_url() ?>guru/hapus_kbm_api/" + id;
 }
 </script>
+
 </html>

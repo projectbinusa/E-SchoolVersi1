@@ -15,7 +15,10 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/dashboard');
+		$this->load->view('admin/dashboard', [
+			'siswa' => $this->Main_model->getSiswa(),
+			'guru' => $this->Main_model->getGuru()
+		  ]);
 	}
 
 	public function hapus_siswa_api($id) {
@@ -272,7 +275,6 @@ class Admin extends CI_Controller {
 	public function tambah_kelas() {
 		$this->Main_model->insert('kelas', [
 			'nama' => $this->input->post('nama'),
-			
 		]);
 		redirect(base_url().'admin/kelas');
 	}

@@ -55,7 +55,8 @@
                         <div class="d-flex">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item" style="font-size: 15px;"><a href="<?php echo base_url('guru')?>">Dashboard Guru</a></li>
+                                    <li class="breadcrumb-item" style="font-size: 15px;"><a
+                                            href="<?php echo base_url('guru')?>">Dashboard Guru</a></li>
                                     <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
                                         Dashboard</li> -->
                                 </ol>
@@ -67,24 +68,26 @@
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3 mt-3">
                             <h3>Table Jadwal KBM</h3>
-                            <table id="table" class="table table-hover table-secondary mt-3">
+                            <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th class="text-center">No</th>
                                         <th class="text-center">Jam Masuk</th>
                                         <th class="text-center">Jam Selesai</th>
                                         <th class="text-center">Materi</th>
                                         <th class="text-center">Keterangan</th>
                                     </tr>
                                 </thead>
-                                <tbody class="table-light">
+                                <tbody class="table-light text-center">
+                                    <?php $i = 0; foreach($kbm as $row): ?>
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">12:55</td>
-                                        <td class="text-center">14:00</td>
-                                        <td class="text-center">B Indo</td>
-                                        <td class="text-center">-</td>
+                                        <td><?= $i+1 ?></td>
+                                        <td><?= substr($row->jam_masuk, 11, -3) ?></td>
+                                        <td><?= substr($row->jam_selesai, 11, -3) ?></td>
+                                        <td><?= $row->materi ?></td>
+                                        <td><?= $row->keterangan ?></td>
                                     </tr>
+                                    <?php $i++; endforeach ?>
                                 </tbody>
                             </table>
                         </div>

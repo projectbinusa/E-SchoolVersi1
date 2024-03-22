@@ -19,7 +19,7 @@
             <?php $this->load->view('components/navbar') ?>
             <?php $this->load->view('components/sidebar') ?>
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
-            <div class="page-breadcrumb d-flex items-center justify-content-between">
+                <div class="page-breadcrumb d-flex items-center justify-content-between">
                     <div class="">
                         <h2 class="page-title">Data Guru</h2>
                     </div>
@@ -68,11 +68,15 @@
                                         <td class="text-center"><?= $row->ttl ?></td>
                                         <td class="text-center"><?= $row->kelas ?></td>
                                         <td class="">
-                                <a href="<?= base_url() ?>admin/edit_guru/<?= $row->id ?>" class="btn btn-warning"><i width="16" height="16" data-feather="edit" class="feather-icon"></i></a>
-                                <button onclick="confirmDelete('<?=$row->nama?>', '<?=$row->id?>')" class="btn btn-danger">
-                                  <i width="16" height="16" data-feather="trash-2" class="feather-icon"></i>
-                                </button>
-                              </td>
+                                            <a href="<?= base_url() ?>admin/edit_guru/<?= $row->id ?>"
+                                                class="btn btn-warning"><i width="16" height="16" data-feather="edit"
+                                                    class="feather-icon"></i></a>
+                                            <button onclick="confirmDelete('<?=$row->nama?>', '<?=$row->id?>')"
+                                                class="btn btn-danger">
+                                                <i width="16" height="16" data-feather="trash-2"
+                                                    class="feather-icon"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
                                 </tbody>
@@ -121,8 +125,8 @@
 </body>
 <script>
 function confirmDelete(username, id) {
-  if (!confirm("Anda yakin ingin menghapus data guru " + username + "?")) return;
-  location.href = "<?= base_url() ?>admin/hapus_guru_api/" + id;
+    if (!confirm("Anda yakin ingin menghapus data guru " + username + "?")) return;
+    location.href = "<?= base_url() ?>admin/hapus_guru_api/" + id;
 }
 </script>
 

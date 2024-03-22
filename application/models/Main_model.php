@@ -33,6 +33,7 @@ class Main_model extends CI_Model {
   public function remove($table, $id) {
     $this->db->delete($table, ['id' => $id]);
   }
+  
   public function removeWhere($table, $where) {
     $this->db->delete($table, $where);
   }

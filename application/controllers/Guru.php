@@ -17,7 +17,9 @@ class Guru extends CI_Controller {
     }
 	public function index()
 	{
-		$this->load->view('guru/dashboard');
+		$this->load->view('guru/dashboard', [
+			'kbm' => $this->Main_model->get('kbm')->result()
+		]);
 	}
 
 	public function kbm()
