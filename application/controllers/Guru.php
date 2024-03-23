@@ -208,14 +208,23 @@ class Guru extends CI_Controller {
 		]);
 	}
 
-	public function pdf_presensi(){
+	public function pdf_presensi($id){
 
 		$options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         $options->set('isPhpEnabled', true);
 
         $dompdf = new Dompdf($options);
-		$data['kehadiran'] = $this->Main_model->getPresensi();
+		$presensi = $this->Main_model->findById('presensi', $id);
+		$data['presensi'] = $presensi;
+		$data['kelas'] = $this->Main_model->findById('kelas', $presensi->kelas_id);
+		$data['siswa'] = $this->Main_model->getWhere('siswa', ['kelas_id' => $presensi->kelas_id]);
+		$temp = $this->Main_model->getWhere('kehadiran_siswa', ['presensi_id' => $id]);
+		$res = [];
+		foreach ($temp as $row) {
+			$res[$row->siswa_id] = $row->keterangan;
+		}
+		$data['kehadiran'] = $res;
 		$this->load->view('guru/laporan_pdf', $data);
 
         // Isi konten PDF (misalnya, HTML)
