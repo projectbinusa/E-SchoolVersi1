@@ -228,8 +228,8 @@ class Admin extends CI_Controller {
 		$sheet->setCellValue('F1', 'ttl');
 		$sheet->setCellValue('G1', 'password');
 		$sheet->setCellValue('H1', '');
-		$sheet->mergeCells('H1:I1');
-        $sheet->setCellValue('J1', 'daftar kelas');
+		$sheet->mergeCells('I1:J1');
+        $sheet->setCellValue('I1', 'daftar kelas');
 		
 		$data['data'] = $this->Main_model->get('kelas')->result(); 
     	$dataKelas = $data['data'];

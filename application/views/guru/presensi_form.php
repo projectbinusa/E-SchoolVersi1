@@ -136,7 +136,8 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 14%;" class="text-center">No</th>
-                                            <th style="width: 47%;" class="text-center">Nama</th>
+                                            <th style="width: 27%;" class="text-center">Nama</th>
+                                            <th style="width: 20%;" class="text-center">NISN</th>
                                             <th style="width: 13%;" class="text-center">Sakit</th>
                                             <th style="width: 13%;" class="text-center">Izin</th>
                                             <th style="width: 13%;" class="text-center">Alpha</th>
@@ -171,9 +172,9 @@ const kehadiran = {
 // Start Cencel Select 
 function cancelSelect(btn) {
     const row = btn.parentElement.parentElement.children;
-    row[2].children[0].children[0].checked = false;
     row[3].children[0].children[0].checked = false;
     row[4].children[0].children[0].checked = false;
+    row[5].children[0].children[0].checked = false;
 }
 // End Cencel Select 
 
@@ -189,8 +190,12 @@ function getSiswas(id) {
                 rows +=
                     `<tr>
 						<td style="width: 14%;" class="text-center">${i+1}</td>
-						<td style="width: 47%;" class="position-relative">
+						<td style="width: 27%;" class="position-relative">
 							${row.nama_siswa}
+                            
+						</td>
+                        <td style="width: 20%;" class="position-relative">
+							${row.nisn}
                             <input hidden value="${row.id}" name="siswa${i}" readonly />
 							<div class="cancel-btn" onclick="cancelSelect(this)">
 								x
