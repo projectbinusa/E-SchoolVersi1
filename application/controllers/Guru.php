@@ -5,6 +5,9 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;	
+
 class Guru extends CI_Controller {
 	public function __construct()
     {
@@ -203,5 +206,26 @@ class Guru extends CI_Controller {
 			'data' => $this->Main_model->findById('sikap', $id),
 			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa', ['kelas_id' => $this->session->userdata('kelas_id')])
 		]);
+	}
+
+	public function pdf_presensi(){
+
+		$options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+
+        $dompdf = new Dompdf($options);
+		$data['kehadiran'] = $this->Main_model->getPresensi();
+		$this->load->view('guru/laporan_pdf', $data);
+
+        // Isi konten PDF (misalnya, HTML)
+		$content = $this->load->view('guru/laporan_pdf', '', true);
+        $dompdf->loadHtml($content);
+
+        // Render PDF
+        $dompdf->render();
+
+        // Output PDF ke browser
+        $dompdf->stream('example.pdf', array('Attachment' => 0));
 	}
 }

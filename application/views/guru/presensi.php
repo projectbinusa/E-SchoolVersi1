@@ -71,6 +71,10 @@
                                                 <i width="16" height="16" data-feather="trash-2"
                                                     class="feather-icon"></i>
                                             </button>
+                                            <a href="<?= base_url()?>guru/pdf_presensi/<?=$row->id?>" class="btn btn-primary">
+                                                <i width="16" height="16" data-feather="download"
+                                                    class="feather-icon"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
