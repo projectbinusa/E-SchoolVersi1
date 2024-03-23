@@ -73,7 +73,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="align-self-center">
-                            <h2 class="page-title">Input Presensi</h2>
+                            <h2 class="page-title">Input Piket</h2>
                         </div>
                     </div>
                 </div>
@@ -102,8 +102,8 @@
 										<tr>
 											<th style="width: 14%;" class="text-center">No</th>
 											<th style="width: 47%;" class="text-center">Nama</th>
-											<th style="width: 13%;" class="text-center">Izin</th>
 											<th style="width: 13%;" class="text-center">Sakit</th>
+											<th style="width: 13%;" class="text-center">Izin</th>
 											<th style="width: 13%;" class="text-center">Alpha</th>
 										</tr>
 									</thead>

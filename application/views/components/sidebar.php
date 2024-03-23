@@ -17,7 +17,7 @@
             if ($this->session->userdata('kelas_id')) {
               array_push($items, ["label" => "Sikap", 'icon' => 'user', "to" => "/guru/sikap"]);
             }
-            array_push($items, ["label" => "Presensi", 'icon' => 'users', "to" => "/guru/presensi"]);
+            array_push($items, ["label" => "Piket", 'icon' => 'users', "to" => "/guru/piket"]);
           }
         ?>
         <?php $i = 0; foreach ($items as $item): ?>

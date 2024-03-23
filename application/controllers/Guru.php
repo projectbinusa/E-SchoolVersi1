@@ -71,13 +71,13 @@ class Guru extends CI_Controller {
 		]);
 	}
 
-	public function presensi() {
+	public function piket() {
 		$this->load->view('guru/presensi', [
 			'data' => $this->Main_model->getPresensi()
 		]);
 	}
 
-	public function tambah_presensi() {
+	public function tambah_piket() {
 		$kelas = array_map(function($x) {
 			return $x->kelas_id;
 		}, $this->Main_model->getWhere('presensi', ['tanggal' => date('Y-m-d')]));
@@ -91,7 +91,7 @@ class Guru extends CI_Controller {
 		]);
 	}
 
-	public function edit_presensi($id) {
+	public function edit_piket($id) {
 		$data = $this->Main_model->findById('presensi', $id);
 		$kelas = array_map(function($x) {
 			return $x->kelas_id;
@@ -122,7 +122,7 @@ class Guru extends CI_Controller {
 			]);
 		}
 		$this->Main_model->insertBatch('kehadiran_siswa', $kehadiran);
-		redirect('guru/presensi');
+		redirect('guru/piket');
 	}
 
 	public function tambah_presensi_api() {
@@ -141,13 +141,13 @@ class Guru extends CI_Controller {
 			]);
 		}
 		$this->Main_model->insertBatch('kehadiran_siswa', $kehadiran);
-		redirect('guru/presensi');
+		redirect('guru/piket');
 	}
 	
 	public function hapus_presensi_api($id) {
-		$this->Main_model->remove('presensi', $id);
 		$this->Main_model->removeWhere('kehadiran_siswa', ['presensi_id' => $id]);
-		redirect('guru/presensi');
+		$this->Main_model->remove('presensi', $id);
+		redirect('guru/piket');
 	}
 
 	public function get_siswas_bykelas($id) {
