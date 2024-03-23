@@ -13,14 +13,20 @@
 </head>
 
 <body>
-    <div class="all">
+    <div class="all font-web">
         <?php $this->load->view('components/loader') ?>
         <div id="main-wrapper">
+            <!-- Start Navbar -->
             <?php $this->load->view('components/navbar') ?>
+            <!-- End Navbar -->
+
+            <!-- Start Sidebar -->
             <?php $this->load->view('components/sidebar') ?>
+            <!-- End Sidebar -->
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
+                <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
-                    <div class="">
+                    <div>
                         <h2 class="page-title">Data Kelas</h2>
                     </div>
                     <div>
@@ -28,20 +34,26 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
-                                            href="<?php echo base_url()?>">Kelas</a></li>
+                                            href="<?php echo base_url('admin')?>">Admin</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
+                                        Kelas</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
+                <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
                             <div class="button-import d-flex justify-content-end mb-4">
-                            <button name="submit" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <!-- Start Button Tambah Data -->
+                                <button name="submit" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"><i width="15" height="15" data-feather="plus"
                                         class="feather-icon mb-1"></i> Tambah Data</button>
+                                <!-- End Button Tambah Data -->
                             </div>
+                            <!-- Start Table Kelas -->
                             <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>
                                     <tr>
@@ -56,25 +68,32 @@
                                     <tr>
                                         <td class="text-center"><?= $i + 1 ?></td>
                                         <td class="text-center"><?= $row->nama?></td>
-                                        <td class="">
-                                <button data-bs-toggle="modal" data-bs-target="#modal<?= $row->id?>" class="btn btn-warning"><i width="16" height="16" data-feather="edit" class="feather-icon"></i></button>
-                                <button onclick="confirmDelete('<?= $row->nama ?>', '<?= $row->id ?>')" class="btn btn-danger">
-                                  <i width="16" height="16" data-feather="trash-2" class="feather-icon"></i>
-                                </button>
-                              </td>
+                                        <td>
+                                            <button data-bs-toggle="modal" data-bs-target="#modal<?= $row->id?>"
+                                                class="btn btn-warning"><i width="16" height="16" data-feather="edit"
+                                                    class="feather-icon"></i></button>
+                                            <button onclick="confirmDelete('<?= $row->nama ?>', '<?= $row->id ?>')"
+                                                class="btn btn-danger">
+                                                <i width="16" height="16" data-feather="trash-2"
+                                                    class="feather-icon"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
                                 </tbody>
                             </table>
+                            <!-- End Table Kelas -->
                         </div>
                     </div>
                 </div>
-                <?php $this->load->view('components/footer') ?>
+                <!-- Start Footer -->
+                <?php $this->load->view('components/footer')?>
+                <!-- End Footer -->
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Start Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -83,24 +102,25 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="m-2">
-                    <form class="" method="post"  action="<?=base_url()?>admin/tambah_kelas"  enctype="multipart/form-data">
-                    <div class="form-group m-3">
-                        <input type="text" name=nama class="form-control" placeholder="Masukan Nama Kelas" required>
-                    </div>
-                    <div class="form-group border-top">
-                        <div class="modal-footer d-flex justify-content-between ">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                    <form method="post" action="<?=base_url()?>admin/tambah_kelas" enctype="multipart/form-data">
+                        <div class="form-group m-3">
+                            <input type="text" name=nama class="form-control" placeholder="Masukan Nama Kelas" required>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group border-top">
+                            <div class="modal-footer d-flex justify-content-between ">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-<?php $no = 0; foreach ($data as $row) : $no++; ?>
-    <div class="modal fade" id="modal<?= $row->id?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <?php $no = 0; foreach ($data as $row) : $no++; ?>
+    <div class="modal fade" id="modal<?= $row->id?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header border-bottom">
@@ -108,32 +128,37 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="m-2">
-                    <form class="" method="post" action="<?=base_url()?>admin/<?='edit_kelas_api/'.$row->id?>"  enctype="multipart/form-data">
-                    
-                    <div class="form-group m-3">
-                        <input type="hidden" name=id value="<?= $row->id ?>">
-                        <input type="text" name=nama value="<?= $row->nama ?>" class="form-control" placeholder="Masukan Nama Kelas" required>
-                    </div>
-                    <div class="form-group border-top">
-                        <div class="modal-footer d-flex justify-content-between ">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <form method="post" action="<?=base_url()?>admin/<?='edit_kelas_api/'.$row->id?>"
+                        enctype="multipart/form-data">
+
+                        <div class="form-group m-3">
+                            <input type="hidden" name=id value="<?= $row->id ?>">
+                            <input type="text" name=nama value="<?= $row->nama ?>" class="form-control"
+                                placeholder="Masukan Nama Kelas" required>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group border-top">
+                            <div class="modal-footer d-flex justify-content-between ">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-<?php $no++; endforeach; ?>
-    <!-- END MODAL -->
+    <?php $no++; endforeach; ?>
+    <!-- End Modal -->
 
     <?php $this->load->view('components/scripts') ?>
 </body>
 <script>
+// Start Function Delete
 function confirmDelete(nama, id) {
-  if (!confirm("Anda yakin ingin menghapus data kelas " + nama + "?")) return;
-  location.href = "<?= base_url() ?>admin/hapus_kelas/" + id;
+    if (!confirm("Anda yakin ingin menghapus data kelas " + nama + "?")) return;
+    location.href = "<?= base_url() ?>admin/hapus_kelas/" + id;
 }
+// End Function Delete
 </script>
+
 </html>

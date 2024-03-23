@@ -39,15 +39,21 @@
 </head>
 
 <body>
-    <div class="all">
+    <div class="all font-web">
         <?php $this->load->view('components/loader') ?>
         <div id="main-wrapper">
+            <!-- Start Navbar -->
             <?php $this->load->view('components/navbar') ?>
+            <!-- End Navbar -->
+
+            <!-- Start Sidebar -->
             <?php $this->load->view('components/sidebar') ?>
+            <!-- End Sidebar -->
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
+                <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
-                    <div class="">
-                        <h2 class="page-title">Tambah Data KBM</h2>
+                    <div>
+                        <h2 class="page-title">Input Data KBM</h2>
                     </div>
                     <div>
                         <div class="d-flex">
@@ -55,13 +61,16 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
                                             href="<?php echo base_url('guru')?>">Guru</a></li>
+                                    <li class="breadcrumb-item" aria-current="page" style="font-size: 15px;">
+                                        <a href="<?php echo base_url('guru/KBM')?>">KBM</a></li>
                                     <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
-                                        Tambah Data KBM</li>
+                                        Input Data KBM</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
+                <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="rounded shadow p-3">
                         <form method="post"
@@ -94,7 +103,9 @@
                         </form>
                     </div>
                 </div>
-                <?php $this->load->view('components/footer') ?>
+                <!-- Start Footer -->
+                <?php $this->load->view('components/footer')?>
+                <!-- End Footer -->
             </div>
         </div>
     </div>

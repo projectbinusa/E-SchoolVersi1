@@ -39,31 +39,41 @@
 </head>
 
 <body>
-    <div class="all">
+    <div class="all font-web">
         <?php $this->load->view('components/loader') ?>
         <div id="main-wrapper">
+            <!-- Start Navbar -->
             <?php $this->load->view('components/navbar') ?>
+            <!-- End Navbar -->
+
+            <!-- Start Sidebar -->
             <?php $this->load->view('components/sidebar') ?>
+            <!-- End Sidebar -->
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
+                <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
-                    <div class="">
-                        <h2 class="page-title">Ubah Data <?= $data->nama ?></h2>
+                    <div>
+                        <h2 class="page-title">Input Data Guru</h2>
                     </div>
                     <div>
                         <div class="d-flex">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
-                                            href="<?php echo base_url('guru')?>">Guru</a></li>
+                                            href="<?php echo base_url('admin')?>">Admin</a></li>
+                                    <li class="breadcrumb-item" aria-current="page" style="font-size: 15px;">
+                                        <a href="<?php echo base_url('admin/guru')?>">Guru</a></li>
                                     <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
-                                        Ubah Data Guru</li>
+                                        Input Data Guru</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
+                <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="rounded shadow p-3">
+                        <!-- Start Form Ubah & Tambah Guru -->
                         <form method="post" action="<?=base_url()?>admin/edit_guru_api/<?=$data->id?>" class="row">
                             <div class="col-6">
                                 <label for="nama" class="form-label" style="color: #374151;">Nama
@@ -117,15 +127,19 @@
                                 <button type="submit" class="btn btn-success">Ubah</button>
                             </div>
                         </form>
+                        <!-- End Form Ubah & Tambah Guru -->
                     </div>
                 </div>
-                <?php $this->load->view('components/footer') ?>
+                <!-- Start Footer -->
+                <?php $this->load->view('components/footer')?>
+                <!-- End Footer -->
             </div>
         </div>
     </div>
     <?php $this->load->view('components/scripts.php') ?>
 </body>
 <script>
+// Start Show Hide Password
 const passwordInput = document.getElementById('password');
 const togglePassword = document.getElementById('togglePassword');
 
@@ -135,7 +149,9 @@ togglePassword.addEventListener('click', () => {
     togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye-slash"></i>' :
         '<i class="fas fa-eye"></i>';
 });
+// End Show Hide Password
 
+// Start Change Label
 function passChange(e) {
     const label = e.target.parentElement.parentElement.children[0].children[0];
     if (e.target.value) {
@@ -144,6 +160,7 @@ function passChange(e) {
     }
     label.textContent = "(tidak dirubah)"
 }
+// End Change Label
 </script>
 
 </html>
