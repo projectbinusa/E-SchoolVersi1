@@ -16,11 +16,17 @@
     <div class="all font-web">
         <?php $this->load->view('components/loader') ?>
         <div id="main-wrapper">
+            <!-- Start Navbar -->
             <?php $this->load->view('components/navbar') ?>
+            <!-- End Navbar -->
+
+            <!-- Start Sidebar -->
             <?php $this->load->view('components/sidebar') ?>
+            <!-- End Sidebar -->
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
+                <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
-                    <div class="">
+                    <div>
                         <h2 class="page-title">Kegiatan Belajar Mengajar</h2>
                     </div>
                     <div>
@@ -36,6 +42,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
@@ -62,7 +69,7 @@
                                         <td><?= substr($row->jam_selesai, 11, -3) ?></td>
                                         <td><?= $row->materi ?></td>
                                         <td><?= $row->keterangan ?></td>
-                                        <td class="">
+                                        <td>
                                             <a href="<?= base_url() ?>guru/edit_kbm/<?= $row->id ?>"
                                                 class="btn btn-warning"><i width="16" height="16" data-feather="edit"
                                                     class="feather-icon"></i></a>
@@ -79,7 +86,9 @@
                         </div>
                     </div>
                 </div>
-                <?php $this->load->view('components/footer') ?>
+                <!-- Start Footer -->
+                <?php $this->load->view('components/footer')?>
+                <!-- End Footer -->
             </div>
         </div>
     </div>

@@ -42,34 +42,44 @@
     <div class="all font-web">
         <?php $this->load->view('components/loader') ?>
         <div id="main-wrapper">
+            <!-- Start Navbar -->
             <?php $this->load->view('components/navbar') ?>
+            <!-- End Navbar -->
+
+            <!-- Start Sidebar -->
             <?php $this->load->view('components/sidebar') ?>
+            <!-- End Sidebar -->
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
+                <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
-                    <div class="">
-                        <h2 class="page-title">Ubah Data <?= $data->nama_siswa ?></h2>
+                    <div>
+                        <h2 class="page-title">Input Data Siswa</h2>
                     </div>
                     <div>
                         <div class="d-flex">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
-                                            href="<?php echo base_url('siswa')?>">Siswa</a></li>
+                                            href="<?php echo base_url('admin')?>">Admin</a></li>
+                                    <li class="breadcrumb-item" aria-current="page" style="font-size: 15px;">
+                                        <a href="<?php echo base_url('admin/siswa')?>">Siswa</a></li>
                                     <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
-                                        Ubah Data Siswa</li>
+                                        Input Data Siswa</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
+                <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="rounded shadow p-3">
+                        <!-- Start Form Ubah & Tambah Siswa -->
                         <form method="post" action="<?=base_url()?>admin/edit_siswa_api/<?=$data->id?>" class="row">
                             <div class="col-6">
                                 <label for="nama_siswa">Nama
                                     Siswa</label>
-                                <input required type="text" name="nama" class="form-control"
-                                    id="nama_siswa" value="<?= $data->nama_siswa ?>" />
+                                <input required type="text" name="nama" class="form-control" id="nama_siswa"
+                                    value="<?= $data->nama_siswa ?>" />
                             </div>
                             <div class="col-6">
                                 <label for="nisn">NISN</label>
@@ -96,9 +106,12 @@
                                 <button type="submit" class="btn btn-success">Ubah</button>
                             </div>
                         </form>
+                        <!-- Start Form Ubah & Tambah Siswa -->
                     </div>
                 </div>
-                <?php $this->load->view('components/footer') ?>
+                <!-- Start Footer -->
+                <?php $this->load->view('components/footer')?>
+                <!-- End Footer -->
             </div>
         </div>
     </div>

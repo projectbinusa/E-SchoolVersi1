@@ -9,6 +9,7 @@ class Auth extends CI_Controller {
 			$this->load->helper('Main_helper');
 			date_default_timezone_set('Asia/Jakarta');
     }
+    
 	public function index()
 	{
         if ($this->session->userdata('logged_in') == true && $this->session->userdata('role_id') == '1') {

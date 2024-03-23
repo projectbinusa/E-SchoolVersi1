@@ -23,8 +23,8 @@
     <link rel="icon" type="image/png" href="<?php echo base_url('package/assets/images/logo-pos.png')?>" />
 </head>
 
-<body class="font-web">
-    <div class="all">
+<body>
+    <div class="all font-web">
         <div class="preloader">
             <svg class="tea lds-ripple" width="37" height="48" viewbox="0 0 37 48" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -44,11 +44,17 @@
             </svg>
         </div>
         <div id="main-wrapper">
+            <!-- Start Navbar -->
             <?php $this->load->view('components/navbar') ?>
+            <!-- End Navbar -->
+
+            <!-- Start Sidebar -->
             <?php $this->load->view('components/sidebar') ?>
+            <!-- End Sidebar -->
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
+                <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
-                    <div class="">
+                    <div>
                         <h2 class="page-title">Dashboard Admin</h2>
                     </div>
                     <div>
@@ -62,10 +68,12 @@
                         </div>
                     </div>
                 </div>
+                <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="row">
                             <div class="col-md-6">
+                                <!-- Start Card Total Guru -->
                                 <div class="card bg-primary text-white" style="border-radius: 10px;">
                                     <div class="card-body d-flex justify-content-between align-items-center p-3">
                                         <div>
@@ -86,9 +94,11 @@
                                         <i class="fa-solid fa-circle-arrow-right"></i>
                                     </a>
                                 </div>
+                                <!-- End Card Total Guru -->
                             </div>
                             <div class="col-md-6">
                                 <div class="card bg-primary text-white" style="border-radius: 10px;">
+                                    <!-- Start Card Total Siswa -->
                                     <div class="card-body d-flex justify-content-between align-items-center p-3">
                                         <div>
                                             <div class="card-title h4 fw-normal">Total Siswa</div>
@@ -107,10 +117,12 @@
                                         <i class="fa-solid fa-circle-arrow-right"></i>
                                     </a>
                                 </div>
+                                <!-- End Card Total Siswa -->
                             </div>
                         </div>
                         <div class="rounded shadow p-3 mt-3">
                             <h3>Table Guru</h3>
+                            <!-- Start Table Guru -->
                             <table id="table" class="table table-hover table-secondary mt-2 ">
                                 <thead>
                                     <tr>
@@ -135,9 +147,11 @@
                                     <?php $i++; endforeach; ?>
                                 </tbody>
                             </table>
+                            <!-- End Table Guru -->
                         </div>
                         <div class="rounded shadow p-3 mt-3">
                             <h3>Table Siswa</h3>
+                            <!-- Start Table Siswa -->
                             <table id="table-2" class="table table-hover table-secondary mt-2">
                                 <thead>
                                     <tr>
@@ -160,10 +174,13 @@
                                     <?php $i++; endforeach; ?>
                                 </tbody>
                             </table>
+                            <!-- End Table Siswa -->
                         </div>
                     </div>
                 </div>
+                <!-- Start Footer -->
                 <?php $this->load->view('components/footer')?>
+                <!-- End Footer -->
             </div>
         </div>
     </div>

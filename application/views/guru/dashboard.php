@@ -23,8 +23,8 @@
     <link rel="icon" type="image/png" href="<?php echo base_url('package/assets/images/logo-pos.png')?>" />
 </head>
 
-<body class="font-web">
-    <div class="all">
+<body>
+    <div class="all font-web">
         <div class="preloader">
             <svg class="tea lds-ripple" width="37" height="48" viewbox="0 0 37 48" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -44,11 +44,17 @@
             </svg>
         </div>
         <div id="main-wrapper">
+            <!-- Start Navbar -->
             <?php $this->load->view('components/navbar') ?>
+            <!-- End Navbar -->
+
+            <!-- Start Sidebar -->
             <?php $this->load->view('components/sidebar') ?>
+            <!-- End Sidebar -->
             <div class="page-wrapper" style="min-height: 100vh; background-color: white;">
+                <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
-                    <div class="">
+                    <div>
                         <h2 class="page-title">Dashboard Guru</h2>
                     </div>
                     <div>
@@ -57,17 +63,17 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
                                             href="<?php echo base_url('guru')?>">Dashboard Guru</a></li>
-                                    <!-- <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
-                                        Dashboard</li> -->
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
+                <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3 mt-3">
                             <h3>Table Jadwal KBM</h3>
+                            <!-- Start Table KBM -->
                             <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>
                                     <tr>
@@ -90,10 +96,13 @@
                                     <?php $i++; endforeach ?>
                                 </tbody>
                             </table>
+                            <!-- End Table KBM -->
                         </div>
                     </div>
                 </div>
-                <?php $this->load->view('components/footer') ?>
+                <!-- Start Footer -->
+                <?php $this->load->view('components/footer')?>
+                <!-- End Footer -->
             </div>
         </div>
     </div>
