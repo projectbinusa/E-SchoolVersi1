@@ -116,7 +116,7 @@ class Admin extends CI_Controller {
 				$nisn=$sheetdata[$i][2];
 				$kelas=$sheetdata[$i][3];
 				$ttl=$sheetdata[$i][4];
-				if ($nama!="") {
+				if ($nama_siswa!="") {
 					$data[]=array(
 						'nama_siswa'=>$nama_siswa,
 						'nisn'=>$nisn,
@@ -202,7 +202,8 @@ class Admin extends CI_Controller {
 				$kelas_id=$sheetdata[$i][4];
 				$ttl=$sheetdata[$i][5];
 				$password=$sheetdata[$i][6];
-				$data[]=array(
+				if ($nama != "") {
+					$data[]=array(
 					'nama'=>$nama,
 					'nip'=>$nip,
 					'mapel'=>$mapel,
@@ -214,6 +215,7 @@ class Admin extends CI_Controller {
 					'password' => md5($password), 
 					'role_id' => '2'
 				]);
+				}
 			}
 			$inserdata=$this->Main_model->import_data_guru($data, $data2);
 			if($inserdata)
