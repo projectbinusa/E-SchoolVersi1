@@ -116,12 +116,14 @@ class Admin extends CI_Controller {
 				$nisn=$sheetdata[$i][2];
 				$kelas=$sheetdata[$i][3];
 				$ttl=$sheetdata[$i][4];
-				$data[]=array(
-					'nama_siswa'=>$nama_siswa,
-					'nisn'=>$nisn,
-					'kelas_id'=>$kelas,
-					'ttl'=>$ttl,
-				);
+				if ($nama!="") {
+					$data[]=array(
+						'nama_siswa'=>$nama_siswa,
+						'nisn'=>$nisn,
+						'kelas_id'=>$kelas,
+						'ttl'=>$ttl,
+					);
+				}
 			}
 			$inserdata=$this->Main_model->import_data_siswa($data);
 			if($inserdata)
