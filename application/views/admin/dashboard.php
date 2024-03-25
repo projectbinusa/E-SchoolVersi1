@@ -97,7 +97,7 @@
                                 <!-- End Card Total Guru -->
                             </div>
                             <div class="col-md-6">
-                                <div class="card bg-primary text-white" style="border-radius: 10px;">
+                                <div class="card text-white" style="border-radius: 10px; background-color: #00FFAB;">
                                     <!-- Start Card Total Siswa -->
                                     <div class="card-body d-flex justify-content-between align-items-center p-3">
                                         <div>
@@ -112,7 +112,7 @@
                                     </div>
                                     <a href="<?php echo base_url('admin/siswa') ;?>"
                                         class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
-                                        style="background-color: #3B82F6; border-radius: 0px 0px 10px 10px;">
+                                        style="background-color: #14C38E; border-radius: 0px 0px 10px 10px;">
                                         <span>See More</span>
                                         <i class="fa-solid fa-circle-arrow-right"></i>
                                     </a>
