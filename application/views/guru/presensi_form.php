@@ -203,14 +203,14 @@ function getSiswas(id) {
 							</div>
 						</td>
 						<td style="width: 13%;" class="text-center p-0">
-							<label class="p-3 w-100">
-								<input value="Izin"${kehadiran[row.id] === "Izin" ? " checked":""} type="radio" name="kehadiran${i}" />
-							</label>
+                            <label class="p-3 w-100">
+                                <input value="Sakit"${kehadiran[row.id] === "Sakit" ? " checked":""} type="radio" name="kehadiran${i}" />
+                            </label>
 						</td>
 						<td style="width: 13%;" class="text-center p-0">
-							<label class="p-3 w-100">
-								<input value="Sakit"${kehadiran[row.id] === "Sakit" ? " checked":""} type="radio" name="kehadiran${i}" />
-							</label>
+                            <label class="p-3 w-100">
+                                <input value="Izin"${kehadiran[row.id] === "Izin" ? " checked":""} type="radio" name="kehadiran${i}" />
+                            </label>
 						</td>
 						<td style="width: 13%;" class="text-center p-0">
 							<label class="p-3 w-100">
