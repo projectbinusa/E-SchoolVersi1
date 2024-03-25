@@ -126,7 +126,7 @@
                             </div>
                             <div class="col-6 mt-3">
                                 <label class="w-100">Tanggal</label>
-                                <input required type="date" value="<?= $data->tanggal ? $data->tanggal:date('Y-m-d') ?>"
+                                <input required onchange="get_kelas(this)" type="date" value="<?= $data->tanggal ? $data->tanggal:date('Y-m-d') ?>"
                                     name="tanggal" class="form-control" />
                             </div>
                             <input hidden name="jumlah_siswa" id="jumlah_siswa" />
@@ -180,6 +180,7 @@ function cancelSelect(btn) {
 
 // Start Function Get Siswa By Id Kelas
 function getSiswas(id) {
+    
     $.ajax({
         url: `<?=base_url()?>guru/get_siswas_bykelas/${id}`,
         success: async (res) => {
@@ -224,6 +225,26 @@ function getSiswas(id) {
     })
 }
 // End Function Get Siswa By Id Kelas
+
+// Start Function Get Kelas
+function get_kelas (tanggal) {
+    const kelas = $('#kelas');
+    $.ajax({
+        url: "<?= base_url() ?>guru/get_kelas_presensi/"+kelas.val()+"?tanggal="+tanggal.value,
+        success: async (res) => {
+            const data = JSON.parse(await res);
+            console.log(data);
+            let options = "";
+            data.forEach((row, i) => {
+                options += 
+                `<option value="${row.id}"${row.id==kelas.val()?' selected':''}>
+                    ${row.label}
+                </option>`
+            });
+            kelas.html(options);
+        }
+    })
+}
 getSiswas(<?= isset($data->id) ? $data->kelas_id : $kelas[0]->id?>);
 </script>
 

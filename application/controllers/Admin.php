@@ -9,6 +9,9 @@ class Admin extends CI_Controller {
 	public function __construct()
     {
 			parent::__construct();
+			if ($this->session->userdata('id') == '') {
+				redirect(base_url());
+			}
 			$this->load->model('Main_model');
 			date_default_timezone_set('Asia/Jakarta');
     }
@@ -188,22 +191,29 @@ class Admin extends CI_Controller {
 		$sheetcount=count($sheetdata);
 		if($sheetcount>1)
 		{
-			$data=array();
+			$data= [];
+			$data2= [];
 			for ($i=1; $i < $sheetcount; $i++) { 
 				$nama=$sheetdata[$i][1];
 				$nip=$sheetdata[$i][2];
 				$mapel=$sheetdata[$i][3];
 				$kelas_id=$sheetdata[$i][4];
 				$ttl=$sheetdata[$i][5];
+				$password=$sheetdata[$i][6];
 				$data[]=array(
 					'nama'=>$nama,
 					'nip'=>$nip,
 					'mapel'=>$mapel,
-					'kelas_id'=>$kelas_id,
+					'kelas_id'=> $kelas_id,
 					'ttl'=>$ttl
 				);
+				array_push($data2, [
+					'username' => $nama,
+					'password' => md5($password), 
+					'role_id' => '2'
+				]);
 			}
-			$inserdata=$this->Main_model->import_data_guru($data);
+			$inserdata=$this->Main_model->import_data_guru($data, $data2);
 			if($inserdata)
 			{
 				$this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added.</div>');

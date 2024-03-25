@@ -12,6 +12,9 @@ class Guru extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+		if ($this->session->userdata('id') == '') {
+			redirect(base_url());
+		}
 		$this->load->model('Main_model');
 		date_default_timezone_set('Asia/Jakarta');
         $this->load->helper('Main_helper');;
@@ -99,7 +102,7 @@ class Guru extends CI_Controller {
 		$kelas = array_map(function($x) {
 			return $x->kelas_id;
 		}, $this->Main_model->getWhere('presensi', ['tanggal' => $data->tanggal]));
-		unset($kelas[array_search($data->id, $kelas)]);
+		unset($kelas[array_search($data->kelas_id, $kelas)]);
 
 		$this->load->view('guru/presensi_form', [
 			'data' => $data,
@@ -236,5 +239,13 @@ class Guru extends CI_Controller {
 
         // Output PDF ke browser
         $dompdf->stream('example.pdf', array('Attachment' => 0));
+	}
+
+	public function get_kelas_presensi($id) {
+		$kelas = array_map(function($x) {
+			return $x->kelas_id;
+		}, $this->Main_model->getWhere('presensi', ['tanggal' => $this->input->get('tanggal')]));
+		unset($kelas[array_search($id, $kelas)]);
+		echo json_encode($this->Main_model->getPresensiKelas($kelas));
 	}
 }

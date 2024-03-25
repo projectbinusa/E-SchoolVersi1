@@ -111,8 +111,9 @@ class Main_model extends CI_Model {
 		}
     return 0;
 	}
-	public function import_data_guru($data){
+	public function import_data_guru($data, $data2){
 		$this->db->insert_batch('guru',$data);
+    $this->db->insert_batch('user', $data2);
 		if($this->db->affected_rows()>0) {
 			return 1;
 		}
