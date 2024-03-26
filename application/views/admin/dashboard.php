@@ -55,14 +55,14 @@
                 <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
                     <div>
-                        <h2 class="page-title">Dashboard Admin</h2>
+                        <h2 class="page-title">Dashboard</h2>
                     </div>
                     <div>
-                        <div class="d-flex">
+                        <div class="d-md-flex d-none">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
-                                            href="<?php echo base_url('admin')?>">Dashboard Admin</a></li>
+                                            href="<?php echo base_url('admin')?>">Dashboard</a></li>
                                 </ol>
                             </nav>
                         </div>

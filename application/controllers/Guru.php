@@ -24,15 +24,17 @@ class Guru extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('guru/dashboard', [
-			'kbm' => $this->Main_model->get('kbm')->result()
+			'kbm' => $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')])
 		]);
 	}
 
 	public function kbm()
 	{
-		$this->load->view('guru/kbm', [
-			'data' => $this->Main_model->get('kbm')->result()
-		]);
+		$data['kbm'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
+		usort($data['kbm'], function($a, $b) {
+			return $b->id - $a->id;
+		});
+		$this->load->view('guru/kbm', $data);
 	}
 
 	public function edit_kbm_api($id) {
@@ -47,6 +49,7 @@ class Guru extends CI_Controller {
 
 	public function tambah_kbm_api() {
 		$this->Main_model->insert('kbm', [
+			'guru_id' => $this->session->userdata('guru_id'),
 			'jam_masuk' => date('Y-m-d').' '.$this->input->post('masuk').':00',
 			'jam_selesai' => date('Y-m-d').' '.$this->input->post('selesai').':00',
 			'materi' => $this->input->post('materi'),
