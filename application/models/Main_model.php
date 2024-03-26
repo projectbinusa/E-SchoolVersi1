@@ -55,7 +55,10 @@ class Main_model extends CI_Model {
     return $this->db->where('id', $id)->get($table, 1)->result()[0];
   }
 
-  public function getWhere($table, $query) {
+  public function getWhere($table, $query, $order = null) {
+    if ($order) {
+      $this->db->order_by($order);
+    }
     return $this->db->get_where($table, $query)->result();
   }
 
@@ -70,7 +73,7 @@ class Main_model extends CI_Model {
 
   public function getPresensi() {
     $queryRes = $this->db->select('p.*, k.nama as kelas, ks.keterangan')
-    ->join('kelas as k', 'p.kelas_id = k.id')
+    ->order_by('p.tanggal', 'DESC')->join('kelas as k', 'p.kelas_id = k.id')
     ->join('kehadiran_siswa as ks', 'ks.presensi_id = p.id', 'left')->get('presensi as p')->result();
 
     function search($array, $id) {
@@ -130,5 +133,10 @@ class Main_model extends CI_Model {
       array_push($res, ((object) ["label" => $row->nama, "id" => $row->id]));
     }
     return $res;
+  }
+
+  public function getKehadiranKelas($id) {
+    return $this->db->select("ks.*, s.nama_siswa as nama")->join('siswa as s', 's.id=ks.siswa_id')
+    ->get_where('kehadiran_siswa as ks', ['presensi_id' => $id])->result();
   }
 }

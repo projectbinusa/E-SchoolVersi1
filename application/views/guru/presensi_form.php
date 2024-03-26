@@ -39,7 +39,7 @@
     .fixed_header tbody {
         display: block;
         overflow: auto;
-        height: 200px;
+        max-height: 200px;
         width: 100%;
     }
 
@@ -65,10 +65,11 @@
         padding-top: 6px;
         border-radius: 3px;
         cursor: pointer;
+        background-color: whitesmoke;
     }
 
     .cancel-btn:hover {
-        background-color: whitesmoke;
+        background-color: white;
     }
     </style>
 </head>

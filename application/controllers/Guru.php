@@ -237,19 +237,49 @@ class Guru extends CI_Controller {
 
         $dompdf = new Dompdf($options);
 		$presensi = $this->Main_model->findById('presensi', $id);
-		$data['presensi'] = $presensi;
-		$data['kelas'] = $this->Main_model->findById('kelas', $presensi->kelas_id);
-		$data['siswa'] = $this->Main_model->getWhere('siswa', ['kelas_id' => $presensi->kelas_id]);
 		$temp = $this->Main_model->getWhere('kehadiran_siswa', ['presensi_id' => $id]);
 		$res = [];
 		foreach ($temp as $row) {
 			$res[$row->siswa_id] = $row->keterangan;
 		}
-		$data['kehadiran'] = $res;
-		$this->load->view('guru/laporan_pdf', $data);
 
         // Isi konten PDF (misalnya, HTML)
-		$content = $this->load->view('guru/laporan_pdf', '', true);
+		$content = $this->load->view('guru/laporan_pdf', [
+			'presensi' => $presensi,
+			'kehadiran' => $res,
+			'kelas' => $this->Main_model->findById('kelas', $presensi->kelas_id),
+			'siswa' => $this->Main_model->getWhere('siswa', ['kelas_id' => $presensi->kelas_id]),
+		], true);
+        $dompdf->loadHtml($content);
+
+        // Render PDF
+        $dompdf->render();
+
+        // Output PDF ke browser
+        $dompdf->stream('example.pdf', array('Attachment' => 0));
+	}
+	public function pdf_presensi_tgl(){
+		$tgl = $this->input->get('taggal');
+		$options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+
+        $dompdf = new Dompdf($options);
+		$presensi = $this->Main_model->getWhere('presensi', ['tanggal' => $tgl], "id DESC");
+		$kehadiran = [];
+		$kelas = [];
+		foreach ($presensi as $piket) {
+			array_push($kelas, $this->Main_model->findById('kelas', $piket->kelas_id));
+			array_push($kehadiran, $this->Main_model->getKehadiranKelas($piket->id));
+		}
+
+        // Isi konten PDF (misalnya, HTML)
+		$content = $this->load->view('guru/laporan_pdf_tgl', [
+			'presensi' => $presensi,
+			'kehadiran' => $kehadiran,
+			'kelas' => $kelas,
+			'tgl' => $tgl
+		], true);
         $dompdf->loadHtml($content);
 
         // Render PDF
@@ -260,9 +290,10 @@ class Guru extends CI_Controller {
 	}
 
 	public function get_kelas_presensi($id) {
+		$query_res = $this->Main_model->getWhere('presensi', ['tanggal' => $this->input->get('tanggal')]);
 		$kelas = array_map(function($x) {
 			return $x->kelas_id;
-		}, $this->Main_model->getWhere('presensi', ['tanggal' => $this->input->get('tanggal')]));
+		}, $query_res);
 		unset($kelas[array_search($id, $kelas)]);
 		echo json_encode($this->Main_model->getPresensiKelas($kelas));
 	}

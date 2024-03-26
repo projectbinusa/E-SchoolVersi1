@@ -50,6 +50,10 @@
                                 <!-- Start Button Tambah Data Presensi -->
                                 <a href="<?= base_url() ?>guru/tambah_piket" class="btn btn-primary"><i width="15"
                                         height="15" data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
+                                <button data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn btn-info ms-2">
+                                <i width="15"
+                                        height="15" data-feather="download" class="feather-icon mb-1"></i> Download Data
+                                </button>
                                 <!-- End Button Tambah Data Presensi -->
                             </div>
                             <!-- Start Table Presensi -->
@@ -103,8 +107,27 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Download Laporan Piket</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="download-form" action="<?=base_url()?>guru/pdf_presensi_tgl" class="modal-body row">
+                    <div class="col-6 px-3">
+                        <label>Tanggal</label>
+                        <input type="date" name="taggal" required class="form-control" id="date-filter" />
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="download-form" class="btn btn-primary">Unduh</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <?php $this->load->view('components/scripts.php') ?>
+    <?php $this->load->view('components/scripts') ?>
 </body>
 <script>
 // Start Function Delete
