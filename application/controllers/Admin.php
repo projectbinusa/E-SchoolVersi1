@@ -72,7 +72,8 @@ class Admin extends CI_Controller {
 	public function siswa()
 	{
 		$this->load->view('admin/siswa', [
-      'data' => $this->Main_model->getSiswa()
+      'data' => $this->Main_model->getSiswa(),
+	  'kelas' => $this->Main_model->getOptions('kelas')
     ]);
 	}
 
@@ -173,6 +174,87 @@ class Admin extends CI_Controller {
 		$writer->save("php://output");
 	}
 
+	public function format_siswa_edit($kelas_id)
+		{
+
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="format_siswa_edit.xlsx"');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'Id');
+		$sheet->setCellValue('B1', 'Nama Siswa');
+		$sheet->setCellValue('C1', 'NISN');
+		$sheet->setCellValue('D1', 'Kelas');
+		$sheet->setCellValue('E1', 'ttl');
+		
+		
+		$data['data'] = $this->Main_model->getWhere('siswa', ['kelas_id' => $kelas_id]);
+		$dataSiswa = $data['data'];
+
+    	$rowNum = 2;
+
+    	foreach ($dataSiswa as $data) {
+        $sheet->setCellValue('A' . $rowNum, $data->id);
+        $sheet->setCellValue('B' . $rowNum, $data->nama_siswa);
+        $sheet->setCellValue('C' . $rowNum, $data->nisn); // Replace with actual hadir status
+        $sheet->setCellValue('D' . $rowNum, $data->kelas_id); // Replace with actual ijin status
+        $sheet->setCellValue('E' . $rowNum, $data->ttl); // Replace with actual alpha status
+        
+
+        $rowNum++;
+    }
+		$writer = new Xlsx($spreadsheet);
+		$writer->save("php://output");
+	}
+
+	public function import_siswa_edit()
+	{
+		$upload_file=$_FILES['upload_file']['name'];
+		$extension=pathinfo($upload_file,PATHINFO_EXTENSION);
+		if($extension=='csv')
+		{
+			$reader= new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+		} else if($extension=='xls')
+		{
+			$reader= new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+		} else
+		{
+			$reader= new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+		}
+		$spreadsheet=$reader->load($_FILES['upload_file']['tmp_name']);
+		$sheetdata=$spreadsheet->getActiveSheet()->toArray();
+		$sheetcount=count($sheetdata);
+		if($sheetcount>1)
+		{
+			$data=array();
+			for ($i=1; $i < $sheetcount; $i++) { 
+				$id = $sheetdata[$i][0];
+				$nama_siswa=$sheetdata[$i][1];
+				$nisn=$sheetdata[$i][2];
+				$kelas=$sheetdata[$i][3];
+				$ttl=$sheetdata[$i][4];
+				if ($nama_siswa!="") {
+					$data[]=array(
+						'id' => $id,
+						'nama_siswa'=>$nama_siswa,
+						'nisn'=>$nisn,
+						'kelas_id'=>$kelas,
+						'ttl'=>$ttl,
+					);
+				}
+			}
+			$inserdata=$this->Main_model->edit_data_siswa($data);
+			if($inserdata)
+			{
+				$this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added.</div>');
+				redirect('admin/siswa');
+			} else {
+				$this->session->set_flashdata('message','<div class="alert alert-danger">Data Not uploaded. Please Try Again.</div>');
+				redirect('index');
+			}
+		}
+	}
+
 
 	public function spreadsheet_import_guru()
 	{
@@ -268,6 +350,98 @@ class Admin extends CI_Controller {
 		$writer = new Xlsx($spreadsheet);
 		$writer->save("php://output");
 	}
+
+	public function format_guru_edit()
+	{
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="format_guru_edit.xlsx"');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'Id');
+		$sheet->setCellValue('B1', 'Nama Guru');
+		$sheet->setCellValue('C1', 'NIP');
+		$sheet->setCellValue('D1', 'Mapel');
+		$sheet->setCellValue('E1', 'kelas');
+		$sheet->setCellValue('F1', 'ttl');
+		// $sheet->setCellValue('G1', 'password');
+		
+		$data['data'] = $this->Main_model->get('guru')->result(); 
+    	$dataGuru = $data['data'];
+
+    	$rowNum = 2;
+
+    	foreach ($dataGuru as $data) {
+        $sheet->setCellValue('A' . $rowNum, $data->id);
+        $sheet->setCellValue('B' . $rowNum, $data->nama);
+        $sheet->setCellValue('C' . $rowNum, $data->nip); 
+        $sheet->setCellValue('D' . $rowNum, $data->mapel); 
+        $sheet->setCellValue('E' . $rowNum, $data->kelas_id); 
+        $sheet->setCellValue('F' . $rowNum, $data->ttl); 
+        // $sheet->setCellValue('G' . $rowNum, $data->password); 
+
+        $rowNum++;
+    }
+		$writer = new Xlsx($spreadsheet);
+		$writer->save("php://output");
+	}
+
+	public function import_guru_edit()
+	{
+		$upload_file=$_FILES['upload_file']['name'];
+		$extension=pathinfo($upload_file,PATHINFO_EXTENSION);
+		if($extension=='csv')
+		{
+			$reader= new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+		} else if($extension=='xls')
+		{
+			$reader= new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+		} else
+		{
+			$reader= new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+		}
+		$spreadsheet=$reader->load($_FILES['upload_file']['tmp_name']);
+		$sheetdata=$spreadsheet->getActiveSheet()->toArray();
+		$sheetcount=count($sheetdata);
+		if($sheetcount>1)
+		{
+			$data= [];
+			// $data2= [];
+			for ($i=1; $i < $sheetcount; $i++) { 
+				$id=$sheetdata[$i][0];
+				$nama=$sheetdata[$i][1];
+				$nip=$sheetdata[$i][2];
+				$mapel=$sheetdata[$i][3];
+				$kelas_id=$sheetdata[$i][4];
+				$ttl=$sheetdata[$i][5];
+				// $password=$sheetdata[$i][6];
+				if ($nama != "") {
+					$data[]=array(
+					'id'=>$id,
+					'nama'=>$nama,
+					'nip'=>$nip,
+					'mapel'=>$mapel,
+					'kelas_id'=> $kelas_id,
+					'ttl'=>$ttl
+				);
+				// array_push($data2, [
+				// 	'username' => $nama,
+				// 	'password' => md5($password), 
+				// 	'role_id' => '2'
+				// ]);
+				}
+			}
+			$inserdata=$this->Main_model->edit_data_guru($data);
+			if($inserdata)
+			{
+				$this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added.</div>');
+				redirect('admin/guru');
+			} else {
+				$this->session->set_flashdata('message','<div class="alert alert-danger">Data Not uploaded. Please Try Again.</div>');
+				redirect('index');
+			}
+		}
+	}
+
 
 	public function kelas()
 	{

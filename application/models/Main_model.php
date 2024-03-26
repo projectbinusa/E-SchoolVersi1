@@ -62,6 +62,21 @@ class Main_model extends CI_Model {
     return $this->db->get_where($table, $query)->result();
   }
 
+  public function edit_data_siswa($data){
+		$this->db->update_batch('siswa',$data, 'id');
+		if($this->db->affected_rows()>0) {
+			return 1;
+		}
+    return 0;
+	}
+
+  public function edit_data_guru($data){
+		$this->db->update_batch('guru',$data, 'id');
+		if($this->db->affected_rows()>0) {
+			return 1;
+		}
+    return 0;
+	}
 
   public function getGuru() {
     return $this->db->select('guru.*, kelas.nama as kelas')->join('kelas', "guru.kelas_id = kelas.id", "left")->get('guru')->result();

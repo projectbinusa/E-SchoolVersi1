@@ -58,7 +58,25 @@
                                     data-bs-target="#exampleModal"><i width="15" height="15" data-feather="upload"
                                         class="feather-icon mb-1"></i> Import Data</button>
                                 <!-- End Button Import Data Guru -->
+                                <form method="post" action="<?php echo base_url('admin/import_guru_edit');?>"
+                                                enctype="multipart/form-data">
+                                                <div class="form-group m-3">
+                                                    <input type="file" name="upload_file" class="form-control"
+                                                        placeholder="Enter Name" id="upload_file" required>
+                                                </div>
+                                                <div class="form-group border-top">
+                                                    <div class="modal-footer d-flex justify-content-between ">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <a class="mx-2 btn btn-success" href="<?php echo base_url('admin/format_guru_edit');?>"> <i
+                                            width="15" height="15" data-feather="download"
+                                            class="feather-icon mb-1"></i>Download Format Edit</a>
                             </div>
+
                             <!-- Start Table Guru -->
                             <table id="table" class="table table-hover table-secondary mt-2 ">
                                 <thead>
