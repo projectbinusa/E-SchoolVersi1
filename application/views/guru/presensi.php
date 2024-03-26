@@ -30,7 +30,7 @@
                         <h2 class="page-title">Data Piket</h2>
                     </div>
                     <div>
-                        <div class="d-flex">
+                        <div class="d-md-flex d-none">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a

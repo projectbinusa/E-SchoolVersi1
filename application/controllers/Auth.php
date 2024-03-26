@@ -43,6 +43,7 @@ class Auth extends CI_Controller {
                     'logged_in' => true,
                     'username' => $result['username'],
                     'role_id' => $result['role_id'],
+                    'guru_id' => get_id_guru($result['username']),
                     'id' => $result['id_user'],
                 ];
             }

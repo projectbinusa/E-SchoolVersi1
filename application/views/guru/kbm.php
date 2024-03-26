@@ -27,10 +27,10 @@
                 <!-- Start Page Breadcrumb -->
                 <div class="page-breadcrumb d-flex items-center justify-content-between">
                     <div>
-                        <h2 class="page-title">Kegiatan Belajar Mengajar</h2>
+                        <h2 class="page-title">KBM</h2>
                     </div>
                     <div>
-                        <div class="d-flex">
+                        <div class="d-md-flex d-none">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
@@ -62,7 +62,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-light text-center">
-                                    <?php $i = 0; foreach($data as $row): ?>
+                                    <?php $i = 0; foreach($kbm as $row): ?>
                                     <tr>
                                         <td><?= $i+1 ?></td>
                                         <td><?= substr($row->jam_masuk, 11, -3) ?></td>

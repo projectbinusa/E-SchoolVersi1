@@ -30,13 +30,13 @@
                     <h2>Login</h2>
                     <div class="mt-4">
                         <label for="username" class="form-label" style="color: #374151;">Username</label>
-                        <input type="text" name="username" class="form-control shadow-input text-secondary"
+                        <input required type="text" name="username" class="form-control shadow-input text-secondary"
                             id="username" placeholder="Username">
                     </div>
                     <div class="mt-3">
                         <label for="password" class="form-label" style="color: #374151;">Password</label>
                         <div class="position-relative">
-                            <input type="password" name="password" class="form-control shadow-input text-secondary"
+                            <input required type="password" name="password" class="form-control shadow-input text-secondary"
                                 id="password" placeholder="Password">
                             <span class="position-absolute top-0 mt-2 me-3 pointer text-secondary" id="togglePassword"
                                 style="right: 0;cursor
