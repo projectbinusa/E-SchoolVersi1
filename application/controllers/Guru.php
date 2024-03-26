@@ -23,9 +23,11 @@ class Guru extends CI_Controller {
     }
 	public function index()
 	{
-		$this->load->view('guru/dashboard', [
-			'kbm' => $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')])
-		]);
+		$data['kbm'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
+		usort($data['kbm'], function($a, $b) {
+			return $b->id - $a->id;
+		});
+		$this->load->view('guru/dashboard'. $data);
 	}
 
 	public function kbm()
