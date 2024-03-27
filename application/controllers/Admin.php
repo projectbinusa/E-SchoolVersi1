@@ -12,11 +12,17 @@ class Admin extends CI_Controller {
 			if ($this->session->userdata('role_id') !== '1') {
 				redirect(base_url());
 			}
+			// Use main model
 			$this->load->model('Main_model');
-			$this->load->helper('Main_helper');
+			// Set time zone
 			date_default_timezone_set('Asia/Jakarta');
+			// Use main helper
+			$this->load->helper('Main_helper');;
+			// Use session
+			$this->load->library(['session']);
     }
 
+	// Function dashboard admin
 	public function index()
 	{
 		$this->load->view('admin/dashboard', [
@@ -25,16 +31,19 @@ class Admin extends CI_Controller {
 		  ]);
 	}
 
+	// Function API hapus siswa
 	public function hapus_siswa_api($id) {
 		$this->Main_model->remove('siswa', $id);
 		redirect(base_url('admin/siswa'));
   	}
 
+	// Function API hapus guru
 	public function hapus_guru_api($id) {
 		$this->Main_model->remove('guru', $id);
 		redirect(base_url('admin/guru'));
 	}
-  
+
+	// Function API ubah siswa
 	public function edit_siswa_api($id) {
 		$this->Main_model->edit('siswa', [
 				'nama_siswa' => $this->input->post("nama"),
@@ -45,6 +54,7 @@ class Admin extends CI_Controller {
 		redirect(base_url('admin/siswa'));
 	}
 
+	// Function API ubah guru
 	public function edit_guru_api($id) {
 		$username = $this->Main_model->findById('guru', $id)->nama;
 		$this->Main_model->edit('guru', [
@@ -64,12 +74,15 @@ class Admin extends CI_Controller {
 		redirect(base_url('admin/guru'));
 	}
 
+	// Function guru
 	public function guru()
 	{
 		$this->load->view('admin/guru', [
 			'data' => $this->Main_model->getGuru()
 		]);
 	}
+
+	// Function siswa
 	public function siswa()
 	{
 		$this->load->view('admin/siswa', [
@@ -78,6 +91,7 @@ class Admin extends CI_Controller {
     ]);
 	}
 
+	// Function form ubah guru
 	public function edit_guru($id) {
 		$data = [
 			'data' => $this->Main_model->findById('guru', $id),
@@ -86,6 +100,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/guru_form', $data);
 	}
 
+	// Function form ubah siswa
 	public function edit_siswa($id) {
 		$this->load->view('admin/siswa_form', [
 			'data' => $this->Main_model->findById('siswa', $id),
@@ -93,6 +108,7 @@ class Admin extends CI_Controller {
 		]);
 	}
 
+	// Function import siswa
 	public function spreadsheet_import_siswa()
 	{
 		$upload_file=$_FILES['upload_file']['name'];
@@ -139,6 +155,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	// Function download format siswa (tambah)
 	public function format_siswa()
 	{
 		header('Content-Type: application/vnd.ms-excel');
@@ -175,6 +192,7 @@ class Admin extends CI_Controller {
 		$writer->save("php://output");
 	}
 
+	// Function download format siswa (ubah)
 	public function format_siswa_edit($kelas_id)
 		{
 
@@ -208,6 +226,7 @@ class Admin extends CI_Controller {
 		$writer->save("php://output");
 	}
 
+	// Function import ubah siswa
 	public function import_siswa_edit()
 	{
 		$upload_file=$_FILES['upload_file']['name'];
@@ -256,6 +275,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	// Function import tambah guru
 	public function spreadsheet_import_guru()
 	{
 		$upload_file=$_FILES['upload_file']['name'];
@@ -310,6 +330,8 @@ class Admin extends CI_Controller {
 			}
 		}
 	}
+
+	// Function download format guru (tambah)
 	public function format_guru()
 	{
 		header('Content-Type: application/vnd.ms-excel');
@@ -351,6 +373,7 @@ class Admin extends CI_Controller {
 		$writer->save("php://output");
 	}
 
+	// Function download format guru (ubah)
 	public function format_guru_edit()
 	{
 		header('Content-Type: application/vnd.ms-excel');
@@ -383,6 +406,7 @@ class Admin extends CI_Controller {
 		$writer->save("php://output");
 	}
 
+	// Function import ubah guru
 	public function import_guru_edit()
 	{
 		$upload_file=$_FILES['upload_file']['name'];
@@ -444,13 +468,14 @@ class Admin extends CI_Controller {
 		}
 	}
 
-
+	// Function kelas
 	public function kelas()
 	{
 		$data['data'] = $this->Main_model->get('kelas'); 
 		$this->load->view('admin/kelas', $data);
 	}
 
+	// Function get data kelas
 	function get_data_kelas()
     {
         header('Content-Type: application/json');
@@ -460,8 +485,7 @@ class Admin extends CI_Controller {
 		echo $this->Main_model->get_tables($tables,$search,$isWhere);
     }
 
-
-
+	// Function form tambah kelas
 	public function tambah_kelas() {
 		$this->Main_model->insert('kelas', [
 			'nama' => $this->input->post('nama'),
@@ -469,6 +493,7 @@ class Admin extends CI_Controller {
 		redirect(base_url().'admin/kelas');
 	}
 
+	// Function API ubah kelas
 	public function edit_kelas_api($id) {
 		$this->Main_model->edit('kelas', [
 			'nama' => $this->input->post('nama'),
@@ -476,11 +501,14 @@ class Admin extends CI_Controller {
 		redirect(base_url().'admin/kelas');
 	}
 
+	// Function form ubah kelas
 	public function edit_kelas($id) {
 		$this->load->view('admin/kelas', [
 			'data' => $this->Main_model->findById('kelas', $id)
 		]);
 	}
+
+	// Function API hapus kelas
 	public function hapus_kelas($id) {
 		$this->Main_model->remove('kelas', $id);
 		redirect(base_url().'admin/kelas');

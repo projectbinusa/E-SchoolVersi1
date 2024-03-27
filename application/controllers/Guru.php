@@ -15,12 +15,18 @@ class Guru extends CI_Controller {
 		if ($this->session->userdata('role_id') !== '2') {
 			redirect(base_url());
 		}
+		// Use main model
 		$this->load->model('Main_model');
+		// Set time zone
 		date_default_timezone_set('Asia/Jakarta');
-		$this->load->helper('Main_helper');
+		// Use main helper
+        $this->load->helper('Main_helper');;
+		// Use session
 		$this->load->library(['session']);
 		
     }
+
+	// Function dashboard guru
 	public function index()
 	{
 		$data['kbm'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
@@ -30,6 +36,7 @@ class Guru extends CI_Controller {
 		$this->load->view('guru/dashboard', $data);
 	}
 
+	// Function KBM
 	public function kbm()
 	{
 		$data['kbm'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
@@ -39,6 +46,7 @@ class Guru extends CI_Controller {
 		$this->load->view('guru/kbm', $data);
 	}
 
+	// Function API edit KBM
 	public function edit_kbm_api($id) {
 		$this->Main_model->edit('kbm', [
 			'jam_masuk' => $this->input->post('masuk'),
@@ -49,6 +57,7 @@ class Guru extends CI_Controller {
 		redirect(base_url().'guru/kbm');
 	}
 
+	// Function API tambah KBM
 	public function tambah_kbm_api() {
 		$this->Main_model->insert('kbm', [
 			'guru_id' => $this->session->userdata('guru_id'),
@@ -60,11 +69,13 @@ class Guru extends CI_Controller {
 		redirect(base_url().'guru/kbm');
 	}
 
+	// Function API hapus KBM
 	public function hapus_kbm_api($id) {
 		$this->Main_model->remove('kbm', $id);
 		redirect(base_url().'guru/kbm');
 	}
 
+	// Function form tambah KBM
 	public function tambah_kbm() {
 		$this->load->view('guru/kbm_form', [
 			'data' => (object) [
@@ -76,18 +87,21 @@ class Guru extends CI_Controller {
 		]);
 	}
 
+	// Function form edit KBM
 	public function edit_kbm($id) {
 		$this->load->view('guru/kbm_form', [
 			'data' => $this->Main_model->findById('kbm', $id)
 		]);
 	}
 
+	// Function piket
 	public function piket() {
 		$this->load->view('guru/presensi', [
 			'data' => $this->Main_model->getPresensi()
 		]);
 	}
 
+	// Function form tambah piket
 	public function tambah_piket() {
 		$kelas = array_map(function($x) {
 			return $x->kelas_id;
@@ -102,6 +116,7 @@ class Guru extends CI_Controller {
 		]);
 	}
 
+	// Function form edit piket
 	public function edit_piket($id) {
 		$data = $this->Main_model->findById('presensi', $id);
 		$kelas = array_map(function($x) {
@@ -116,6 +131,7 @@ class Guru extends CI_Controller {
 		]);
 	}
 
+	// Function API edit presensi
 	public function edit_presensi_api($id) {
 		$this->Main_model->edit('presensi', [
 			'kelas_id' => $this->input->post('kelas'),
@@ -136,6 +152,7 @@ class Guru extends CI_Controller {
 		redirect('guru/piket');
 	}
 
+	// Function API tambah presensi
 	public function tambah_presensi_api() {
 		$presensi_id = $this->Main_model->insert('presensi', [
 			'kelas_id' => $this->input->post('kelas'),
@@ -154,17 +171,20 @@ class Guru extends CI_Controller {
 		$this->Main_model->insertBatch('kehadiran_siswa', $kehadiran);
 		redirect('guru/piket');
 	}
-	
+
+	// Function API hapus presensi
 	public function hapus_presensi_api($id) {
 		$this->Main_model->removeWhere('kehadiran_siswa', ['presensi_id' => $id]);
 		$this->Main_model->remove('presensi', $id);
 		redirect('guru/piket');
 	}
 
+	// Function get siswa by id kelas
 	public function get_siswas_bykelas($id) {
 		echo json_encode($this->Main_model->getWhere('siswa', ['kelas_id' => $id]));
 	}
 
+	// Function API edit sikap
 	public function edit_sikap_api($id) {
 		if ($this->session->userdata('kelas_id') == null) {
 				redirect(base_url('guru'));
@@ -178,6 +198,7 @@ class Guru extends CI_Controller {
 		redirect(base_url().'guru/sikap');
 	}
 
+	// Function API tambah sikap
 	public function tambah_sikap_api() {
 		if ($this->session->userdata('kelas_id') == null) {
 				redirect(base_url('guru'));
@@ -191,6 +212,7 @@ class Guru extends CI_Controller {
 		redirect(base_url().'guru/sikap');
 	}
 
+	// Function API hapus sikap
 	public function hapus_sikap_api($id) {
 		if ($this->session->userdata('kelas_id') == null) {
 				redirect(base_url('guru'));
@@ -199,6 +221,7 @@ class Guru extends CI_Controller {
 		redirect(base_url().'guru/sikap');
 	}
 
+	// Function sikap
 	public function sikap()
 	{
 		if ($this->session->userdata('kelas_id') == null) {
@@ -209,6 +232,7 @@ class Guru extends CI_Controller {
 		]);
 	}
 
+	// Function form tambah sikap
 	public function tambah_sikap() {
 		if ($this->session->userdata('kelas_id') == null) {
 				redirect(base_url('guru'));
@@ -224,6 +248,7 @@ class Guru extends CI_Controller {
 		]);
 	}
 
+	// Function form edit sikap
 	public function edit_sikap($id) {
 		if ($this->session->userdata('kelas_id') == null) {
 				redirect(base_url('guru'));
@@ -234,6 +259,7 @@ class Guru extends CI_Controller {
 		]);
 	}
 
+	// Function export presensi (PDF)
 	public function pdf_presensi($id){
 
 		$options = new Options();
@@ -263,6 +289,8 @@ class Guru extends CI_Controller {
         // Output PDF ke browser
         $dompdf->stream('example.pdf', array('Attachment' => 0));
 	}
+
+	// Function export presensi by tanggal (PDF)
 	public function pdf_presensi_tgl(){
 		$tgl = $this->input->get('taggal');
 		$options = new Options();
@@ -294,6 +322,7 @@ class Guru extends CI_Controller {
         $dompdf->stream('example.pdf', array('Attachment' => 0));
 	}
 
+	// Function get kelas
 	public function get_kelas_presensi($id) {
 		$query_res = $this->Main_model->getWhere('presensi', ['tanggal' => $this->input->get('tanggal')]);
 		$kelas = array_map(function($x) {

@@ -5,11 +5,17 @@ class Auth extends CI_Controller {
 	public function __construct()
     {
 			parent::__construct();
+			// Use main model
 			$this->load->model('Main_model');
-			$this->load->helper('Main_helper');
+			// Set time zone
 			date_default_timezone_set('Asia/Jakarta');
+            // Use main helper
+            $this->load->helper('Main_helper');;
+			// Use session
+			$this->load->library(['session']);
     }
-    
+
+    // Function login
 	public function index()
 	{
         if ($this->session->userdata('logged_in') == true && $this->session->userdata('role_id') == '1') {
@@ -21,6 +27,7 @@ class Auth extends CI_Controller {
         }
 	}
 
+    // Function API login
 	public function aksi_login()
     {
         $username = $this->input->post('username');
@@ -62,7 +69,7 @@ class Auth extends CI_Controller {
         }
     }
 
-    // Logout
+    // Function API logout
     public function logout()
     {
         $this->session->sess_destroy();
