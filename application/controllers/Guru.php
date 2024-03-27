@@ -17,7 +17,7 @@ class Guru extends CI_Controller {
 		}
 		$this->load->model('Main_model');
 		date_default_timezone_set('Asia/Jakarta');
-        $this->load->helper('Main_helper');;
+		$this->load->helper('Main_helper');
 		$this->load->library(['session']);
 		
     }
@@ -27,7 +27,7 @@ class Guru extends CI_Controller {
 		usort($data['kbm'], function($a, $b) {
 			return $b->id - $a->id;
 		});
-		$this->load->view('guru/dashboard'. $data);
+		$this->load->view('guru/dashboard', $data);
 	}
 
 	public function kbm()
@@ -205,7 +205,7 @@ class Guru extends CI_Controller {
 				redirect(base_url('guru'));
 		}
 		$this->load->view('guru/sikap', [
-			'data' => $this->Main_model->get('sikap')->result()
+			'data' => $this->Main_model->get('sikap')
 		]);
 	}
 

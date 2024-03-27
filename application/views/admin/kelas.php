@@ -95,7 +95,7 @@
 
     <!-- Start Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-bottom">
                     <h2 class="modal-title" id="exampleModalLabel">Tambah Kelas</h2>
@@ -121,7 +121,7 @@
     <?php $no = 0; foreach ($data as $row) : $no++; ?>
     <div class="modal fade" id="modal<?= $row->id?>" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-bottom">
                     <h2 class="modal-title" id="exampleModalLabel">Edit Kelas</h2>

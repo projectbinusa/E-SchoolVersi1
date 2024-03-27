@@ -13,6 +13,7 @@ class Admin extends CI_Controller {
 				redirect(base_url());
 			}
 			$this->load->model('Main_model');
+			$this->load->helper('Main_helper');
 			date_default_timezone_set('Asia/Jakarta');
     }
 
@@ -153,7 +154,7 @@ class Admin extends CI_Controller {
 		$sheet->mergeCells('G1:H1');
         $sheet->setCellValue('G1', 'daftar kelas');
 		
-		$data['data'] = $this->Main_model->get('kelas')->result(); 
+		$data['data'] = $this->Main_model->get('kelas'); 
     	$dataKelas = $data['data'];
 
     	$rowNum = 2;
@@ -255,7 +256,6 @@ class Admin extends CI_Controller {
 		}
 	}
 
-
 	public function spreadsheet_import_guru()
 	{
 		$upload_file=$_FILES['upload_file']['name'];
@@ -327,7 +327,7 @@ class Admin extends CI_Controller {
 		$sheet->mergeCells('I1:J1');
         $sheet->setCellValue('I1', 'daftar kelas');
 		
-		$data['data'] = $this->Main_model->get('kelas')->result(); 
+		$data['data'] = $this->Main_model->get('kelas'); 
     	$dataKelas = $data['data'];
 
     	$rowNum = 2;
@@ -363,9 +363,9 @@ class Admin extends CI_Controller {
 		$sheet->setCellValue('D1', 'Mapel');
 		$sheet->setCellValue('E1', 'kelas');
 		$sheet->setCellValue('F1', 'ttl');
-		// $sheet->setCellValue('G1', 'password');
+		$sheet->setCellValue('G1', 'password (Tulis jika ingin merubah)');
 		
-		$data['data'] = $this->Main_model->get('guru')->result(); 
+		$data['data'] = $this->Main_model->get('guru'); 
     	$dataGuru = $data['data'];
 
     	$rowNum = 2;
@@ -377,8 +377,6 @@ class Admin extends CI_Controller {
         $sheet->setCellValue('D' . $rowNum, $data->mapel); 
         $sheet->setCellValue('E' . $rowNum, $data->kelas_id); 
         $sheet->setCellValue('F' . $rowNum, $data->ttl); 
-        // $sheet->setCellValue('G' . $rowNum, $data->password); 
-
         $rowNum++;
     }
 		$writer = new Xlsx($spreadsheet);
@@ -405,7 +403,7 @@ class Admin extends CI_Controller {
 		if($sheetcount>1)
 		{
 			$data= [];
-			// $data2= [];
+			$data2= [];
 			for ($i=1; $i < $sheetcount; $i++) { 
 				$id=$sheetdata[$i][0];
 				$nama=$sheetdata[$i][1];
@@ -413,7 +411,7 @@ class Admin extends CI_Controller {
 				$mapel=$sheetdata[$i][3];
 				$kelas_id=$sheetdata[$i][4];
 				$ttl=$sheetdata[$i][5];
-				// $password=$sheetdata[$i][6];
+				$password=$sheetdata[$i][6];
 				if ($nama != "") {
 					$data[]=array(
 					'id'=>$id,
@@ -422,15 +420,19 @@ class Admin extends CI_Controller {
 					'mapel'=>$mapel,
 					'kelas_id'=> $kelas_id,
 					'ttl'=>$ttl
-				);
-				// array_push($data2, [
-				// 	'username' => $nama,
-				// 	'password' => md5($password), 
-				// 	'role_id' => '2'
-				// ]);
+					);
+					$temp = [
+						'id' => get_id_user($id),
+						'username' => $nama,
+						'role_id' => '2'
+					];
+					if ($password != "") {
+						$temp['password'] = md5($password);
+					}
+					array_push($data2, $temp);
 				}
 			}
-			$inserdata=$this->Main_model->edit_data_guru($data);
+			$inserdata=$this->Main_model->edit_data_guru($data, $data2);
 			if($inserdata)
 			{
 				$this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added.</div>');
@@ -445,7 +447,7 @@ class Admin extends CI_Controller {
 
 	public function kelas()
 	{
-		$data['data'] = $this->Main_model->get('kelas')->result(); 
+		$data['data'] = $this->Main_model->get('kelas'); 
 		$this->load->view('admin/kelas', $data);
 	}
 

@@ -27,7 +27,7 @@ class Main_model extends CI_Model {
 
   function get($table)
   {
-      return $this->db->get($table);
+      return $this->db->get($table)->result();
   }
 
   public function remove($table, $id) {
@@ -70,8 +70,9 @@ class Main_model extends CI_Model {
     return 0;
 	}
 
-  public function edit_data_guru($data){
+  public function edit_data_guru($data, $data2){
 		$this->db->update_batch('guru',$data, 'id');
+		$this->db->update_batch('user',$data2, 'id');
 		if($this->db->affected_rows()>0) {
 			return 1;
 		}

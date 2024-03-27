@@ -44,4 +44,11 @@ function get_nama_siswa($id)
     }
 }
 
+function get_id_user($guru) {
+    $ci = &get_instance();
+    $ci->load->database();
+    return $ci->db->select('u.id as id')->join('guru as g', "u.username=g.nama")
+    ->where(["g.id" => $guru])->get("user as u")->result()[0]->id;
+}
+
 ?>
