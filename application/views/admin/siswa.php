@@ -46,28 +46,19 @@
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
-                        <div class="row">
-                                <div class="col-6">
-                                    <div class="button-import d-flex justify-content-start mb-4">
-                                        <!-- Start Button Download Format Data Siswa -->
-                                        <a class="mx-2 btn btn-success"
-                                            href="<?php echo base_url('admin/format_siswa');?>"> <i width="15"
-                                                height="15" data-feather="download"
-                                                class="feather-icon mb-1"></i>Download Format</a>
-                                        <!-- End Button Download Format Data Siswa -->
-
-                                        <!-- Start Button Import Data Siswa -->
-                                        <button name="submit" type="button" class="btn btn-primary"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal"><i width="15"
-                                                height="15" data-feather="upload" class="feather-icon mb-1"></i> Import
-                                            Data</button>
-                                        <!-- End Button Import Data Siswa -->
-
-                                    </div>
+                            <div class="button-import d-flex justify-content-between mb-4">
+                                <!-- Start Button Download Format Data Siswa -->
+                                <div>
+                                    <button name="submit" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#Modal1"><i width="15" height="15" data-feather="upload"
+                                            class="feather-icon mb-1"></i>
+                                        Import
+                                        Data</button>
                                 </div>
-                                <div class="col-6">
+                                <!-- End Button Download Format Data Siswa -->
+
+                                <div>
                                     <div class="d-flex">
-                                        <label for="kelas">Kelas</label>
                                         <select required id="kelas" name="kelas"
                                             class="w-100 form-control select2 select2-info">
                                             <?php foreach ($kelas as $option): ?>
@@ -76,24 +67,20 @@
                                             </option>
                                             <?php endforeach; ?>
                                         </select>
-                                        <button id="downloadBtn" class="btn btn-primary">Download Format Siswa</button>
-                                        <form method="post" action="<?php echo base_url('admin/import_siswa_edit');?>"
-                                            enctype="multipart/form-data">
-                                            <div class="form-group m-3">
-                                                <input type="file" name="upload_file" class="form-control"
-                                                    placeholder="Enter Name" id="upload_file" required>
-                                            </div>
-                                            <div class="form-group border-top">
-                                                <div class="modal-footer d-flex justify-content-between ">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <button id="downloadBtn" class="mx-2 btn btn-primary">Download Format
+                                            Siswa</button>
+                                        <button name="submit" type="button" class="btn btn-warning"
+                                            data-bs-toggle="modal" data-bs-target="#Modal2"><i width="15" height="15"
+                                                data-feather="edit" class="feather-icon mb-1"></i>
+                                            Edit
+                                            Data</button>
                                     </div>
-                                </div>
 
+                                </div>
+                                <!-- Start Button Import Data Siswa -->
+                                <!-- End Button Import Data Siswa -->
+
+                            </div>
                             <!-- Start Table Siswa -->
                             <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>
@@ -132,27 +119,61 @@
                             <!-- End Table Siswa -->
                         </div>
                     </div>
+                    <!-- Start Footer -->
+                    <?php $this->load->view('components/footer')?>
+                    <!-- End Footer -->
                 </div>
-                <!-- Start Footer -->
-                <?php $this->load->view('components/footer')?>
-                <!-- End Footer -->
             </div>
         </div>
-    </div>
 
-    <!-- Start Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-bottom">
-                    <h2 class="modal-title" id="exampleModalLabel">Import Data</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Start Modal -->
+        <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom">
+                        <h2 class="modal-title" id="exampleModalLabel">Import Data</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="py-4 m-2">
+                        <span class="m-2">
+                            *Format excell untuk mengisi data
+                        </span>
+                        <a class="btn btn-success" href="<?php echo base_url('admin/format_siswa');?>"> <i width="15"
+                                height="15" data-feather="download" class="feather-icon mb-1"></i>Download
+                            Format</a>
+                    </div>
+                    <div class="m-2">
+                        <span class="m-2">
+                            *Pastikan Column Kelas Terisi
+                        </span>
+                        <form method="post" action="<?php echo base_url('admin/spreadsheet_import_siswa');?>"
+                            enctype="multipart/form-data">
+                            <div class="form-group m-3">
+                                <input type="file" name="upload_file" class="form-control" placeholder="Enter Name"
+                                    id="upload_file" required>
+                            </div>
+                            <div class="form-group border-top">
+                                <div class="modal-footer d-flex justify-content-between ">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="m-2">
-                    <span class="m-2">
-                        *Pastikan Column Kelas Terisi
-                    </span>
-                    <form method="post" action="<?php echo base_url('admin/spreadsheet_import_siswa');?>"
+            </div>
+        </div>
+
+        <div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="exampleModal2" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom">
+                        <h2 class="modal-title" id="exampleModal2">Import Data</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form method="post" action="<?php echo base_url('admin/import_siswa_edit');?>"
                         enctype="multipart/form-data">
                         <div class="form-group m-3">
                             <input type="file" name="upload_file" class="form-control" placeholder="Enter Name"

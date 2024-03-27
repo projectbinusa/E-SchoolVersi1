@@ -27,7 +27,7 @@ class Guru extends CI_Controller {
 		usort($data['kbm'], function($a, $b) {
 			return $b->id - $a->id;
 		});
-		$this->load->view('guru/dashboard'. $data);
+		$this->load->view('guru/dashboard', $data);
 	}
 
 	public function kbm()
