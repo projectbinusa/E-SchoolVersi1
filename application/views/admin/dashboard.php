@@ -120,12 +120,12 @@
                                 <tbody class="table-light">
                                     <?php $i = 0; foreach ($guru as $row): ?>
                                     <tr>
-                                        <td class="text-center"><?= $i + 1 ?></td>
+                                    <td class="text-center"><?= $i + 1 ?></td>
                                         <td class="text-center"><?= $row->nama ?></td>
-                                        <td class="text-center"><?= $row->nip ?></td>
-                                        <td class="text-center"><?= $row->mapel ?></td>
-                                        <td class="text-center"><?= $row->ttl ?></td>
-                                        <td class="text-center"><?= $row->kelas ?></td>
+                                        <td class="text-center"><?= !empty($row->nip) ? $row->nip : "Belum Ditambahkan"?></td>
+                                        <td class="text-center"><?= !empty($row->mapel) ? $row->mapel : "Belum Ditambahkan"?></td>
+                                        <td class="text-center"><?= !empty($row->ttl) ? $row->ttl : "Belum Ditambahkan"?></td>
+                                        <td class="text-center"><?= !empty($row->kelas) ? $row->kelas : "Tidak Menjadi Wali kelas" ?></td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
                                 </tbody>
@@ -148,11 +148,11 @@
                                 <tbody class="table-light">
                                     <?php $i = 0; foreach ($siswa as $row): ?>
                                     <tr>
-                                        <td class="text-center"><?= $i + 1 ?></td>
+                                    <td class="text-center"><?= $i + 1 ?></td>
                                         <td class="text-center"><?= $row->nama_siswa ?></td>
-                                        <td class="text-center"><?= $row->nisn ?></td>
+                                        <td class="text-center"><?= !empty($row->nisn) ? $row->nisn : "Belum Ditambahkan"?></td>
                                         <td class="text-center"><?= $row->kelas ?></td>
-                                        <td class="text-center"><?= $row->ttl ?></td>
+                                        <td class="text-center"><?= !empty($row->ttl) ? $row->ttl : "Belum Ditambahkan"?></td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
                                 </tbody>

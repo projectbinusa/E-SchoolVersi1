@@ -87,7 +87,7 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th class="text-center">Nama Siswa</th>
-                                        <th class="text-center">NISN</th>
+                                        <th class="text-center">NIS</th>
                                         <th class="text-center">Kelas</th>
                                         <th class="text-center">Tempat Tanggal Lahir</th>
                                         <th class="text-center">Actions</th>
@@ -98,9 +98,9 @@
                                     <tr>
                                         <td class="text-center"><?= $i + 1 ?></td>
                                         <td class="text-center"><?= $row->nama_siswa ?></td>
-                                        <td class="text-center"><?= $row->nisn ?></td>
+                                        <td class="text-center"><?= !empty($row->nisn) ? $row->nisn : "Belum Ditambahkan"?></td>
                                         <td class="text-center"><?= $row->kelas ?></td>
-                                        <td class="text-center"><?= $row->ttl ?></td>
+                                        <td class="text-center"><?= !empty($row->ttl) ? $row->ttl : "Belum Ditambahkan"?></td>
                                         <td>
                                             <a href="<?=base_url()?>admin/edit_siswa/<?=$row->id?>"
                                                 class="btn btn-warning"><i width="16" height="16" data-feather="edit"

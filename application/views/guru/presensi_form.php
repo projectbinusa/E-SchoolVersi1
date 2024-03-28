@@ -138,7 +138,7 @@
                                         <tr>
                                             <th style="width: 14%;" class="text-center">No</th>
                                             <th style="width: 27%;" class="text-center">Nama</th>
-                                            <th style="width: 20%;" class="text-center">NISN</th>
+                                            <th style="width: 20%;" class="text-center">NIS</th>
                                             <th style="width: 13%;" class="text-center">Sakit</th>
                                             <th style="width: 13%;" class="text-center">Izin</th>
                                             <th style="width: 13%;" class="text-center">Alpha</th>

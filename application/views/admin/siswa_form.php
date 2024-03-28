@@ -82,7 +82,7 @@
                                     value="<?= $data->nama_siswa ?>" />
                             </div>
                             <div class="col-6">
-                                <label for="nisn">NISN</label>
+                                <label for="nisn">NIS</label>
                                 <input required type="text" name="nisn" class="form-control" id="nisn"
                                     value="<?= $data->nisn ?>" />
                             </div>

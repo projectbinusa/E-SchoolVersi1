@@ -49,9 +49,11 @@
                             <div class="button-import d-flex justify-content-end mb-4">
                                 <!-- Start Button Import Data Guru -->
                                 <button name="submit" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" onclick="importForm(false)">Import</button>
+                                    data-bs-target="#exampleModal" onclick="importForm(false)"><i width="16" height="16" data-feather="upload"
+                                                    class="feather-icon mx-1"></i>Import</button>
                                 <button name="submit" type="button" class="btn btn-warning ms-2" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal" onclick="importForm(true)">Edit</button>
+                                    data-bs-target="#exampleModal" onclick="importForm(true)"><i width="16" height="16" data-feather="edit"
+                                                    class="feather-icon mx-1"></i>Edit Data</button>
                                 <!-- End Button Import Data Guru -->
                             </div>
 
@@ -73,10 +75,10 @@
                                     <tr>
                                         <td class="text-center"><?= $i + 1 ?></td>
                                         <td class="text-center"><?= $row->nama ?></td>
-                                        <td class="text-center"><?= $row->nip ?></td>
-                                        <td class="text-center"><?= $row->mapel ?></td>
-                                        <td class="text-center"><?= $row->ttl ?></td>
-                                        <td class="text-center"><?= $row->kelas ?></td>
+                                        <td class="text-center"><?= !empty($row->nip) ? $row->nip : "Belum Ditambahkan"?></td>
+                                        <td class="text-center"><?= !empty($row->mapel) ? $row->mapel : "Belum Ditambahkan"?></td>
+                                        <td class="text-center"><?= !empty($row->ttl) ? $row->ttl : "Belum Ditambahkan"?></td>
+                                        <td class="text-center"><?= !empty($row->kelas) ? $row->kelas : "Tidak Menjadi Wali kelas" ?></td>
                                         <td>
                                             <a href="<?= base_url() ?>admin/edit_guru/<?= $row->id ?>"
                                                 class="btn btn-warning"><i width="16" height="16" data-feather="edit"
@@ -134,6 +136,7 @@ function importForm(edit) {
         <div class="m-2">
             <div class="d-flex justify-content-between">
                 <span class="m-2">
+                <h6>*pastikan column kelas terisi</h6>
                 </span>
                 <button onclick="downloadData('<?php echo base_url();?>${edit
                     ?'admin/format_guru_edit':'admin/format_guru'}')" class="btn btn-success">
