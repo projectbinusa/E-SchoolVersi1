@@ -29,9 +29,9 @@
                 <div class="px-3 fs-4 py-2">
                     <h2>Login</h2>
                     <div class="mt-4">
-                        <label for="username" class="form-label" style="color: #374151;">Username</label>
-                        <input required type="text" name="username" class="form-control shadow-input text-secondary"
-                            id="username" placeholder="Username">
+                        <label for="username" class="form-label" style="color: #374151;">Email</label>
+                        <input required type="email" name="email" class="form-control shadow-input text-secondary"
+                            id="email" placeholder="email">
                     </div>
                     <div class="mt-3">
                         <label for="password" class="form-label" style="color: #374151;">Password</label>
@@ -53,6 +53,8 @@
             </form>
         </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     const passwordInput = document.getElementById('password');
     const togglePassword = document.getElementById('togglePassword');
@@ -63,6 +65,13 @@
         togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye-slash"></i>' :
             '<i class="fas fa-eye"></i>';
     });
+    <?php if ($failed):?>
+        Swal.fire({
+            text: 'Password atau username salah!',
+            icon: 'error',
+            timer: 1500
+        })
+    <?php endif ?>
     </script>
 </body>
 <?php $this->load->view('components/scripts') ?>

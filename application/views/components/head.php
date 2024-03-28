@@ -22,7 +22,55 @@
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>    
-.font-web {
-    font-family: 'ABeeZee', sans-serif;
+    .font-web {
+        font-family: 'ABeeZee', sans-serif;
+    }
+    .loader {
+    position:absolute;
+    transform:translate(-50%,-50%);
+    top:50%;
+    left:50%;
+    width: 120px;
+    height: 80px;
+    text-align: center;
+    font-size: 30px;
+    }
+
+    .loader > div {
+    height: 100%;
+    width: 8px;
+    display: inline-block;
+    background-color: #374999;
+
+    animation: meregang 1.2s infinite ease-in-out;
+    }
+
+    .loader .react2 {
+    animation-delay: -1.1s;
+    }
+
+    .loader .react3 {
+    animation-delay: -1s;
+    }
+
+    .loader .react4 {
+    animation-delay: -0.9s;
+    }
+
+    .loader .react5 {
+    animation-delay: -0.8s;
+    }
+    
+    @keyframes meregang {
+    0%,
+    40%,
+    100% {
+        transform: scaleY(0.4);
+    }
+    20% {
+        background-color: #070d24;
+        transform: scaleY(1);
+    }
 }
+
 </style>

@@ -23,17 +23,18 @@ class Auth extends CI_Controller {
         } elseif ($this->session->userdata('logged_in') == true && $this->session->userdata('role_id') == '2') {
             redirect(base_url('guru'));
         } else{
-            $this->load->view('auth/login');
+            $this->load->view('auth/login', [
+                'failed' => $this->session->flashdata('error')
+            ]);
         }
 	}
 
     // Function API login
 	public function aksi_login()
     {
-        $username = $this->input->post('username');
+        $email = $this->input->post('email');
         $password = $this->input->post('password');
-        $data = ['username' => $username];
-        $query = $this->Main_model->login('user', $data);
+        $query = $this->Main_model->login('user', ['email' => $email]);
         $result = $query->row_array();
         if (!empty($result) && md5($password) === $result['password']) {
             if ($result['role_id'] == '2' && get_kelas_guru($result['username']) !== NULL) {

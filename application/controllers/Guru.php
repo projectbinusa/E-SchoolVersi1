@@ -20,7 +20,7 @@ class Guru extends CI_Controller {
 		// Set time zone
 		date_default_timezone_set('Asia/Jakarta');
 		// Use main helper
-        $this->load->helper('Main_helper');;
+		$this->load->helper('Main_helper');
 		// Use session
 		$this->load->library(['session']);
 		

@@ -25,6 +25,8 @@
 </link>
 <script src="<?php echo base_url('package/plugin/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('package/plugin/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
+<!-- Sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <link href="<?php echo base_url('package/assets/Datatables/Responsive-2.3.1/css/responsive.bootstrap5.min.css')?>"
     rel="stylesheet">
