@@ -140,7 +140,7 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th class="text-center">Nama Siswa</th>
-                                        <th class="text-center">NISN</th>
+                                        <th class="text-center">NIS</th>
                                         <th class="text-center">Kelas</th>
                                         <th class="text-center">Tempat Tanggal Lahir</th>
                                     </tr>
