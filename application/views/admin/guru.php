@@ -134,7 +134,6 @@ function importForm(edit) {
         <div class="m-2">
             <div class="d-flex justify-content-between">
                 <span class="m-2">
-                    *Pastikan Column Kelas Terisi
                 </span>
                 <button onclick="downloadData('<?php echo base_url();?>${edit
                     ?'admin/format_guru_edit':'admin/format_guru'}')" class="btn btn-success">

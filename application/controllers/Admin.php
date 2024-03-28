@@ -304,17 +304,19 @@ class Admin extends CI_Controller {
 				$kelas_id=$sheetdata[$i][4];
 				$ttl=$sheetdata[$i][5];
 				$password=$sheetdata[$i][6];
+				$email=$sheetdata[$i][7];
 				if ($nama != "") {
 					$data[]=array(
 					'nama'=>$nama,
 					'nip'=>$nip,
 					'mapel'=>$mapel,
 					'kelas_id'=> $kelas_id,
-					'ttl'=>$ttl
+					'ttl'=>$ttl,
 				);
 				array_push($data2, [
 					'username' => $nama,
 					'password' => md5($password), 
+					'email' => $email,
 					'role_id' => '2'
 				]);
 				}
@@ -345,10 +347,11 @@ class Admin extends CI_Controller {
 		$sheet->setCellValue('E1', 'kelas');
 		$sheet->setCellValue('F1', 'ttl');
 		$sheet->setCellValue('G1', 'password');
-		$sheet->setCellValue('H1', '');
-		$sheet->mergeCells('I1:J1');
-        $sheet->setCellValue('I1', 'daftar kelas');
-		
+		$sheet->setCellValue('H1', 'email');
+		$sheet->mergeCells('I1', '');
+		$sheet->mergeCells('J1:J1');
+        $sheet->setCellValue('K1', 'daftar kelas');
+
 		$data['data'] = $this->Main_model->get('kelas'); 
     	$dataKelas = $data['data'];
 
@@ -364,8 +367,9 @@ class Admin extends CI_Controller {
         $sheet->setCellValue('G' . $rowNum, ''); 
         $sheet->setCellValue('G' . $rowNum, ''); 
         $sheet->setCellValue('H' . $rowNum, ''); 
-        $sheet->setCellValue('I' . $rowNum, $data->id); 
-        $sheet->setCellValue('J' . $rowNum, $data->nama); 
+        $sheet->setCellValue('I' . $rowNum, ''); 
+        $sheet->setCellValue('J' . $rowNum, $data->id); 
+        $sheet->setCellValue('K' . $rowNum, $data->nama); 
 
         $rowNum++;
     }
@@ -386,7 +390,8 @@ class Admin extends CI_Controller {
 		$sheet->setCellValue('D1', 'Mapel');
 		$sheet->setCellValue('E1', 'kelas');
 		$sheet->setCellValue('F1', 'ttl');
-		$sheet->setCellValue('G1', 'password (Tulis jika ingin merubah)');
+		$sheet->setCellValue('G1', 'Email');
+		$sheet->setCellValue('H1', 'password (Tulis jika ingin merubah)');
 		
 		$data['data'] = $this->Main_model->get('guru'); 
     	$dataGuru = $data['data'];
@@ -400,6 +405,7 @@ class Admin extends CI_Controller {
         $sheet->setCellValue('D' . $rowNum, $data->mapel); 
         $sheet->setCellValue('E' . $rowNum, $data->kelas_id); 
         $sheet->setCellValue('F' . $rowNum, $data->ttl); 
+        $sheet->setCellValue('G' . $rowNum, $data->email); 
         $rowNum++;
     }
 		$writer = new Xlsx($spreadsheet);
@@ -435,7 +441,8 @@ class Admin extends CI_Controller {
 				$mapel=$sheetdata[$i][3];
 				$kelas_id=$sheetdata[$i][4];
 				$ttl=$sheetdata[$i][5];
-				$password=$sheetdata[$i][6];
+				$email=$sheetdata[$i][6];
+				$password=$sheetdata[$i][7];
 				if ($nama != "") {
 					$data[]=array(
 					'id'=>$id,
@@ -443,10 +450,11 @@ class Admin extends CI_Controller {
 					'nip'=>$nip,
 					'mapel'=>$mapel,
 					'kelas_id'=> $kelas_id,
-					'ttl'=>$ttl
+					'ttl'=>$ttl,
 					);
 					$temp = [
 						'id' => get_id_user($id),
+						'email' => $email,
 						'username' => $nama,
 						'role_id' => '2'
 					];
