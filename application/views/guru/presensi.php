@@ -73,7 +73,7 @@
                                     <?php $i = 0; foreach ($data as $row): ?>
                                     <tr>
                                         <td><?= $i+1 ?></td>
-                                        <td><?= $row->tanggal ?></td>
+                                        <td><?= indonesian_date($row->tanggal) ?></td>
                                         <td><?= $row->kelas ?></td>
                                         <td><?= $row->sakit ?></td>
                                         <td><?= $row->izin ?></td>

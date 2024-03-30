@@ -38,7 +38,7 @@
 
 <body>
     <div style="text-align:center">
-        <h3>Laporan PDF Presensi Tanggal <?= $tgl ?></h3>
+        <h3>Laporan PDF Presensi Tanggal <?=  indonesian_date($tgl) ?></h3>
     </div>
     <?php $i = 0; foreach($presensi as $_): ?>
 
