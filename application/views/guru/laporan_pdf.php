@@ -45,7 +45,7 @@
         <tr>
             <td>Kelas : <?=$kelas->nama?></td>
             <td></td>
-            <td style="text-align: right">Tanggal : <?= $presensi->tanggal ?></td>
+            <td style="text-align: right">Tanggal : <?= indonesian_date($presensi->tanggal) ?></td>
         </tr>
     </table>
 
