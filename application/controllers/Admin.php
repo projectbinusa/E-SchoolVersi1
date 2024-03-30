@@ -405,7 +405,7 @@ class Admin extends CI_Controller {
         $sheet->setCellValue('D' . $rowNum, $data->mapel); 
         $sheet->setCellValue('E' . $rowNum, $data->kelas_id); 
         $sheet->setCellValue('F' . $rowNum, $data->ttl); 
-        $sheet->setCellValue('G' . $rowNum, $data->email); 
+        $sheet->setCellValue('G' . $rowNum, ''); 
         $rowNum++;
     }
 		$writer = new Xlsx($spreadsheet);

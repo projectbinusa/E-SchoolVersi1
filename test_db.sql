@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Mar 2024 pada 08.18
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.0.25
+-- Generation Time: Mar 30, 2024 at 02:05 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `guru`
+-- Table structure for table `guru`
 --
 
 CREATE TABLE `guru` (
@@ -37,7 +37,7 @@ CREATE TABLE `guru` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `guru`
+-- Dumping data for table `guru`
 --
 
 INSERT INTO `guru` (`id`, `nama`, `nip`, `mapel`, `kelas_id`, `ttl`) VALUES
@@ -63,7 +63,7 @@ INSERT INTO `guru` (`id`, `nama`, `nip`, `mapel`, `kelas_id`, `ttl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kbm`
+-- Table structure for table `kbm`
 --
 
 CREATE TABLE `kbm` (
@@ -76,16 +76,16 @@ CREATE TABLE `kbm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `kbm`
+-- Dumping data for table `kbm`
 --
 
-INSERT INTO `kbm` (`id`, `jam_masuk`, `jam_selesai`, `materi`, `keterangan`, `guru_id`) VALUES
-(1, '2024-03-25 07:00:00', '2024-03-25 09:00:00', 'Pkn', '-', 2);
+INSERT INTO `kbm` (`id`, `guru_id`, `jam_masuk`, `jam_selesai`, `materi`, `keterangan`) VALUES
+(1, 2, '2024-03-25 07:00:00', '2024-03-25 09:00:00', 'Pkn', '-');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kehadiran_siswa`
+-- Table structure for table `kehadiran_siswa`
 --
 
 CREATE TABLE `kehadiran_siswa` (
@@ -95,7 +95,7 @@ CREATE TABLE `kehadiran_siswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `kehadiran_siswa`
+-- Dumping data for table `kehadiran_siswa`
 --
 
 INSERT INTO `kehadiran_siswa` (`presensi_id`, `keterangan`, `siswa_id`) VALUES
@@ -119,7 +119,7 @@ INSERT INTO `kehadiran_siswa` (`presensi_id`, `keterangan`, `siswa_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelas`
+-- Table structure for table `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -128,7 +128,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `kelas`
+-- Dumping data for table `kelas`
 --
 
 INSERT INTO `kelas` (`id`, `nama`) VALUES
@@ -146,7 +146,7 @@ INSERT INTO `kelas` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `presensi`
+-- Table structure for table `presensi`
 --
 
 CREATE TABLE `presensi` (
@@ -156,7 +156,7 @@ CREATE TABLE `presensi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `presensi`
+-- Dumping data for table `presensi`
 --
 
 INSERT INTO `presensi` (`id`, `tanggal`, `kelas_id`) VALUES
@@ -177,7 +177,7 @@ INSERT INTO `presensi` (`id`, `tanggal`, `kelas_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -186,7 +186,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `nama`) VALUES
@@ -196,7 +196,7 @@ INSERT INTO `role` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sikap`
+-- Table structure for table `sikap`
 --
 
 CREATE TABLE `sikap` (
@@ -210,7 +210,7 @@ CREATE TABLE `sikap` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `siswa`
+-- Table structure for table `siswa`
 --
 
 CREATE TABLE `siswa` (
@@ -222,7 +222,7 @@ CREATE TABLE `siswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `siswa`
+-- Dumping data for table `siswa`
 --
 
 INSERT INTO `siswa` (`id`, `nama_siswa`, `nisn`, `kelas_id`, `ttl`) VALUES
@@ -491,87 +491,88 @@ INSERT INTO `siswa` (`id`, `nama_siswa`, `nisn`, `kelas_id`, `ttl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `role_id`) VALUES
-(1, 'admin', '25d55ad283aa400af464c76d713c07ad', 1),
-(2, 'Muh. Miftah, M. Pd.', '25d55ad283aa400af464c76d713c07ad', 2),
-(3, 'Darto, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(4, 'Drs. Tantri Santoso', '25d55ad283aa400af464c76d713c07ad', 2),
-(5, 'Endang Mahmudah, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(6, 'Johan Wahyudi, M.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(7, 'Supriyati, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(8, 'Tatang Johani Asfari, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(9, 'Wiwik Asih P, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(10, 'Evi Dwi Suryani, SS', '25d55ad283aa400af464c76d713c07ad', 2),
-(11, 'Sri Murni Wijayanti, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(12, 'Dwys Apga Kartiyanto, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(13, 'Nihayatul Chasanah, S.S', '25d55ad283aa400af464c76d713c07ad', 2),
-(14, 'Kistantini, S.Si', '25d55ad283aa400af464c76d713c07ad', 2),
-(15, 'Tein Maimunah, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(16, 'Muhammad Abdul Rokhim, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(17, 'Dwi Widiyastuti, S.Ag ', '25d55ad283aa400af464c76d713c07ad', 2),
-(18, 'Endang Kristini, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
-(19, 'Drs. Sriyanto A P', '25d55ad283aa400af464c76d713c07ad', 2);
+INSERT INTO `user` (`id`, `email`, `username`, `password`, `role_id`) VALUES
+(1, NULL, 'admin', '25d55ad283aa400af464c76d713c07ad', 1),
+(2, 'miftah@gmail.com', 'Muh. Miftah, M. Pd.', '25d55ad283aa400af464c76d713c07ad', 2),
+(3, 'darto@gmail.com', 'Darto, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(4, 'tantri@gmail.com', 'Drs. Tantri Santoso', '25d55ad283aa400af464c76d713c07ad', 2),
+(5, 'endang@gmail.com', 'Endang Mahmudah, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(6, 'johan@gmail.com', 'Johan Wahyudi, M.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(7, 'suprianti@gmail.com', 'Supriyati, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(8, 'tatang@gmail.com', 'Tatang Johani Asfari, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(9, 'wiwik@gmai.com', 'Wiwik Asih P, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(10, 'evi@gmail.com', 'Evi Dwi Suryani, SS', '25d55ad283aa400af464c76d713c07ad', 2),
+(11, 'sri@gmail.com', 'Sri Murni Wijayanti, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(12, 'dwys@gmail.com', 'Dwys Apga Kartiyanto, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(13, 'nihayatul@gmail.com', 'Nihayatul Chasanah, S.S', '25d55ad283aa400af464c76d713c07ad', 2),
+(14, 'kristantini@gmail.com', 'Kistantini, S.Si', '25d55ad283aa400af464c76d713c07ad', 2),
+(15, 'tein@gmail.com', 'Tein Maimunah, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(16, 'muhammad@gmail.com', 'Muhammad Abdul Rokhim, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(17, 'dwi@gmail.com', 'Dwi Widiyastuti, S.Ag ', '25d55ad283aa400af464c76d713c07ad', 2),
+(18, 'endangkristini@gmail.com', 'Endang Kristini, S.Pd', '25d55ad283aa400af464c76d713c07ad', 2),
+(19, 'sriyanto@gmail.com', 'Drs. Sriyanto A P', '25d55ad283aa400af464c76d713c07ad', 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `guru`
+-- Indexes for table `guru`
 --
 ALTER TABLE `guru`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
--- Indeks untuk tabel `kbm`
+-- Indexes for table `kbm`
 --
 ALTER TABLE `kbm`
   ADD PRIMARY KEY (`id`),
   ADD KEY `guru_id` (`guru_id`);
 
 --
--- Indeks untuk tabel `kehadiran_siswa`
+-- Indexes for table `kehadiran_siswa`
 --
 ALTER TABLE `kehadiran_siswa`
   ADD PRIMARY KEY (`presensi_id`,`siswa_id`),
   ADD KEY `siswa_id` (`siswa_id`);
 
 --
--- Indeks untuk tabel `kelas`
+-- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `presensi`
+-- Indexes for table `presensi`
 --
 ALTER TABLE `presensi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
--- Indeks untuk tabel `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `sikap`
+-- Indexes for table `sikap`
 --
 ALTER TABLE `sikap`
   ADD PRIMARY KEY (`id`),
@@ -579,115 +580,115 @@ ALTER TABLE `sikap`
   ADD KEY `id_guru` (`guru_id`);
 
 --
--- Indeks untuk tabel `siswa`
+-- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_role` (`role_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `guru`
+-- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `kbm`
+-- AUTO_INCREMENT for table `kbm`
 --
 ALTER TABLE `kbm`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `kelas`
+-- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `presensi`
+-- AUTO_INCREMENT for table `presensi`
 --
 ALTER TABLE `presensi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `sikap`
+-- AUTO_INCREMENT for table `sikap`
 --
 ALTER TABLE `sikap`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `siswa`
+-- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `guru`
+-- Constraints for table `guru`
 --
 ALTER TABLE `guru`
   ADD CONSTRAINT `guru_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `kbm`
+-- Constraints for table `kbm`
 --
 ALTER TABLE `kbm`
   ADD CONSTRAINT `kbm_ibfk_1` FOREIGN KEY (`guru_id`) REFERENCES `guru` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `kehadiran_siswa`
+-- Constraints for table `kehadiran_siswa`
 --
 ALTER TABLE `kehadiran_siswa`
   ADD CONSTRAINT `kehadiran_siswa_ibfk_1` FOREIGN KEY (`presensi_id`) REFERENCES `presensi` (`id`),
   ADD CONSTRAINT `kehadiran_siswa_ibfk_2` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `presensi`
+-- Constraints for table `presensi`
 --
 ALTER TABLE `presensi`
   ADD CONSTRAINT `presensi_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `sikap`
+-- Constraints for table `sikap`
 --
 ALTER TABLE `sikap`
   ADD CONSTRAINT `sikap_ibfk_1` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`),
   ADD CONSTRAINT `sikap_ibfk_2` FOREIGN KEY (`guru_id`) REFERENCES `guru` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `siswa`
+-- Constraints for table `siswa`
 --
 ALTER TABLE `siswa`
   ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `user`
+-- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
