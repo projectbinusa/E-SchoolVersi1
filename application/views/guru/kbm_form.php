@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-6 my-2">
                                 <label>Keterangan</label>
-                                <input required type="text" value="<?= $data->keterangan ?>" name="keterangan"
+                                <input type="text" value="<?= $data->keterangan ?>" name="keterangan"
                                     class="form-control" />
                             </div>
                             <div class="d-flex justify-content-end col-12 my-2">
