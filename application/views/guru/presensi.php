@@ -45,12 +45,18 @@
                 <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
-                        <div class="rounded shadow p-3">
-                            <div class="button-tambah d-flex justify-content-end mb-4">
+                        <div class="rounded shadow row p-3">
+                            <div class="col-12 col-sm-6 p-0">
+                                <button data-bs-toggle="modal" onclick="openModal('filter')" data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
+                                <i width="15"
+                                        height="15" data-feather="sliders" class="feather-icon mb-1"></i> Filter Kelas
+                                </button>
+                            </div>
+                            <div class="button-tambah p-0 col-12 col-sm-6 d-flex justify-content-end mb-4">
                                 <!-- Start Button Tambah Data Presensi -->
                                 <a href="<?= base_url() ?>guru/tambah_piket" class="btn btn-primary"><i width="15"
                                         height="15" data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
-                                <button data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn btn-info ms-2">
+                                <button data-bs-toggle="modal" onclick="openModal('download')" data-bs-target="#exampleModalCenter" class="btn btn-info ms-2">
                                 <i width="15"
                                         height="15" data-feather="download" class="feather-icon mb-1"></i> Download Data
                                 </button>
@@ -109,7 +115,25 @@
     </div>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div id="modal-content" class="modal-content">
+                
+            </div>
+        </div>
+    </div>
+    <?php $this->load->view('components/scripts') ?>
+</body>
+<script>
+// Start Function Delete
+function confirmDelete(kelas, id) {
+    if (!confirm("Anda yakin ingin menghapus data presensi kelas " + kelas + "?")) return;
+    location.href = "<?= base_url() ?>guru/hapus_presensi_api/" + id;
+}
+const modalContent = $("#modal-content");
+console.log(`<?php var_dump($kelas) ?>`)
+function openModal(type) {
+    switch (type) {
+        case "download":
+            modalContent.html(`
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Download Laporan Piket</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -124,16 +148,36 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" form="download-form" class="btn btn-primary">Unduh</button>
                 </div>
-            </div>
-        </div>
-    </div>
-    <?php $this->load->view('components/scripts') ?>
-</body>
-<script>
-// Start Function Delete
-function confirmDelete(kelas, id) {
-    if (!confirm("Anda yakin ingin menghapus data presensi kelas " + kelas + "?")) return;
-    location.href = "<?= base_url() ?>guru/hapus_presensi_api/" + id;
+            `)
+            break;
+        case "filter":
+            modalContent.html(`
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Filter Laporan Piket</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="download-form" action="<?=base_url()?>guru/piket" class="modal-body row">
+                    <div class="col-6 px-3">
+                        <label>Kelas</label>
+                        <select id="kelas" name="kelas" class="form-control select2 select2-info">
+                            <option value="">none</option>
+                            <?php foreach ($kelas as $option): if (!$option) continue;?>
+                            <option value="<?= $option->id ?>">
+                                <?= $option->label ?>
+                            </option>
+                            <?php endforeach; ?>
+                        <select>
+                    </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="download-form" class="btn btn-primary">Cari</button>
+                </div>
+            `)
+            break;
+    }
+    
 }
 // End Function Delete
 </script>

@@ -97,7 +97,8 @@ class Guru extends CI_Controller {
 	// Function piket
 	public function piket() {
 		$this->load->view('guru/presensi', [
-			'data' => $this->Main_model->getPresensi()
+			'data' => $this->Main_model->getPresensi($this->input->get('kelas')),
+			'kelas' => $this->Main_model->getOptions('kelas')
 		]);
 	}
 

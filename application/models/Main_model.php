@@ -87,7 +87,10 @@ class Main_model extends CI_Model {
     return $this->db->select('siswa.*, kelas.nama as kelas')->join('kelas', "siswa.kelas_id = kelas.id")->get('siswa')->result();
   }
 
-  public function getPresensi() {
+  public function getPresensi($kelas) {
+    if ($kelas) {
+      $this->db->where(['k.id' => $kelas]);
+    }
     $queryRes = $this->db->select('p.*, k.nama as kelas, ks.keterangan')
     ->order_by('p.tanggal', 'DESC')->join('kelas as k', 'p.kelas_id = k.id')
     ->join('kehadiran_siswa as ks', 'ks.presensi_id = p.id', 'left')->get('presensi as p')->result();
