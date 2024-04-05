@@ -6,7 +6,7 @@
             </a>
             <a class="navbar-brand" href="<?php echo base_url()?>" style="background-color: #10222E">
                 <b class="logo-icon">
-                    <img src="<?php echo base_url('uploads/logo/logo-baru-image.png');?>" width="45px" />
+                    <img src="<?php echo base_url('uploads/logo/logo-sekolah-crop.png');?>" width="45px" />
                     <!-- <img src="../package/assets/images/logo-pos.png" alt="homepage" class="light-logo" /> -->
                 </b>
                 <b class="logo-icon logo-text">

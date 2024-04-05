@@ -244,7 +244,7 @@ class Guru extends CI_Controller {
 				"penilaian" => '',
 				"keterangan" => ''
 			],
-			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa', ['kelas_id' => $this->session->userdata('kelas_id')])
+			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa')
 		]);
 	}
 
@@ -255,7 +255,7 @@ class Guru extends CI_Controller {
 		}
 		$this->load->view('guru/sikap_form', [
 			'data' => $this->Main_model->findById('sikap', $id),
-			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa', ['kelas_id' => $this->session->userdata('kelas_id')])
+			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa')
 		]);
 	}
 
