@@ -13,12 +13,12 @@
           } else {
             $items = [
               ["label" => "Dashboard", 'icon' => 'home', "to" => "/guru"],
-              ["label" => "KBM", 'icon' => 'home', "to" => "/guru/kbm"],
+              ["label" => "KBM Guru", 'icon' => 'home', "to" => "/guru/kbm"],
             ];
             if ($this->session->userdata('kelas_id')) {
-              array_push($items, ["label" => "Sikap", 'icon' => 'user', "to" => "/guru/sikap"]);
+              array_push($items, ["label" => "Wali Kelas", 'icon' => 'user', "to" => "/guru/sikap"]);
             }
-            array_push($items, ["label" => "Piket", 'icon' => 'users', "to" => "/guru/piket"]);
+            array_push($items, ["label" => "Piketan", 'icon' => 'users', "to" => "/guru/piket"]);
           }
         ?>
                 <?php $i = 0; foreach ($items as $item): ?>
