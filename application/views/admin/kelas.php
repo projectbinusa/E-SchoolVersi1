@@ -3,6 +3,7 @@
 
 <head>
     <?php $this->load->view('components/head') ?>
+    <link rel="icon" type="image/png" href="<?php echo base_url('uploads/logo/logo-sekolah.png')?>" />
     <title>E-School | Kelas </title>
     <style>
     td {
