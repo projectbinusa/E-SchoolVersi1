@@ -27,7 +27,7 @@
                     <img src="<?php echo base_url('uploads/logo/logo-baru-crop.png');?>" alt="" width="150px">
                 </div>
                 <div class="px-3 fs-4 py-2">
-                    <h2>Login</h2>
+                    <h2>Masuk</h2>
                     <div class="mt-4">
                         <label for="username" class="form-label" style="color: #374151;">Email</label>
                         <input required type="email" name="email" class="form-control shadow-input text-secondary"
