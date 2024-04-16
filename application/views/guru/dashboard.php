@@ -55,6 +55,78 @@
                 <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
+                    <div class="row">
+                            <div class="col-md-<?= $this->session->userdata('kelas_id') ? '4' : '6' ?>">
+                                <!-- Start Card Total Guru -->
+                                <div class="card bg-info text-white" style="border-radius: 10px;">
+                                    <div class="card-body d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <div class="card-title h2 fw-normal">KBM Guru</div>
+                                            <div class="card-text display-6 fw-bold mt-3">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-chalkboard-user fa-5x"
+                                                style="color: rgba(0,0,0,.15);"></i>
+                                        </div>
+                                    </div>
+                                    <a href="<?php echo base_url('guru/kbm') ;?>"
+                                        class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
+                                        style="background-color: #3B82F6; border-radius: 0px 0px 10px 10px;">
+                                        <span>Open Page</span>
+                                        <i class="fa-solid fa-circle-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <!-- End Card Total Guru -->
+                            </div>
+                            <?php if ($this->session->userdata('kelas_id')): ?>
+                                <div class="col-md-4">
+                                    <!-- Start Card Total Guru -->
+                                    <div class="card bg-primary text-white" style="border-radius: 10px;">
+                                        <div class="card-body d-flex justify-content-between align-items-center p-3">
+                                            <div>
+                                                <div class="card-title h2 fw-normal">Sikap</div>
+                                                <div class="card-text display-6 fw-bold mt-3">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-person-circle-check fa-5x"
+                                                    style="color: rgba(0,0,0,.15);"></i>
+                                            </div>
+                                        </div>
+                                        <a href="<?php echo base_url('guru/sikap') ;?>"
+                                            class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
+                                            style="background-color: #3B82F6; border-radius: 0px 0px 10px 10px;">
+                                            <span>Open Page</span>
+                                            <i class="fa-solid fa-circle-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                    <!-- End Card Total Guru -->
+                                </div>
+                            <?php endif ?>
+                            <div class="col-md-<?= $this->session->userdata('kelas_id') ? '4' : '6' ?>">
+                                <div class="card text-white" style="border-radius: 10px; background-color: #00FFAB;">
+                                    <!-- Start Card Total Siswa -->
+                                    <div class="card-body d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <div class="card-title h2 fw-normal">Piketan</div>
+                                            <div class="card-text display-6 fw-bold mt-3">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-users fa-5x" style="color: rgba(0,0,0,.15);"></i>
+                                        </div>
+                                    </div>
+                                    <a href="<?php echo base_url('guru/piket') ;?>"
+                                        class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
+                                        style="background-color: #14C38E; border-radius: 0px 0px 10px 10px;">
+                                        <span>Open Page</span>
+                                        <i class="fa-solid fa-circle-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <!-- End Card Total Siswa -->
+                            </div>
+                        </div>
                         <div class="rounded shadow p-3 mt-3">
                             <h3>Table Jadwal KBM</h3>
                             <!-- Start Table KBM -->
