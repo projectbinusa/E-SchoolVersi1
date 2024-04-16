@@ -4,6 +4,7 @@
 <head>
     <title>Auth Page</title>
     <?php $this->load->view('components/head') ?>
+    <link rel="icon" type="image/png" href="<?php echo base_url('uploads/logo/logo-sekolah.png')?>" />
     <style>
     .shadow-input {
         --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -16,18 +17,17 @@
 <body class="font-web min-vh-100 min-vw-100 d-flex justify-content-center align-items-center container"
     style="background-color: #f1f5f9;">
     <div class="bg-white text-black max-h-75 h-75 max-w-75 w-75 row shadow-lg rounded">
-        <div class="px-0 py-5 d-lg-flex d-none col-lg-6 col-12 justify-content-center align-items-center rounded-end"
+        <div class="px-0 py-5 d-lg-flex d-none col-lg-6 col-12 justify-content-center align-items-center rounded-start"
             style="background-color: #404036;">
-            <img src="<?php echo base_url('uploads/logo/logo-baru-crop.png');?>" alt="" width="300px"
-                style="margin: 100px;">
+            <img src="<?php echo base_url('uploads/logo/login.png');?>" alt="" width="400px">
         </div>
         <div class="my-auto col-lg-6 col-12">
             <form method="post" action="<?php echo base_url('auth/aksi_login');?>">
                 <div class="d-lg-none d-flex justify-content-center py-2">
-                    <img src="<?php echo base_url('uploads/logo/logo-baru-crop.png');?>" alt="" width="150px">
+                    <img src="<?php echo base_url('uploads/logo/logo-sekolah.png');?>" alt="" width="150px">
                 </div>
                 <div class="px-3 fs-4 py-2">
-                    <h2>Login</h2>
+                    <h2>Masuk</h2>
                     <div class="mt-4">
                         <label for="username" class="form-label" style="color: #374151;">Email</label>
                         <input required type="email" name="email" class="form-control shadow-input text-secondary"

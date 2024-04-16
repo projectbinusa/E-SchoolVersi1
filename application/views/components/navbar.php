@@ -6,11 +6,11 @@
             </a>
             <a class="navbar-brand" href="<?php echo base_url()?>" style="background-color: #10222E">
                 <b class="logo-icon">
-                    <img src="<?php echo base_url('uploads/logo/logo-sekolah-crop.png');?>" width="45px" />
+                    <img src="<?php echo base_url('uploads/logo/logo-sekolah.png');?>" width="40px" />
                     <!-- <img src="../package/assets/images/logo-pos.png" alt="homepage" class="light-logo" /> -->
                 </b>
                 <b class="logo-icon logo-text">
-                    <img src="<?php echo base_url('uploads/logo/logo-baru-text.png');?>" width="130px" style="margin-top: 10px; margin-left: 20px;" />
+                    <img src="<?php echo base_url('uploads/logo/text-eruwatan.png');?>" width="170px" style="" />
                     <!-- <img src="../package/assets/images/logo-pos.png" alt="homepage" class="light-logo" /> -->
                 </b>
             </a>
