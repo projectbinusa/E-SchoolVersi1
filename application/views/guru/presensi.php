@@ -99,6 +99,11 @@
                                                 <i width="16" height="16" data-feather="download"
                                                     class="feather-icon"></i>
                                             </a>
+                                            <button id="sendPdfButton"
+                                                class="btn btn-primary">
+                                                <i width="16" height="16" data-feather="share"
+                                                    class="feather-icon"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
@@ -181,6 +186,34 @@ function openModal(type) {
     
 }
 // End Function Delete
+
+document.getElementById('sendPdfButton').addEventListener('click', function() {
+    var token = "HBwi93-XsZ-71D62U2!Z";
+    var target = "120363279796968687@g.us";
+    var pdf = "https://pdfobject.com/pdf/sample.pdf";
+    var formData = new FormData();
+    formData.append('target', target);
+    formData.append('message', 'coba api tes send PDF langsung ke group dari irvanda ');
+    formData.append('url', pdf);
+    formData.append('filename', 'TE.pdf');
+
+    fetch('https://api.fonnte.com/send', {
+        method: 'POST',
+        headers: {
+            'Authorization': token
+        },
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data); // Tampilkan respons dari server di console
+        alert('PDF berhasil dikirim ke grup WhatsApp!');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat mengirim PDF ke grup WhatsApp.');
+    });
+});
 </script>
 
 </html>
