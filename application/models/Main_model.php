@@ -55,6 +55,10 @@ class Main_model extends CI_Model {
     return $this->db->where('id', $id)->get($table, 1)->result()[0];
   }
 
+  public function getPresensiWithKelas($id) {
+    return $this->db->where('presensi.id', $id)->join('kelas', "presensi.kelas_id=kelas.id")->get('presensi')->result()[0];
+  }
+
   public function getWhere($table, $query, $order = null) {
     if ($order) {
       $this->db->order_by($order);

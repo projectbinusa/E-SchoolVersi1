@@ -266,9 +266,11 @@ class Guru extends CI_Controller {
 		$options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         $options->set('isPhpEnabled', true);
+        $options->set('isRemoteEnabled', TRUE);
+    	
 
         $dompdf = new Dompdf($options);
-		$presensi = $this->Main_model->findById('presensi', $id);
+		$presensi = $this->Main_model->getPresensiWithKelas($id);
 		$temp = $this->Main_model->getWhere('kehadiran_siswa', ['presensi_id' => $id]);
 		$res = [];
 		foreach ($temp as $row) {
@@ -289,6 +291,64 @@ class Guru extends CI_Controller {
 
         // Output PDF ke browser
         $dompdf->stream('example.pdf', array('Attachment' => 0));
+    	
+    	// Simpan laporan PDF ke dalam file sementara
+   		$pdf_file = FCPATH . 'temporary_report.pdf';
+    	file_put_contents($pdf_file, $dompdf->output());
+    // Token API WhatsApp dan informasi target
+        $token = "r3TEeM+rD_cVF4VGfr87";
+        $target = $presensi->group_id; // ID grup WhatsApp
+
+        // URL API WhatsApp
+        $url = "https://api.fonnte.com/send";
+// Persiapkan file untuk dikirim
+    $file_data = curl_file_create($pdf_file, 'application/pdf', 'laporan_presensi.pdf');
+
+        // Data yang akan dikirim ke API WhatsApp
+        $data = array(
+            'target' => $target,
+            'message' => 'Laporan presensi terlampir.',
+            'file' => $file_data,
+            'filename' => 'laporan_presensi.pdf',
+        );
+
+        // Inisialisasi Curl
+        $curl = curl_init();
+
+        // Set opsi Curl
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data,
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: $token"
+            ),
+        ));
+
+        // Eksekusi Curl dan tangani respons
+        $response = curl_exec($curl);
+        if (curl_errno($curl)) {
+            $error_msg = curl_error($curl);
+        }
+
+        // Tutup koneksi Curl
+        curl_close($curl);
+    // Hapus file sementara
+    unlink($pdf_file);
+
+        // Tampilkan respons atau pesan kesalahan
+        if (isset($error_msg)) {
+            echo $error_msg;
+        } else {
+            echo $response;
+        }
+    
 	}
 
 	// Function export presensi by tanggal (PDF)
