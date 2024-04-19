@@ -529,4 +529,14 @@ class Admin extends CI_Controller {
 			'kelas' => $this->Main_model->getOptions('kelas')
 		]);
 	}
+	
+	// Function KBM
+	public function kbm()
+	{
+		$data['kbm'] = $this->Main_model->getWhere('kbm', []);
+		usort($data['kbm'], function($a, $b) {
+			return $b->id - $a->id;
+		});
+		$this->load->view('admin/kbm', $data);
+	}
 }
