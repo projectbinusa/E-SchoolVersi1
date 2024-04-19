@@ -48,18 +48,20 @@
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow row p-3">
                             <div class="col-12 col-sm-6 p-0">
-                                <button data-bs-toggle="modal" onclick="openModal('filter')" data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
-                                <i width="15"
-                                        height="15" data-feather="sliders" class="feather-icon mb-1"></i> Filter Kelas
+                                <button data-bs-toggle="modal" onclick="openModal('filter')"
+                                    data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
+                                    <i width="15" height="15" data-feather="sliders" class="feather-icon mb-1"></i>
+                                    Filter Kelas
                                 </button>
                             </div>
                             <div class="button-tambah p-0 col-12 col-sm-6 d-flex justify-content-end mb-4">
                                 <!-- Start Button Tambah Data Presensi -->
                                 <a href="<?= base_url() ?>guru/tambah_piket" class="btn btn-primary"><i width="15"
                                         height="15" data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
-                                <button data-bs-toggle="modal" onclick="openModal('download')" data-bs-target="#exampleModalCenter" class="btn btn-info ms-2">
-                                <i width="15"
-                                        height="15" data-feather="download" class="feather-icon mb-1"></i> Download Data
+                                <button data-bs-toggle="modal" onclick="openModal('download')"
+                                    data-bs-target="#exampleModalCenter" class="btn btn-info ms-2">
+                                    <i width="15" height="15" data-feather="download" class="feather-icon mb-1"></i>
+                                    Download Data
                                 </button>
                                 <!-- End Button Tambah Data Presensi -->
                             </div>
@@ -99,10 +101,8 @@
                                                 <i width="16" height="16" data-feather="download"
                                                     class="feather-icon"></i>
                                             </a>
-                                            <button id="sendPdfButton"
-                                                class="btn btn-primary">
-                                                <i width="16" height="16" data-feather="share"
-                                                    class="feather-icon"></i>
+                                            <button id="sendPdfButton" class="btn btn-primary">
+                                                <i width="16" height="16" data-feather="share" class="feather-icon"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -119,10 +119,11 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div id="modal-content" class="modal-content">
-                
+
             </div>
         </div>
     </div>
@@ -136,6 +137,7 @@ function confirmDelete(kelas, id) {
 }
 const modalContent = $("#modal-content");
 console.log(`<?php var_dump($kelas) ?>`)
+
 function openModal(type) {
     switch (type) {
         case "download":
@@ -145,7 +147,7 @@ function openModal(type) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="download-form" action="<?=base_url()?>guru/pdf_presensi_tgl" class="modal-body row">
-                    <div class="col-6 px-3">
+                    <div class="px-3">
                         <label>Tanggal</label>
                         <input type="date" name="taggal" required class="form-control" id="date-filter" />
                     </div>
@@ -163,7 +165,7 @@ function openModal(type) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="download-form" action="<?=base_url()?>guru/piket" class="modal-body row">
-                    <div class="col-6 px-3">
+                    <div class="px-3">
                         <label>Kelas</label>
                         <select id="kelas" name="kelas" class="form-control select2 select2-info">
                             <option value="">none</option>
@@ -183,7 +185,7 @@ function openModal(type) {
             `)
             break;
     }
-    
+
 }
 // End Function Delete
 
@@ -198,21 +200,21 @@ document.getElementById('sendPdfButton').addEventListener('click', function() {
     formData.append('filename', 'TE.pdf');
 
     fetch('https://api.fonnte.com/send', {
-        method: 'POST',
-        headers: {
-            'Authorization': token
-        },
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data); // Tampilkan respons dari server di console
-        alert('PDF berhasil dikirim ke grup WhatsApp!');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan saat mengirim PDF ke grup WhatsApp.');
-    });
+            method: 'POST',
+            headers: {
+                'Authorization': token
+            },
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data); // Tampilkan respons dari server di console
+            alert('PDF berhasil dikirim ke grup WhatsApp!');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat mengirim PDF ke grup WhatsApp.');
+        });
 });
 </script>
 

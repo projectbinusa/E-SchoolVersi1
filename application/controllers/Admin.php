@@ -521,4 +521,12 @@ class Admin extends CI_Controller {
 		$this->Main_model->remove('kelas', $id);
 		redirect(base_url().'admin/kelas');
 	}
+	
+	// Function piket
+	public function piket() {
+		$this->load->view('admin/presensi', [
+			'data' => $this->Main_model->getPresensi($this->input->get('kelas')),
+			'kelas' => $this->Main_model->getOptions('kelas')
+		]);
+	}
 }

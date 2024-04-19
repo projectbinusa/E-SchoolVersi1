@@ -9,6 +9,8 @@
               ["label" => "Siswa", 'icon' => 'book-open', "to" => "admin/siswa"],
               ["label" => "Guru", 'icon' => 'clipboard', "to" => "admin/guru"],
               ["label" => "Kelas", 'icon' => 'pause', "to" => "admin/kelas"],
+              ["label" => "Piket", 'icon' => 'users', "to" => "admin/piket"],
+              ["label" => "KBM", 'icon' => 'home', "to" => "/admin/kbm"],
             ];
           } else {
             $items = [
