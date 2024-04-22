@@ -64,6 +64,7 @@
                                         <th class="text-center">Sakit</th>
                                         <th class="text-center">Izin</th>
                                         <th class="text-center">Alpha</th>
+                                        <th class="text-center">Total Hadir</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-light text-center">
@@ -75,6 +76,8 @@
                                         <td><?= $row->sakit ?></td>
                                         <td><?= $row->izin ?></td>
                                         <td><?= $row->bolos ?></td>
+                                        <td><?= $this->Main_model->get_where('siswa', ['kelas_id' => $row->kelas_id])->num_rows() - ($row->bolos + $row->izin + $row->sakit)  ?>
+                                        </td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
                                 </tbody>

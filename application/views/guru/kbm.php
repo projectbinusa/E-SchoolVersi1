@@ -55,9 +55,11 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
+                                        <th class="text-center">Nama Guru</th>
                                         <th class="text-center">Jam Masuk</th>
                                         <th class="text-center">Jam Selesai</th>
                                         <th class="text-center">Materi</th>
+                                        <th class="text-center">Kelas</th>
                                         <th class="text-center">Keterangan</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
@@ -66,9 +68,11 @@
                                     <?php $i = 0; foreach($kbm as $row): ?>
                                     <tr>
                                         <td><?= $i+1 ?></td>
+                                        <td><?= get_nama_guru($row->guru_id) ?></td>
                                         <td><?= substr($row->jam_masuk, 11, -3) ?></td>
                                         <td><?= substr($row->jam_selesai, 11, -3) ?></td>
                                         <td><?= $row->materi ?></td>
+                                        <td><?= get_nama_kelas($row->kelas_id) ?></td>
                                         <td><?= $row->keterangan ?></td>
                                         <td>
                                             <a href="<?= base_url() ?>guru/edit_kbm/<?= $row->id ?>"

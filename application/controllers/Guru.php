@@ -43,6 +43,7 @@ class Guru extends CI_Controller {
 			redirect(base_url());
 		}
 		$data['kbm'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
+		$data['kelas'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
 		usort($data['kbm'], function($a, $b) {
 			return $b->id - $a->id;
 		});
@@ -72,6 +73,7 @@ class Guru extends CI_Controller {
 		}
 		$this->Main_model->insert('kbm', [
 			'guru_id' => $this->session->userdata('guru_id'),
+			'kelas_id' => $this->input->post('kelas_id'),
 			'jam_masuk' => date('Y-m-d').' '.$this->input->post('masuk').':00',
 			'jam_selesai' => date('Y-m-d').' '.$this->input->post('selesai').':00',
 			'materi' => $this->input->post('materi'),
@@ -98,11 +100,12 @@ class Guru extends CI_Controller {
 		}
 		$this->load->view('guru/kbm_form', [
 			'data' => (object) [
+				"kelas_id" => '',
 				"jam_masuk" => '',
 				"jam_selesai" => '',
 				"materi" => '',
 				"keterangan" => ''
-			]
+			], 'kelas' => $this->Main_model->getOptions('kelas')
 		]);
 	}
 
@@ -113,7 +116,7 @@ class Guru extends CI_Controller {
 			redirect(base_url());
 		}
 		$this->load->view('guru/kbm_form', [
-			'data' => $this->Main_model->findById('kbm', $id)
+			'data' => $this->Main_model->findById('kbm', $id), 'kelas' => $this->Main_model->getOptions('kelas')
 		]);
 	}
 

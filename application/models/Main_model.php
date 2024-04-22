@@ -6,20 +6,22 @@ class Main_model extends CI_Model {
   public function edit($table, $data, $id) {
     $this->db->update($table, $data, ['id' => $id]);
   }
+  
   public function editWhere($table, $data, $where) {
     $this->db->update($table, $data, $where);
   }
+
   public function insert($table, $data) {
     $this->db->insert($table, $data);
     return $this->db->insert_id();
   }
-
+  
   public function insertBatch($table, $data) {
     if (count($data) <= 0) return;
     $this->db->insert_batch($table, $data);
   }
 
-  public function login($table, $where)
+  public function get_where($table, $where)
   {
       $data = $this->db->where($where)->get($table);
       return $data;
@@ -114,11 +116,12 @@ class Main_model extends CI_Model {
       if ($kelas === false) {
         array_push($res, (object) [
           'id' => $row->id,
+          'kelas_id' => $row->kelas_id,
           'tanggal' => $row->tanggal,
           'kelas' => $row->kelas,
           'izin' => 0,
           'bolos' => 0,
-          'sakit' => 0
+          'sakit' => 0,
         ]);
         if (isset($row->keterangan))
         $res[count($res)-1]->{strtolower($row->keterangan)}++;

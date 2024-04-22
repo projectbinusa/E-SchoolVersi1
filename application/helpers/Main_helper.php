@@ -33,6 +33,17 @@ function get_nama_guru($id)
     }
 }
 
+function get_nama_kelas($id)
+{
+    $ci = &get_instance();
+    $ci->load->database();
+    $result = $ci->db->where('id', $id)->get('kelas');
+    foreach ($result->result() as $c) {
+        $tmt = $c->nama;
+        return $tmt;
+    }
+}
+
 function get_nama_siswa($id)
 {
     $ci = &get_instance();

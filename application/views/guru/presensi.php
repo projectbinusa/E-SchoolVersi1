@@ -75,6 +75,7 @@
                                         <th class="text-center">Sakit</th>
                                         <th class="text-center">Izin</th>
                                         <th class="text-center">Alpha</th>
+                                        <th class="text-center">Total Hadir</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -87,6 +88,7 @@
                                         <td><?= $row->sakit ?></td>
                                         <td><?= $row->izin ?></td>
                                         <td><?= $row->bolos ?></td>
+                                        <td><?= $this->Main_model->get_where('siswa', ['kelas_id' => $row->kelas_id])->num_rows() - ($row->bolos + $row->izin + $row->sakit)  ?>
                                         <td class="">
                                             <a href="<?=base_url()?>guru/edit_piket/<?=$row->id?>"
                                                 class="btn btn-warning"><i width="16" height="16" data-feather="edit"
@@ -101,9 +103,10 @@
                                                 <i width="16" height="16" data-feather="download"
                                                     class="feather-icon"></i>
                                             </a>
-                                            <a href="whatsapp://send?text=<?= base_url()?>guru/pdf_presensi/<?=$row->id?>" data-action="share/whatsapp/share" class="btn btn-primary">
-                                            <i width="16" height="16" data-feather="share" class="feather-icon"></i>
-                                        </a>
+                                            <a href="whatsapp://send?text=<?= base_url()?>guru/pdf_presensi/<?=$row->id?>"
+                                                data-action="share/whatsapp/share" class="btn btn-primary">
+                                                <i width="16" height="16" data-feather="share" class="feather-icon"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php $i++; endforeach; ?>
@@ -188,7 +191,6 @@ function openModal(type) {
 
 }
 // End Function Delete
-
 </script>
 
 </html>

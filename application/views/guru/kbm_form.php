@@ -63,7 +63,8 @@
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
                                             href="<?php echo base_url('guru')?>">Guru</a></li>
                                     <li class="breadcrumb-item" aria-current="page" style="font-size: 15px;">
-                                        <a href="<?php echo base_url('guru/KBM')?>">KBM</a></li>
+                                        <a href="<?php echo base_url('guru/KBM')?>">KBM</a>
+                                    </li>
                                     <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
                                         Input Data KBM</li>
                                 </ol>
@@ -96,6 +97,17 @@
                                 <label>Keterangan</label>
                                 <input type="text" value="<?= $data->keterangan ?>" name="keterangan"
                                     class="form-control" />
+                            </div>
+                            <div class="col-12 my-2">
+                                <label>Kelas</label>
+                                <select id="kelas_id" name="kelas_id" class="form-control select2 select2-info">
+                                    <option value="">none</option>
+                                    <?php foreach ($kelas as $option): if (!$option) continue;?>
+                                    <option value="<?= $option->id ?>">
+                                        <?= $option->label ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                    <select>
                             </div>
                             <div class="d-flex justify-content-end col-12 my-2">
                                 <button type="submit"

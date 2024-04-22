@@ -34,7 +34,7 @@ class Auth extends CI_Controller {
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        $query = $this->Main_model->login('user', ['email' => $email]);
+        $query = $this->Main_model->get_where('user', ['email' => $email]);
         $result = $query->row_array();
         if (!empty($result) && md5($password) === $result['password']) {
             if ($result['role_id'] == '2' && get_kelas_guru($result['username']) !== NULL) {
