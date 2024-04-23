@@ -70,8 +70,8 @@
                                     <?php $i = 0; foreach($data as $row): ?>
                                     <tr>
                                         <td><?= $i+1 ?></td>
-                                        <td><?= get_nama_siswa($row->siswa_id) ?></td>
-                                        <td><?= $row->penilaian ?></td>
+                                        <td><?= get_nama_kelas($row->kelas_id) ?></td>
+                                        <td><?= $row->informasi ?></td>
                                         <td><?= $row->keterangan ?></td>
                                         <td><?= get_nama_guru($row->guru_id) ?></td>
                                         <td>

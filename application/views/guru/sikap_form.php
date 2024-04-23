@@ -63,7 +63,8 @@
                                     <li class="breadcrumb-item" style="font-size: 15px;"><a
                                             href="<?php echo base_url('guru')?>">Guru</a></li>
                                     <li class="breadcrumb-item" aria-current="page" style="font-size: 15px;">
-                                        <a href="<?php echo base_url('guru/sikap')?>">Sikap</a></li>
+                                        <a href="<?php echo base_url('guru/sikap')?>">Sikap</a>
+                                    </li>
                                     <li class="breadcrumb-item active" aria-current="page" style="font-size: 15px;">
                                         Input Data Sikap</li>
                                 </ol>
@@ -78,19 +79,18 @@
                             action="<?=base_url()?>guru/<?= isset($data->id) ? 'edit_sikap_api/'.$data->id : 'tambah_sikap_api' ?>"
                             class="row">
                             <div class="col-6 mt-3">
-                                <label for="siswa">Nama Siswa</label>
-                                <select required id="siswa" name="siswa_id" class="form-control select2 select2-info">
-                                    <?php foreach ($siswa as $option): ?>
-                                    <option value="<?= $option->id ?>"
-                                        <?= $option->id==$data->siswa_id ?' selected':'' ?>>
+                                <label for="kelas">Nama Kelas</label>
+                                <select required id="kelas" name="kelas_id" class="form-control select2 select2-info">
+                                    <?php foreach ($kelas as $option): if (!$option) continue;?>
+                                    <option value="<?= $option->id ?>">
                                         <?= $option->label ?>
                                     </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="col-6 mt-3">
-                                <label>Penilaian</label>
-                                <input required type="text" value="<?= $data->penilaian ?>" name="penilaian"
+                                <label>Informasi</label>
+                                <input required type="text" value="<?= $data->informasi ?>" name="informasi"
                                     class="form-control" />
                             </div>
                             <div class="col-12 mt-3">
@@ -107,9 +107,9 @@
                 </div>
                 <div style="">
 
-                <!-- Start Footer -->
-                <?php $this->load->view('components/footer')?>
-                <!-- End Footer -->
+                    <!-- Start Footer -->
+                    <?php $this->load->view('components/footer')?>
+                    <!-- End Footer -->
                 </div>
             </div>
         </div>

@@ -249,9 +249,9 @@ class Guru extends CI_Controller {
 				redirect(base_url('guru'));
 		}
 		$this->Main_model->edit('sikap', [
-			'siswa_id' => $this->input->post('siswa_id'),
+			'kelas_id' => $this->input->post('kelas_id'),
 			'guru_id' => $this->session->userdata('guru_id'),
-			'penilaian' => $this->input->post('penilaian'),
+			'informasi' => $this->input->post('informasi'),
 			'keterangan' => $this->input->post('keterangan')
 		], $id);
 		redirect(base_url().'guru/sikap');
@@ -267,9 +267,9 @@ class Guru extends CI_Controller {
 				redirect(base_url('guru'));
 		}
 		$this->Main_model->insert('sikap', [
-			'siswa_id' => $this->input->post('siswa_id'),
+			'kelas_id' => $this->input->post('kelas_id'),
 			'guru_id' => $this->session->userdata('guru_id'),
-			'penilaian' => $this->input->post('penilaian'),
+			'informasi' => $this->input->post('informasi'),
 			'keterangan' => $this->input->post('keterangan')
 		]);
 		redirect(base_url().'guru/sikap');
@@ -314,11 +314,11 @@ class Guru extends CI_Controller {
 		$this->load->view('guru/sikap_form', [
 			
 			'data' => (object) [
-				"siswa_id" => '',
-				"penilaian" => '',
+				"kelas_id" => '',
+				"informasi" => '',
 				"keterangan" => ''
 			],
-			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa')
+			'kelas' => $this->Main_model->getOptions('kelas')
 		]);
 	}
 
@@ -333,7 +333,7 @@ class Guru extends CI_Controller {
 		}
 		$this->load->view('guru/sikap_form', [
 			'data' => $this->Main_model->findById('sikap', $id),
-			'siswa' => $this->Main_model->getOptions('siswa', 'nama_siswa')
+			'kelas' => $this->Main_model->getOptions('kelas')
 		]);
 	}
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2024 at 02:05 AM
+-- Generation Time: Apr 23, 2024 at 04:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -69,18 +69,12 @@ INSERT INTO `guru` (`id`, `nama`, `nip`, `mapel`, `kelas_id`, `ttl`) VALUES
 CREATE TABLE `kbm` (
   `id` int(11) NOT NULL,
   `guru_id` int(11) NOT NULL,
+  `kelas_id` int(11) NOT NULL,
   `jam_masuk` datetime DEFAULT NULL,
   `jam_selesai` datetime DEFAULT NULL,
   `materi` varchar(255) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `kbm`
---
-
-INSERT INTO `kbm` (`id`, `guru_id`, `jam_masuk`, `jam_selesai`, `materi`, `keterangan`) VALUES
-(1, 2, '2024-03-25 07:00:00', '2024-03-25 09:00:00', 'Pkn', '-');
 
 -- --------------------------------------------------------
 
@@ -201,7 +195,7 @@ INSERT INTO `role` (`id`, `nama`) VALUES
 
 CREATE TABLE `sikap` (
   `id` int(11) NOT NULL,
-  `siswa_id` int(11) DEFAULT NULL,
+  `kelas_id` int(11) DEFAULT NULL,
   `guru_id` int(11) DEFAULT NULL,
   `penilaian` varchar(255) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL
@@ -543,7 +537,8 @@ ALTER TABLE `guru`
 --
 ALTER TABLE `kbm`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `guru_id` (`guru_id`);
+  ADD KEY `guru_id` (`guru_id`),
+  ADD KEY `kelas_id` (`kelas_id`);
 
 --
 -- Indexes for table `kehadiran_siswa`
@@ -576,7 +571,7 @@ ALTER TABLE `role`
 --
 ALTER TABLE `sikap`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `siswa_id` (`siswa_id`),
+  ADD KEY `siswa_id` (`kelas_id`),
   ADD KEY `id_guru` (`guru_id`);
 
 --
@@ -607,7 +602,7 @@ ALTER TABLE `guru`
 -- AUTO_INCREMENT for table `kbm`
 --
 ALTER TABLE `kbm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kelas`
@@ -659,7 +654,8 @@ ALTER TABLE `guru`
 -- Constraints for table `kbm`
 --
 ALTER TABLE `kbm`
-  ADD CONSTRAINT `kbm_ibfk_1` FOREIGN KEY (`guru_id`) REFERENCES `guru` (`id`);
+  ADD CONSTRAINT `kbm_ibfk_1` FOREIGN KEY (`guru_id`) REFERENCES `guru` (`id`),
+  ADD CONSTRAINT `kbm_ibfk_2` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`);
 
 --
 -- Constraints for table `kehadiran_siswa`
@@ -678,7 +674,7 @@ ALTER TABLE `presensi`
 -- Constraints for table `sikap`
 --
 ALTER TABLE `sikap`
-  ADD CONSTRAINT `sikap_ibfk_1` FOREIGN KEY (`siswa_id`) REFERENCES `siswa` (`id`),
+  ADD CONSTRAINT `sikap_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`),
   ADD CONSTRAINT `sikap_ibfk_2` FOREIGN KEY (`guru_id`) REFERENCES `guru` (`id`);
 
 --
