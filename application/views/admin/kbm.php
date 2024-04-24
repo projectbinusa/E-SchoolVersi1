@@ -47,6 +47,13 @@
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
                         <div class="rounded shadow p-3">
+                            <div class="p-0 mb-4">
+                                <button data-bs-toggle="modal" onclick="openModal('filter')"
+                                    data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
+                                    <i width="15" height="15" data-feather="sliders" class="feather-icon mb-1"></i>
+                                    Filter Kelas
+                                </button>
+                            </div>
                             <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>
                                     <tr>
@@ -93,8 +100,46 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div id="modal-content" class="modal-content">
+
+            </div>
+        </div>
     </div>
     <?php $this->load->view('components/scripts.php') ?>
 </body>
+<script>
+const modalContent = $("#modal-content");
+console.log(`<?php var_dump($kelas) ?>`)
+
+function openModal(type) {
+    modalContent.html(`
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Filter Laporan KBM</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="download-form" action="<?=base_url()?>admin/kbm" class="modal-body row">
+            <div class="px-3">
+                <label>Kelas</label>
+                <select id="kelas" name="kelas" class="form-control select2 select2-info">
+                    <option value="">none</option>
+                    <?php foreach ($kelas as $option): if (!$option) continue;?>
+                    <option value="<?= $option->id ?>">
+                        <?= $option->label ?>
+                    </option>
+                    <?php endforeach; ?>
+                <select>
+            </div>
+            </div>
+        </form>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" form="download-form" class="btn btn-primary">Cari</button>
+        </div>
+    `)
+}
+</script>
 
 </html>

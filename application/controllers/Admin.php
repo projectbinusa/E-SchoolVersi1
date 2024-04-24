@@ -533,7 +533,16 @@ class Admin extends CI_Controller {
 	// Function KBM
 	public function kbm()
 	{
-		$data['kbm'] = $this->Main_model->getWhere('kbm', []);
+		$kelas_id = $this->input->get("kelas", TRUE);
+
+		if ($kelas_id !== null) {
+			$data['kbm'] = $this->Main_model->getWhere('kbm', ['kelas_id' => $kelas_id]);
+		} else {
+			$data['kbm'] = $this->Main_model->get('kbm');
+		}
+	
+		$data['kelas'] = $this->Main_model->getOptions('kelas');
+
 		usort($data['kbm'], function($a, $b) {
 			return $b->id - $a->id;
 		});

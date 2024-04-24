@@ -42,8 +42,16 @@ class Guru extends CI_Controller {
 		if ($this->session->userdata('role_id') !== '2') {
 			redirect(base_url());
 		}
-		$data['kbm'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
-		$data['kelas'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
+		$kelas_id = $this->input->get("kelas", TRUE);
+
+		if ($kelas_id !== null) {
+			$data['kbm'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id'), 'kelas_id' => $kelas_id]);
+		} else {
+			$data['kbm'] = $this->Main_model->getWhere('kbm', ['guru_id' => $this->session->userdata('guru_id')]);
+		}
+	
+		$data['kelas'] = $this->Main_model->getOptions('kelas');
+
 		usort($data['kbm'], function($a, $b) {
 			return $b->id - $a->id;
 		});
