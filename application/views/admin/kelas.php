@@ -51,7 +51,9 @@
                                 <!-- Start Button Tambah Data -->
                                 <button name="submit" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"><i width="15" height="15" data-feather="plus"
-                                        class="feather-icon mb-1"></i> Tambah Data</button>
+                                        class="feather-icon mb-1"></i> 
+                                        <span class="d-none d-sm-inline-block">Tambah Data</span>
+                                </button>
                                 <!-- End Button Tambah Data -->
                             </div>
                             <!-- Start Table Kelas -->

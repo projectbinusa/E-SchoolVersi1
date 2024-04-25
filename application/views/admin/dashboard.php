@@ -73,7 +73,7 @@
                                     <a href="<?php echo base_url('admin/guru') ;?>"
                                         class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
                                         style="background-color: #3B82F6; border-radius: 0px 0px 10px 10px;">
-                                        <span>See More</span>
+                                        <span>Lihat Selengkapnya</span>
                                         <i class="fa-solid fa-circle-arrow-right"></i>
                                     </a>
                                 </div>
@@ -96,7 +96,7 @@
                                     <a href="<?php echo base_url('admin/siswa') ;?>"
                                         class="btn d-flex justify-content-center align-items-center gap-2 py-1 text-white"
                                         style="background-color: #14C38E; border-radius: 0px 0px 10px 10px;">
-                                        <span>See More</span>
+                                        <span>Lihat Selengkapnya</span>
                                         <i class="fa-solid fa-circle-arrow-right"></i>
                                     </a>
                                 </div>

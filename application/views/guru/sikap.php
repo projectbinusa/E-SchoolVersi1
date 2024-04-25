@@ -50,8 +50,9 @@
                             <div class="button-tambah d-flex justify-content-end mb-4">
                                 <!-- Start Button Tambah Data Sikap -->
                                 <a href="<?php echo base_url('guru/tambah_sikap')?>" class="btn btn-primary"><i
-                                        width="15" height="15" data-feather="plus" class="feather-icon mb-1"></i> Tambah
-                                    Data</a>
+                                        width="15" height="15" data-feather="plus" class="feather-icon mb-1"></i>
+                                    <span class="d-none d-sm-inline-block">Tambah Data</span>
+                                </a>
                                 <!-- End Button Tambah Data Sikap -->
                             </div>
                             <!-- Start Table Sikap -->

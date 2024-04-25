@@ -46,17 +46,21 @@
                 <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
-                        <div class="rounded row shadow p-3">
-                            <div class="col-12 col-sm-6 p-0">
-                                <button data-bs-toggle="modal" onclick="openModal('filter')"
-                                    data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
-                                    <i width="15" height="15" data-feather="sliders" class="feather-icon mb-1"></i>
-                                    Filter Kelas
-                                </button>
-                            </div>
-                            <div class="col-12 col-sm-6 button-tambah d-flex justify-content-end mb-4">
-                                <a href="<?= base_url() ?>guru/tambah_kbm" class="btn btn-primary"><i width="15"
-                                        height="15" data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
+                        <div class="rounded shadow p-3">
+                            <div class="d-flex justify-content-between p-0">
+                                <div>
+                                    <button data-bs-toggle="modal" onclick="openModal('filter')"
+                                        data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
+                                        <i width="15" height="15" data-feather="sliders" class="feather-icon mb-1"></i>
+                                        <span class="d-none d-sm-inline-block">Filter Kelas</span>
+                                    </button>
+                                </div>
+                                <div class=" button-tambah d-flex justify-content-end mb-4">
+                                    <a href="<?= base_url() ?>guru/tambah_kbm" class="btn btn-primary"><i width="15"
+                                            height="15" data-feather="plus" class="feather-icon mb-1"></i> 
+                                            <span class="d-none d-sm-inline-block">Tambah Data</span>
+                                    </a>
+                                </div>
                             </div>
                             <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>

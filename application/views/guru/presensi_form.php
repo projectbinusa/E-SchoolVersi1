@@ -134,7 +134,7 @@
                             <input hidden name="jumlah_siswa" id="jumlah_siswa" />
                             <div class="col-12 mt-3">
                                 <label class="w-100">Kehadiran</label>
-                                <table class="fixed_header table table-hover table-secondary mt-2 ">
+                                <table class="fixed_header overflow-x-auto table table-hover table-secondary mt-2">
                                     <thead>
                                         <tr>
                                             <th style="width: 14%;" class="text-center">No</th>

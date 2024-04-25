@@ -53,8 +53,8 @@
                                     <button name="submit" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#Modal1"><i width="15" height="15" data-feather="upload"
                                             class="feather-icon mb-1"></i>
-                                        Import
-                                        Data</button>
+                                            <span class="d-none d-sm-inline-block">Import Data</span>
+                                    </button>
                                 </div>
                                 <!-- End Button Download Format Data Siswa -->
 
@@ -68,13 +68,13 @@
                                             </option>
                                             <?php endforeach; ?>
                                         </select>
-                                        <button id="downloadBtn" class="mx-2 btn btn-primary">Download Format
-                                            Siswa</button>
+                                        <button id="downloadBtn" class="mx-2 btn btn-primary"><i width="15" height="15" data-feather="download"
+                                            class="feather-icon mb-1"></i><span class="d-none d-sm-inline-block">Download Format Siswa</span></button>
                                         <button name="submit" type="button" class="btn btn-warning"
                                             data-bs-toggle="modal" data-bs-target="#Modal2"><i width="15" height="15"
                                                 data-feather="edit" class="feather-icon mb-1"></i>
-                                            Edit
-                                            Data</button>
+                                                <span class="d-none d-sm-inline-block">Edit Siswa</span>
+                                        </button>
                                     </div>
 
                                 </div>

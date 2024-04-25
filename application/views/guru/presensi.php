@@ -46,25 +46,31 @@
                 <!-- End Page Breadcrumb -->
                 <div class="container-fluid">
                     <div class="container-fluid mt-2">
-                        <div class="rounded shadow row p-3">
-                            <div class="col-12 col-sm-6 p-0">
-                                <button data-bs-toggle="modal" onclick="openModal('filter')"
-                                    data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
-                                    <i width="15" height="15" data-feather="sliders" class="feather-icon mb-1"></i>
-                                    Filter Kelas
-                                </button>
+                        <div class="rounded shadowp-3">
+                            <div class="d-flex justify-content-between">
+                                <div class="p-0">
+                                    <button data-bs-toggle="modal" onclick="openModal('filter')"
+                                        data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
+                                        <i width="15" height="15" data-feather="sliders" class="feather-icon mb-1"></i>
+                                        <span class="d-none d-sm-inline-block">Filter Kelas</span>
+
+                                    </button>
+                                </div>
+                                <div class="button-tambah p-0 mx-2">
+                                    <!-- Start Button Tambah Data Presensi -->
+                                    <a href="<?= base_url() ?>guru/tambah_piket" class="btn btn-primary mb-1"><i
+                                            width="15" height="15" data-feather="plus"
+                                            class="feather-icon mb-1"></i><span class="d-none d-sm-inline-block">Tambah
+                                            Data</span></a>
+                                    <button data-bs-toggle="modal" onclick="openModal('download')"
+                                        data-bs-target="#exampleModalCenter" class="btn btn-info ms-2">
+                                        <i width="15" height="15" data-feather="download" class="feather-icon mb-1"></i>
+                                        <span class="d-none d-sm-inline-block">Download Data</span>
+                                    </button>
+                                    <!-- End Button Tambah Data Presensi -->
+                                </div>
                             </div>
-                            <div class="button-tambah p-0 col-12 col-sm-6 d-flex justify-content-end mb-4">
-                                <!-- Start Button Tambah Data Presensi -->
-                                <a href="<?= base_url() ?>guru/tambah_piket" class="btn btn-primary"><i width="15"
-                                        height="15" data-feather="plus" class="feather-icon mb-1"></i> Tambah Data</a>
-                                <button data-bs-toggle="modal" onclick="openModal('download')"
-                                    data-bs-target="#exampleModalCenter" class="btn btn-info ms-2">
-                                    <i width="15" height="15" data-feather="download" class="feather-icon mb-1"></i>
-                                    Download Data
-                                </button>
-                                <!-- End Button Tambah Data Presensi -->
-                            </div>
+
                             <!-- Start Table Presensi -->
                             <table id="table" class="table table-hover table-secondary mt-2">
                                 <thead>

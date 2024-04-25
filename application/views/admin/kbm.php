@@ -51,7 +51,7 @@
                                 <button data-bs-toggle="modal" onclick="openModal('filter')"
                                     data-bs-target="#exampleModalCenter" class="btn btn-success ms-2">
                                     <i width="15" height="15" data-feather="sliders" class="feather-icon mb-1"></i>
-                                    Filter Kelas
+                                    <span class="d-none d-sm-inline-block">Filter Kelas</span>
                                 </button>
                             </div>
                             <table id="table" class="table table-hover table-secondary mt-2">

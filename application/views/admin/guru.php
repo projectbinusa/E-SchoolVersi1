@@ -51,10 +51,14 @@
                                 <!-- Start Button Import Data Guru -->
                                 <button name="submit" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" onclick="importForm(false)"><i width="16" height="16" data-feather="upload"
-                                                    class="feather-icon mx-1"></i>Import</button>
+                                                    class="feather-icon mx-1"></i>
+                                                    <span class="d-none d-sm-inline-block">Import</span>
+                                                </button>
                                 <button name="submit" type="button" class="btn btn-warning ms-2" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" onclick="importForm(true)"><i width="16" height="16" data-feather="edit"
-                                                    class="feather-icon mx-1"></i>Edit Data</button>
+                                                    class="feather-icon mx-1"></i>
+                                                    <span class="d-none d-sm-inline-block">Edit Data</span>
+                                </button>
                                 <!-- End Button Import Data Guru -->
                             </div>
 
